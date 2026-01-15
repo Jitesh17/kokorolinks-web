@@ -1,0 +1,152 @@
+{
+  "password": null,
+  "passwordHint": "Please contact the family for the password.",
+
+  "coupleNames": "Shubham & Pallavi",
+  "tagline": "Together with our families, we invite you to celebrate our wedding.",
+  "cityLine": "Gwalior, Madhya Pradesh",
+
+  "lastUpdated": "2026-01-13T12:00:00+05:30",
+
+"media": {
+    "couplePhoto": {
+      "enabled": true,
+      "src": "/weddings/assets/couple-2.jpg",
+      "alt": "Shubham & Pallavi",
+      "size": "hero",
+      "style": "cinematic",
+      "position": "50% 80%"
+    }
+  },
+
+  "primaryVenue": {
+    "name": "Taj Usha Kiran Palace",
+    "address": "Gwalior, Madhya Pradesh",
+    "mapUrl": "https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior"
+  },
+
+  "primaryEvent": {
+    "id": "ceremony",
+    "title": "Wedding Ceremony",
+    "start": "2026-02-08T11:00:00+05:30",
+    "displayDate": "07-08 Feb 2026",
+    "end": "2026-02-08T13:00:00+05:30"
+  },
+
+  "schedule": [
+    {
+      "id": "haldi",
+      "title": "Haldi",
+      "start": "2026-02-07T11:00:00+05:30",
+      "end": "2026-02-07T15:00:00+05:30",
+      "locationName": "Taj Usha Kiran Palace",
+      "address": "Gwalior, Madhya Pradesh",
+      "mapUrl": "https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior",
+      "wardrobe": "A joyful yellow-soaked morning – cheerful Indian outfits.",
+      "wardrobeIcon": "🌻"
+    },
+    {
+      "id": "sangeet",
+      "title": "Sangeet",
+      "start": "2026-02-07T19:00:00+05:30",
+      "end": "2026-02-07T23:59:00+05:30",
+      "locationName": "Taj Usha Kiran Palace",
+      "address": "Gwalior, Madhya Pradesh",
+      "mapUrl": "https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior",
+      "wardrobe": "An evening of sparkle and drama – dark, glam Indo-western looks.",
+      "wardrobeIcon": "👗"
+    },
+    {
+      "id": "wedding",
+      "title": "Wedding",
+      "start": "2026-02-08T11:00:00+05:30",
+      "end": "2026-02-08T15:00:00+05:30",
+      "locationName": "Taj Usha Kiran Palace",
+      "address": "Gwalior, Madhya Pradesh",
+      "mapUrl": "https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior",
+      "wardrobe": "A classic Indian celebration – traditional wedding attire.",
+      "wardrobeIcon": "🥻"
+    },
+    {
+      "id": "reception",
+      "title": "Reception",
+      "start": "2026-02-08T19:00:00+05:30",
+      "end": "2026-02-08T23:00:00+05:30",
+      "locationName": "Taj Usha Kiran Palace",
+      "address": "Gwalior, Madhya Pradesh",
+      "mapUrl": "https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior",
+      "wardrobe": "A dreamy night under fairy lights – elegant cocktail style.",
+      "wardrobeIcon": "🌟"
+    }
+  ],
+
+  "updates": [
+    {
+      "when": "2026-01-13T12:00:00+05:30",
+      "text": "Schedule and Dress Code updated."
+    }
+  ],
+
+  "contacts": [
+    {
+      "name": "Shubham Mehra",
+      "role": "Groom",
+      "phone": "+91 9967303919"
+    },
+    {
+      "name": "Pallavi Mane",
+      "role": "Bride",
+      "phone": "+91-7506110790"
+    },
+    {
+      "name": "Abhijeet Mane",
+      "role": "Bride's Brother",
+      "phone": "+91-9131400877"
+    },
+    {
+      "name": "Priya",
+      "role": "Groom's Sister",
+      "phone": "+91-8965863630"
+    },
+    {
+      "name": "Jitesh Gosar",
+      "role": "Friend & Site Admin",
+      "phone": "+91-8517069572",
+      "icon": "💻"
+    }
+  ],
+
+  "rsvp": {
+    "enabled": true,
+    "mode": "embed",
+    "showButton": true,
+    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSf3b65A7HFAZtwq4MClUORIBRHRaVG4k7JF4yTS2enjKrz7Yw/viewform?usp=dialog",
+    "embedUrl": "https://docs.google.com/forms/d/e/1FAIpQLSf3b65A7HFAZtwq4MClUORIBRHRaVG4k7JF4yTS2enjKrz7Yw/viewform?embedded=true",
+    "deadline": "2026-01-25T23:59:00+05:30",
+    "title": "RSVP",
+    "buttonText": "RSVP (open form here)",
+    "openInNewTabText": "Open in Google Forms"
+  },
+
+  "theme": {
+    "primaryColor": "#d4af37", 
+    "secondaryColor": "#fffcf5",
+    "mode": "dynamic", 
+    "decor": {
+      "enabled": true,
+      "mode": "corners",
+      "imageUrl": "/weddings/assets/decor-corner-2.png",
+      "size": 360,
+      "opacityLight": 0.88,
+      "opacityDark": 0.88,
+      "rotate": true,
+      "baseRotation": 0,
+      "corners": {
+        "tl": { "rotation": 0 },
+        "tr": { "rotation": 0 },
+        "bl": { "rotation": 0 },
+        "br": { "rotation": 0 }
+      }
+    }
+  }
+}
