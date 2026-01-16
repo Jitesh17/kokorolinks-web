@@ -52,9 +52,14 @@ const testimonials = [
         <button class="wip-link text-stone-900 dark:text-stone-200 hover:text-rose-600 dark:hover:text-rose-400 transition-colors">Log in</button>
       </div>
       
-      <button class="wip-link rounded-full bg-stone-900 dark:bg-stone-100 px-6 py-2.5 text-sm font-medium text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-all shadow-lg hover:shadow-xl">
-        Create Invite
+      <button id="nav-book-btn" class="wip-link rounded-full bg-stone-900 dark:bg-stone-100 px-6 py-2.5 text-sm font-medium text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-all shadow-lg hover:shadow-xl">
+        Book Your Link
       </button>
+      <script>
+        document.getElementById('nav-book-btn')?.addEventListener('click', () => {
+          window.openContactModal();
+        });
+      </script>
     </div>
   </nav>
 
@@ -363,6 +368,6 @@ const testimonials = [
   });
 
   document.getElementById('contact-btn')?.addEventListener('click', () => {
-    window.location.href = `mailto:contact@kokorolinks.com`;
+    window.openContactModal();
   });
 </script>

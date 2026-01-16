@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-
+import ContactModal from '../components/ContactModal.astro';
 interface Props {
     title: string;
     description?: string; // Made optional with a default below
@@ -120,5 +120,6 @@ const schema = JSON.stringify({
           document.addEventListener('DOMContentLoaded', initReveal);
           document.addEventListener('astro:after-swap', initReveal);
         </script>
+		<ContactModal />
     </body>
 </html>
