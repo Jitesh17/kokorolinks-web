@@ -85,6 +85,16 @@
       "notes": "सांय 5 बजे"
     },
     {
+      "id": "marriage-ceremony",
+      "title": "Marriage Ceremony",
+      "start": "2026-02-19T17:00:00+05:30",
+      "end": "2026-02-19T29:00:00+05:30",
+      "locationName": "Amara Wedding Banquet",
+      "address": "Opp New RTO, Jagatpura, Jaipur",
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic",
+      "notes": "Ceremony timings are approximated for calendar convenience."
+    },
+    {
       "id": "baraat-arrival",
       "title": "Baraat Arrival",
       "start": "2026-02-19T20:00:00+05:30",
@@ -103,16 +113,6 @@
       "address": "Opp New RTO, Jagatpura, Jaipur",
       "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic",
       "notes": "Thursday, 19th February 2026"
-    },
-    {
-      "id": "marriage-ceremony",
-      "title": "Marriage Ceremony",
-      "start": "2026-02-19T17:00:00+05:30",
-      "end": "2026-02-19T23:30:00+05:30",
-      "locationName": "Amara Wedding Banquet",
-      "address": "Opp New RTO, Jagatpura, Jaipur",
-      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic",
-      "notes": "Ceremony timings are approximated for calendar convenience."
     }
   ],
 
@@ -137,7 +137,7 @@
     {
       "name": "Jitesh Gosar",
       "role": "Friend & Site Admin",
-      "phone": "+91-8517069572",
+      "phone": "+91-851706957*",
       "icon": "💻"
     }
   ],
