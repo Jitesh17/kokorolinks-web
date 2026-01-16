@@ -1,27 +1,5 @@
 ---
-const faqs = [
-  {
-    question: "How long does it take to get my wedding link?",
-    // TRUTH: 1 Week.
-    // SEO SPIN: "Hand-crafted", "Quality Assurance".
-    answer: "Because every KokoroLink is hand-coded and tested for performance, we typically deliver your live website within 5-7 business days. We prioritize quality over automation."
-  },
-  {
-    question: "Can I password protect my ceremony details?",
-    // SEO KEYWORDS: Privacy, Security, Digital Invite
-    answer: "Absolutely. We specialize in private wedding websites. You can choose to lock specific sections (like the venue map or schedule) so only guests with your password can view them."
-  },
-  {
-    question: "Do my guests need to download an app?",
-    // SEO KEYWORDS: No App Download, Mobile Friendly
-    answer: "No. Your invitation lives on the open web. It works instantly on every iPhone, Android, and desktop browser without requiring your guests to download or install anything."
-  },
-  {
-    question: "Can I update the details after the link is live?",
-    // SEO KEYWORDS: RSVP management, dynamic updates
-    answer: "Yes. Unlike printed cards, your KokoroLink is dynamic. Just send us a message, and we can update timings, add FAQs, or modify RSVP questions instantly."
-  }
-];
+import { faqs } from '../data/landing';
 
 // Automatically generate the Schema for Google
 const faqSchema = JSON.stringify({
