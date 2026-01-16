@@ -65,8 +65,8 @@
       "notes": "प्रातः 10 बजे"
     },
     {
-      "id": "preetibhoj-lunch",
-      "title": "Lunch (Preetibhoj / प्रीतिभोज)",
+      "id": "pratibhoj-lunch",
+      "title": "Lunch (Pratibhoj / प्रीतिभोज)",
       "start": "2026-02-17T15:00:00+05:30",
       "end": "2026-02-17T17:00:00+05:30",
       "locationName": "Family Residence",
@@ -75,30 +75,20 @@
       "notes": "दोपहर 3 बजे से"
     },
     {
-      "id": "chaak",
-      "title": "Chaak (चाक)",
+      "id": "chaak-bhaat",
+      "title": "Chaak & Bhaat (चाक भात)",
       "start": "2026-02-17T17:00:00+05:30",
-      "end": "2026-02-17T18:00:00+05:30",
+      "end": "2026-02-17T20:00:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
       "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
       "notes": "सांय 5 बजे"
     },
     {
-      "id": "bhaat",
-      "title": "Bhaat (भात)",
-      "start": "2026-02-17T19:00:00+05:30",
-      "end": "2026-02-17T21:00:00+05:30",
-      "locationName": "Family Residence",
-      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
-      "notes": "रात 7 बजे"
-    },
-    {
-      "id": "baraat-departure",
-      "title": "Baraat Departure",
-      "start": "2026-02-19T17:00:00+05:30",
-      "end": "2026-02-19T18:00:00+05:30",
+      "id": "baraat-arrival",
+      "title": "Baraat Arrival",
+      "start": "2026-02-19T20:00:00+05:30",
+      "end": "2026-02-19T20:15:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
       "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
