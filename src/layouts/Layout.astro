@@ -3,26 +3,73 @@ import '../styles/global.css';
 
 interface Props {
     title: string;
+    description?: string; // Made optional with a default below
+    image?: string;       // For social sharing previews
 }
 
-const { title } = Astro.props;
+const { 
+    title, 
+    description = "KokoroLinks - Premium custom wedding invitation websites.", 
+    image = "/apple-touch-icon.png" // Fallback to your logo icon
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Define Schema here safely to avoid syntax errors in HTML
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "KokoroLinks",
+  "description": description,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "KokoroLinks",
+    "image": new URL("/apple-touch-icon.png", Astro.site).toString() // Uses your actual icon
+  },
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Wedding Websites",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Minimalist Wedding Link"
+        }
+      }
+    ]
+  }
+});
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="KokoroLinks - Invitations that connect Heart to Heart." />
         <meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon_mono.svg" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon_mono-32x32.png" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="generator" content={Astro.generator} />
+        
         <title>{title}</title>
-		
-  
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+        
+        <link rel="icon" type="image/svg+xml" href="/favicon_mono.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_mono-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(image, Astro.site)} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(image, Astro.site)} />
+
         <script is:inline>
-            // Theme initialization
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.documentElement.classList.add('dark');
             } else {
@@ -30,16 +77,15 @@ const { title } = Astro.props;
             }
         </script>
 
+        <script type="application/ld+json" set:html={schema} />
+
         <style is:global>
-            /* Reveal hidden state: starts lower and invisible */
             .reveal-hidden {
                 opacity: 0 !important;
-				transform: translateY(40px) scale(0.98); /* Added a slight scale for a "pop" effect */
-    			will-change: transform, opacity;
-	            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+                transform: translateY(40px) scale(0.98);
+                will-change: transform, opacity;
+                transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
             }
-
-            /* Active state: slides up to original position */
             .reveal-active {
                 opacity: 1 !important;
                 transform: translateY(0);
@@ -49,36 +95,30 @@ const { title } = Astro.props;
     <body class="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-500">
         <slot />
 
-<script>
-  // Wrap the logic in a function to handle Astro's lifecycle
-  const initReveal = () => {
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "0px 0px -100px 0px" // Triggers slightly before the section hits the viewport
-    };
+        <script>
+          const initReveal = () => {
+            const observerOptions = {
+              threshold: 0.15,
+              rootMargin: "0px 0px -100px 0px"
+            };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-active');
-          // Optional: stop watching once it has revealed
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('reveal-active');
+                  observer.unobserve(entry.target);
+                }
+              });
+            }, observerOptions);
 
-    // Apply the hidden class and start observing
-    document.querySelectorAll('.section').forEach(section => {
-      section.classList.add('reveal-hidden');
-      observer.observe(section);
-    });
-  };
+            document.querySelectorAll('.section').forEach(section => {
+              section.classList.add('reveal-hidden');
+              observer.observe(section);
+            });
+          };
 
-  // Run on initial load
-  document.addEventListener('DOMContentLoaded', initReveal);
-  
-  // Also run if you use Astro's View Transitions
-  document.addEventListener('astro:after-swap', initReveal);
-</script>
+          document.addEventListener('DOMContentLoaded', initReveal);
+          document.addEventListener('astro:after-swap', initReveal);
+        </script>
     </body>
 </html>

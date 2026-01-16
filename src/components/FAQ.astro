@@ -1,0 +1,68 @@
+---
+const faqs = [
+  {
+    question: "How long does it take to get my wedding link?",
+    // TRUTH: 1 Week.
+    // SEO SPIN: "Hand-crafted", "Quality Assurance".
+    answer: "Because every KokoroLink is hand-coded and tested for performance, we typically deliver your live website within 5-7 business days. We prioritize quality over automation."
+  },
+  {
+    question: "Can I password protect my ceremony details?",
+    // SEO KEYWORDS: Privacy, Security, Digital Invite
+    answer: "Absolutely. We specialize in private wedding websites. You can choose to lock specific sections (like the venue map or schedule) so only guests with your password can view them."
+  },
+  {
+    question: "Do my guests need to download an app?",
+    // SEO KEYWORDS: No App Download, Mobile Friendly
+    answer: "No. Your invitation lives on the open web. It works instantly on every iPhone, Android, and desktop browser without requiring your guests to download or install anything."
+  },
+  {
+    question: "Can I update the details after the link is live?",
+    // SEO KEYWORDS: RSVP management, dynamic updates
+    answer: "Yes. Unlike printed cards, your KokoroLink is dynamic. Just send us a message, and we can update timings, add FAQs, or modify RSVP questions instantly."
+  }
+];
+
+// Automatically generate the Schema for Google
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+});
+---
+
+<section class="py-24 section container-max">
+  <div class="text-center mb-16">
+    <span class="font-body text-xs font-bold uppercase tracking-[0.3em] text-rose-600 mb-4 block">
+      Common Questions
+    </span>
+    <h2 class="font-heading text-4xl text-stone-900 dark:text-stone-100 leading-tight">
+      Good to know
+    </h2>
+  </div>
+
+  <div class="max-w-2xl mx-auto space-y-4">
+    {faqs.map(faq => (
+      <details class="group bg-stone-50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-stone-800 overflow-hidden transition-all duration-300 open:bg-white dark:open:bg-stone-900 open:shadow-lg open:ring-1 open:ring-stone-200 dark:open:ring-stone-800">
+        <summary class="flex justify-between items-center p-6 cursor-pointer font-heading text-xl text-stone-800 dark:text-stone-200 select-none">
+          {faq.question}
+          <span class="transition-transform duration-300 group-open:rotate-180 text-rose-500">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+          </span>
+        </summary>
+        <div class="px-6 pb-6 text-stone-600 dark:text-stone-400 leading-relaxed text-base">
+          {faq.answer}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={faqSchema} />
