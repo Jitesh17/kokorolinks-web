@@ -1,6 +1,5 @@
 ---
-// src/layouts/Layout.astro
-import '../styles/global.css'; // <--- ADD THIS LINE
+import '../styles/global.css';
 
 interface Props {
 	title: string;
@@ -10,16 +9,23 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="KokoroLinks Wedding Platform" />
+		<meta name="description" content="KokoroLinks - Invitations that connect Heart to Heart." />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+    <script is:inline>
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
 	</head>
-	<body>
+	<body class="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-500">
 		<slot />
 	</body>
 </html>
