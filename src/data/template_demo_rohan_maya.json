@@ -11,7 +11,7 @@
   "media": {
     "couplePhoto": {
       "enabled": true,
-      "src": "/weddings/assets/demo-rohan-maya.jpg",
+      "src": "/weddings/assets/couple-sample.png",
       "alt": "Rohan & Maya",
       "size": "hero",
       "style": "cinematic",
