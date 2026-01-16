@@ -37,10 +37,50 @@ const baseUrl = import.meta.env.BASE_URL;
 // URL Construction
 const detailsUrl = `${baseUrl}weddings/data/${slug}.json`;
 const calendarUrl = `${baseUrl}weddings/calendars/${slug}.ics`;
-const pageTitle = `Wedding Invitation - ${slug}`;
+
+// --- NEW: READ DATA SERVER-SIDE FOR META TAGS ---
+// This runs during build so WhatsApp sees the real data
+const dataPath = path.join(process.cwd(), "public", "weddings", "data", `${slug}.json`);
+let meta = {
+  title: "Wedding Invitation",
+  description: "Join us to celebrate our special day.",
+  image: ""
+};
+
+if (fs.existsSync(dataPath)) {
+  try {
+    const raw = fs.readFileSync(dataPath, "utf-8");
+    const json = JSON.parse(raw);
+    
+    // 1. Better Title
+    if (json.coupleNames) {
+      meta.title = `${json.coupleNames} | Wedding Invitation`;
+    }
+    
+    // 2. Better Description
+    if (json.tagline) {
+      meta.description = json.tagline;
+    } else if (json.coupleNames) {
+      meta.description = `You are cordially invited to the wedding of ${json.coupleNames}.`;
+    }
+
+    // 3. Preview Image (Must be a full absolute URL)
+    // IMPORTANT: Replace 'https://kokorolinks.com' with your actual domain variable if available
+    const domain = "https://kokorolinks.com"; 
+    if (json.media?.couplePhoto?.src) {
+      const cleanSrc = json.media.couplePhoto.src.startsWith("/") 
+        ? json.media.couplePhoto.src 
+        : "/" + json.media.couplePhoto.src;
+      meta.image = `${domain}${cleanSrc}`;
+    }
+  } catch (e) {
+    console.error("Error reading metadata", e);
+  }
+
+}
 ---
 
-<WeddingLayout title={pageTitle} description="Wedding invitation details.">
+<WeddingLayout title={meta.title} description={meta.description} image={meta.image}>
   <noscript>
     <div class="mx-auto max-w-2xl px-4 py-10">
       <div class="rounded-2xl border p-6 dark:border-neutral-800">
