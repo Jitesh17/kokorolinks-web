@@ -165,7 +165,26 @@
       "opacityLight": 0.86,
       "opacityDark": 0.80,
       "rotate": true,
-      "baseRotation": 0
+      "baseRotation": 0,
+      "corners": {
+        "tl": { 
+          "imageUrl": "/weddings/assets/decor-corner-1.png",
+          "rotation": 0 
+        },
+        "tr": { 
+          "imageUrl": "/weddings/assets/decor-corner-1.png",
+          "rotation": 0  
+        },
+        "bl": { 
+          "imageUrl": "/weddings/assets/decor-corner-4.png",
+          "rotation": -90,
+          "flip": "vertical"
+        },
+        "br": { 
+          "imageUrl": "/weddings/assets/decor-corner-4.png",
+          "rotation": 180  
+        }
+      }
     }
   }
 }

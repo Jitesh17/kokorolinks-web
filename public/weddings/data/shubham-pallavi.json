@@ -135,7 +135,7 @@
     "decor": {
       "enabled": true,
       "mode": "corners",
-      "imageUrl": "/weddings/assets/decor-corner-2.png",
+      "imageUrl": "/weddings/assets/decor-corner-1.png",
       "size": 360,
       "opacityLight": 0.88,
       "opacityDark": 0.88,
