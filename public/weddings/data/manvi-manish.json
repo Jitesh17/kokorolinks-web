@@ -35,84 +35,74 @@
 
   "schedule": [
     {
-      "id": "lagan-teeka",
-      "title": "Lagan Teeka",
-      "start": "2026-02-15T14:00:00+05:30",
-      "end": "2026-02-15T15:30:00+05:30",
+      "id": "lagan-tikka",
+      "title": "Lagan Tikka",
+      "start": "2026-02-15T10:00:00+05:30",
+      "end": "2026-02-15T11:30:00+05:30",
       "locationName": "Sarayu Mahal",
       "address": "Ramnagariya, Jagatpura, Jaipur",
-      "mapUrl": "https://maps.app.goo.gl/bHjyj2hNc3uvLvrv9?g_st=iw",
-      "notes": "Sunday, 15th February 2026"
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8",
+      "notes": "15 Feb, 10:00 AM"
     },
     {
-      "id": "lagan-teeka-lunch",
-      "title": "Lunch",
-      "start": "2026-02-15T16:00:00+05:30",
-      "end": "2026-02-15T18:00:00+05:30",
-      "locationName": "Sarayu Mahal",
-      "address": "Ramnagariya, Jagatpura, Jaipur",
-      "mapUrl": "https://maps.app.goo.gl/bHjyj2hNc3uvLvrv9?g_st=iw",
-      "notes": "Lunch at 4 PM"
-    },
-    {
-      "id": "tel-vinayak",
-      "title": "Tel Vinayak (तेल विनायक)",
-      "start": "2026-02-17T10:00:00+05:30",
-      "end": "2026-02-17T12:00:00+05:30",
+      "id": "mehendi",
+      "title": "Mehendi",
+      "start": "2026-02-17T14:00:00+05:30",
+      "end": "2026-02-17T16:00:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
-      "notes": "प्रातः 10 बजे"
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8",
+      "notes": "17 Feb, 2:00 PM"
     },
     {
-      "id": "pratibhoj-lunch",
-      "title": "Lunch (Pratibhoj / प्रीतिभोज)",
-      "start": "2026-02-17T15:00:00+05:30",
-      "end": "2026-02-17T17:00:00+05:30",
+      "id": "haldi",
+      "title": "Haldi",
+      "start": "2026-02-18T10:00:00+05:30",
+      "end": "2026-02-18T11:30:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
-      "notes": "दोपहर 3 बजे से"
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8",
+      "notes": "18 Feb, 10:00 AM"
     },
     {
-      "id": "chaak-bhaat",
-      "title": "Chaak & Bhaat (चाक भात)",
-      "start": "2026-02-17T17:00:00+05:30",
-      "end": "2026-02-17T20:00:00+05:30",
+      "id": "bhaat",
+      "title": "Bhaat",
+      "start": "2026-02-18T14:00:00+05:30",
+      "end": "2026-02-18T16:00:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
-      "notes": "सांय 5 बजे"
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8",
+      "notes": "18 Feb, 2:00 PM"
     },
     {
-      "id": "marriage-ceremony",
-      "title": "Marriage Ceremony",
+      "id": "sangeet",
+      "title": "Sangeet",
+      "start": "2026-02-18T19:00:00+05:30",
+      "end": "2026-02-18T22:00:00+05:30",
+      "locationName": "Family Residence",
+      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8",
+      "notes": "18 Feb, 7:00 PM"
+    },
+    {
+      "id": "wedding",
+      "title": "Wedding",
       "start": "2026-02-19T17:00:00+05:30",
-      "end": "2026-02-19T29:00:00+05:30",
+      "end": "2026-02-19T20:00:00+05:30",
       "locationName": "Amara Wedding Banquet",
       "address": "Opp New RTO, Jagatpura, Jaipur",
-      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic",
-      "notes": "Ceremony timings are approximated for calendar convenience."
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8",
+      "notes": "19 Feb, 5:00 PM"
     },
     {
-      "id": "baraat-arrival",
-      "title": "Baraat Arrival",
+      "id": "reception",
+      "title": "Reception (followed by dinner)",
       "start": "2026-02-19T20:00:00+05:30",
-      "end": "2026-02-19T20:15:00+05:30",
-      "locationName": "Family Residence",
-      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
-      "notes": "Baraat will depart at 7 PM from Rahuwas, Dausa for the wedding venue."
-    },
-    {
-      "id": "wedding-dinner",
-      "title": "Dinner",
-      "start": "2026-02-19T19:00:00+05:30",
-      "end": "2026-02-19T21:00:00+05:30",
+      "end": "2026-02-19T23:00:00+05:30",
       "locationName": "Amara Wedding Banquet",
       "address": "Opp New RTO, Jagatpura, Jaipur",
-      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic",
-      "notes": "Thursday, 19th February 2026"
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8",
+      "notes": "19 Feb, 8:00 PM"
     }
   ],
 
