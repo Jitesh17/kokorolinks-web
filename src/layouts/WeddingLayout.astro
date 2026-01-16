@@ -1,18 +1,34 @@
 ---
 import "../styles/global.css";
 
-const { title = "Wedding Invitation", description = "" } = Astro.props;
+// 1. Accept 'image' as a new prop
+const { title = "Wedding Invitation", description = "Wedding invitation details.", image } = Astro.props;
+
+// 2. Generate a dynamic Canonical URL (instead of hardcoding one domain)
+// This ensures every couple gets their own specific link in Google
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://kokorolinks.com");
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="canonical" href="https://shubhpal.com/" />
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {image && <meta property="og:image" content={image} />}
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    {image && <meta property="twitter:image" content={image} />}
   </head>
 
   <body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 transition-colors duration-300">
