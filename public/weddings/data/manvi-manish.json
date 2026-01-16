@@ -1,0 +1,190 @@
+{
+  "password": "123",
+  "passwordHint": "Please contact the family for the password.",
+
+  "coupleNames": "Manvi & Manish",
+  "tagline": "Together with our families, we invite you to celebrate our wedding.",
+  "cityLine": "Jaipur, India",
+
+  "lastUpdated": "2026-01-13T12:00:00+05:30",
+
+  "media": {
+    "couplePhoto": {
+      "enabled": true,
+      "src": "/weddings/assets/manish-manvi/couple.jpg",
+      "alt": "Manvi & Manish",
+      "size": "hero",
+      "style": "cinematic",
+      "position": "50% 10%"
+    }
+  },
+
+  "primaryVenue": {
+    "name": "Wedding Venue",
+    "address": "City, State",
+    "mapUrl": "https://maps.app.goo.gl/jMYgc7xC5QXECH6N6"
+  },
+
+  "primaryEvent": {
+    "id": "wedding",
+    "title": "Wedding Ceremony",
+    "start": "2026-02-19T11:00:00+05:30",
+    "displayDate": "15-19 Feb 2026",
+    "end": "2026-02-19T13:00:00+05:30"
+  },
+
+  "schedule": [
+    {
+      "id": "lagan-teeka",
+      "title": "Lagan Teeka",
+      "start": "2026-02-15T14:00:00+05:30",
+      "end": "2026-02-15T15:30:00+05:30",
+      "locationName": "Sarayu Mahal",
+      "address": "Ramnagariya, Jagatpura, Jaipur",
+      "mapUrl": "https://maps.app.goo.gl/bHjyj2hNc3uvLvrv9?g_st=iw",
+      "notes": "Sunday, 15th February 2026"
+    },
+    {
+      "id": "lagan-teeka-lunch",
+      "title": "Lunch",
+      "start": "2026-02-15T16:00:00+05:30",
+      "end": "2026-02-15T18:00:00+05:30",
+      "locationName": "Sarayu Mahal",
+      "address": "Ramnagariya, Jagatpura, Jaipur",
+      "mapUrl": "https://maps.app.goo.gl/bHjyj2hNc3uvLvrv9?g_st=iw",
+      "notes": "Lunch at 4 PM"
+    },
+    {
+      "id": "tel-vinayak",
+      "title": "Tel Vinayak (तेल विनायक)",
+      "start": "2026-02-17T10:00:00+05:30",
+      "end": "2026-02-17T12:00:00+05:30",
+      "locationName": "Family Residence",
+      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
+      "notes": "प्रातः 10 बजे"
+    },
+    {
+      "id": "pratibhoj-lunch",
+      "title": "Lunch (Pratibhoj / प्रीतिभोज)",
+      "start": "2026-02-17T15:00:00+05:30",
+      "end": "2026-02-17T17:00:00+05:30",
+      "locationName": "Family Residence",
+      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
+      "notes": "दोपहर 3 बजे से"
+    },
+    {
+      "id": "chaak-bhaat",
+      "title": "Chaak & Bhaat (चाक भात)",
+      "start": "2026-02-17T17:00:00+05:30",
+      "end": "2026-02-17T20:00:00+05:30",
+      "locationName": "Family Residence",
+      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
+      "notes": "सांय 5 बजे"
+    },
+    {
+      "id": "marriage-ceremony",
+      "title": "Marriage Ceremony",
+      "start": "2026-02-19T17:00:00+05:30",
+      "end": "2026-02-19T29:00:00+05:30",
+      "locationName": "Amara Wedding Banquet",
+      "address": "Opp New RTO, Jagatpura, Jaipur",
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic",
+      "notes": "Ceremony timings are approximated for calendar convenience."
+    },
+    {
+      "id": "baraat-arrival",
+      "title": "Baraat Arrival",
+      "start": "2026-02-19T20:00:00+05:30",
+      "end": "2026-02-19T20:15:00+05:30",
+      "locationName": "Family Residence",
+      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
+      "notes": "Baraat will depart at 7 PM from Rahuwas, Dausa for the wedding venue."
+    },
+    {
+      "id": "wedding-dinner",
+      "title": "Dinner",
+      "start": "2026-02-19T19:00:00+05:30",
+      "end": "2026-02-19T21:00:00+05:30",
+      "locationName": "Amara Wedding Banquet",
+      "address": "Opp New RTO, Jagatpura, Jaipur",
+      "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic",
+      "notes": "Thursday, 19th February 2026"
+    }
+  ],
+
+  "updates": [
+    {
+      "when": "2026-01-13T12:00:00+05:30",
+      "text": "Initial schedule added. Venue and exact timings can be refined."
+    }
+  ],
+
+  "contacts": [
+    {
+      "name": "Manish",
+      "role": "Groom",
+      "phone": "+91-XXXXXXXXXX"
+    },
+    {
+      "name": "Manvi",
+      "role": "Bride",
+      "phone": "+91-XXXXXXXXXX"
+    },
+    {
+      "name": "Jitesh Gosar",
+      "role": "Friend & Site Admin",
+      "phone": "+91-851706957*",
+      "icon": "💻"
+    }
+  ],
+
+  "rsvp": {
+    "enabled": true,
+    "mode": "embed",
+    "showButton": true,
+    "formUrl": "https://forms.gle/A48zpTzCZF2mhXsJA",
+    "embedUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfjXnYDZzPmQ37jgpzSU1iMTMW1eAu3C9jCP_vjVlQ-_R4vkA/viewform?embedded=true",
+    "deadline": "2026-02-10T23:59:00+05:30",
+    "title": "RSVP",
+    "buttonText": "RSVP (open form here)",
+    "openInNewTabText": "Open in Google Forms"
+  },
+
+  "theme": {
+    "primaryColor": "#d4af37",
+    "secondaryColor": "#fffcf5",
+    "decor": {
+      "enabled": true,
+      "mode": "corners",
+      "imageUrl": "/weddings/assets/decor-corner-2.png",
+      "size": 340,
+      "opacityLight": 0.86,
+      "opacityDark": 0.80,
+      "rotate": true,
+      "baseRotation": 0,
+      "corners": {
+        "tl": { 
+          "imageUrl": "/weddings/assets/decor-corner-1.png",
+          "rotation": 0 
+        },
+        "tr": { 
+          "imageUrl": "/weddings/assets/decor-corner-1.png",
+          "rotation": 0  
+        },
+        "bl": { 
+          "imageUrl": "/weddings/assets/decor-corner-4.png",
+          "rotation": -90,
+          "flip": "vertical"
+        },
+        "br": { 
+          "imageUrl": "/weddings/assets/decor-corner-4.png",
+          "rotation": 180  
+        }
+      }
+    }
+  }
+}
