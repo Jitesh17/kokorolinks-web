@@ -1,0 +1,80 @@
+---
+---
+<section id="about" class="py-24 section bg-stone-50 dark:bg-stone-900/30 border-y border-stone-100 dark:border-stone-800/50">
+  <div class="container-max grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    
+    <div class="card-joy relative h-[500px] w-full flex items-center justify-center overflow-hidden">
+      <div class="kokoro-node relative z-20 w-20 h-20 rounded-full bg-rose-600 flex items-center justify-center">
+        <span class="text-white text-3xl font-heading select-none">心</span>
+      </div>
+
+      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+        <circle cx="250" cy="250" r="200" fill="none" stroke-width="1" class="guide-ring" />
+        <circle cx="250" cy="250" r="130" fill="none" stroke-width="1" class="guide-ring" />
+        <g fill="none" stroke-width="2" class="diagram-lines">
+          <line class="line-animate" x1="250" y1="250" x2="250" y2="50" />
+          <line class="line-animate" x1="250" y1="250" x2="77" y2="350" />
+          <line class="line-animate" x1="250" y1="250" x2="423" y2="350" />
+        </g>
+        <g class="nodes-fade">
+          <circle cx="250" cy="50" r="10" class="node-heart" />
+          <circle cx="77" cy="350" r="10" class="node-mind" />
+          <circle cx="423" cy="350" r="10" class="node-spirit" />
+        </g>
+        <g class="nodes-fade text-labels" font-family="Montserrat, sans-serif" font-weight="600" font-size="10" letter-spacing="0.2em">
+          <text x="250" y="30" text-anchor="middle">HEART <tspan font-weight="400" opacity="0.6" font-size="9"> 心</tspan></text>
+          <text x="55" y="375" text-anchor="middle">MIND <tspan font-weight="400" opacity="0.6" font-size="9"> 意識</tspan></text>
+          <text x="445" y="375" text-anchor="middle">SPIRIT <tspan font-weight="400" opacity="0.6" font-size="9"> 精神</tspan></text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="space-y-8">
+      <div class="space-y-4">
+        <span class="font-body text-xs font-bold uppercase tracking-[0.4em] text-rose-600">Our Philosophy</span>
+        <h2 class="font-heading text-5xl md:text-6xl text-stone-900 dark:text-stone-100 font-light leading-tight">Why "Kokoro"?</h2>
+      </div>
+      <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">
+        In Japanese, <strong class="text-rose-600">Kokoro (心)</strong> represents the intersection of heart, mind, and spirit. It is the deep connection that brings people together.
+      </p>
+      <div class="space-y-4 pt-4">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 shrink-0"><span>✓</span></div>
+          <span class="text-stone-800 dark:text-stone-200 font-medium">Multi-tenant architecture</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 shrink-0"><span>✓</span></div>
+          <span class="text-stone-800 dark:text-stone-200 font-medium">Minimalist aesthetics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --diagram-stroke: #e5e7eb; --node-heart: #1c1917; --node-mind: #a8a29e;
+    --node-spirit: #d6d3d1; --text-label: #78716c; --guide-ring: rgba(229, 231, 235, 0.4);
+  }
+  :global(html.dark) {
+    --diagram-stroke: #44403c; --node-heart: #ddd; --node-mind: #78716c;
+    --node-spirit: #57534e; --text-label: #a8a29e; --guide-ring: rgba(68, 64, 60, 0.3);
+  }
+  .diagram-lines line { stroke: var(--diagram-stroke); transition: all 0.5s ease; }
+  .node-heart { fill: var(--node-heart); transform-box: fill-box; transform-origin: center; transition: all 0.5s ease; }
+  .node-mind { fill: var(--node-mind); transform-box: fill-box; transform-origin: center; transition: all 0.5s ease; }
+  .node-spirit { fill: var(--node-spirit); transform-box: fill-box; transform-origin: center; transition: all 0.5s ease; }
+  .text-labels text { fill: var(--text-label); }
+  .guide-ring { stroke: var(--guide-ring); }
+  .kokoro-node { box-shadow: 0 0 40px rgba(225, 29, 72, 0.4); animation: breathe 4s infinite; }
+  @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  .line-animate { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawOut 2s forwards; }
+  @keyframes drawOut { to { stroke-dashoffset: 0; } }
+  .nodes-fade { opacity: 0; animation: fadeIn 1.2s forwards 1.5s; }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  /* Hover Effects */
+  .card-joy:hover .diagram-lines line { stroke: #e11d48; opacity: 1; stroke-width: 2; }
+  .card-joy:hover .node-heart, .card-joy:hover .node-mind, .card-joy:hover .node-spirit { transform: scale(1.4); fill: #e11d48; }
+  .card-joy:hover .kokoro-node { animation-duration: 0.6s; box-shadow: 0 0 50px rgba(225, 29, 72, 0.8); transform: scale(1.1); }
+</style>

@@ -1,0 +1,35 @@
+---
+import { testimonials } from '../../data/landing';
+---
+<section class="py-24 section relative overflow-hidden text-white">
+  <div class="absolute inset-0 bg-stone-900 clip-path-slant -z-20"></div>
+  <div class="container-max">
+    <div class="text-center mb-16">
+      <span class="font-body text-xs font-bold uppercase tracking-[0.3em] text-rose-300 mb-4 block opacity-80">
+        Real Stories
+      </span>
+      <h2 class="font-heading text-4xl md:text-5xl text-white">Loved by Couples</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {testimonials.map(t => (
+        <div class="bg-white/10 dark:bg-stone-950/30 backdrop-blur-md p-10 rounded-3xl border border-white/10">
+          <p class="text-xl font-light italic mb-8 opacity-90 text-white">"{t.quote}"</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-rose-500 flex items-center justify-center font-heading text-lg text-white">
+              {t.author.charAt(0)}
+            </div>
+            <div>
+              <div class="font-bold text-white">{t.author}</div>
+              <div class="text-sm text-white/50 uppercase tracking-widest">{t.type}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .clip-path-slant { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%); }
+</style>

@@ -1,335 +1,40 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/landing/Navbar.astro';
 import Hero from '../components/landing/Hero.astro';
+import About from '../components/landing/About.astro';
+import Features from '../components/landing/Features.astro';
+import Testimonials from '../components/landing/Testimonials.astro';
+import FAQ from '../components/landing/FAQ.astro';
+import Footer from '../components/landing/Footer.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
-
-import { features, testimonials } from '../data/landing';
 ---
 
 <Layout title="KokoroLinks | Invitations with Heart">
-  
-  {/* NAVBAR */}
-  <nav class="w-full py-6 section relative z-50">
-    <div class="container-max flex justify-between items-center">
-      <a href="/" class="text-3xl font-heading font-semibold tracking-tight text-stone-900 dark:text-stone-50 hover:opacity-80 transition-opacity" aria-label="KokoroLinks Home">
-      Kokoro<span class="text-rose-600">Links</span>
-      </a>
-      
-      <div class="hidden md:flex space-x-8 text-sm font-medium text-stone-600 dark:text-stone-400">
-        <a href="#features" class="hover:text-rose-600 dark:hover:text-rose-400 transition-colors">Features</a>
-        <a href="#about" class="hover:text-rose-600 dark:hover:text-rose-400 transition-colors">About</a>
-        <button class="wip-link text-stone-900 dark:text-stone-200 hover:text-rose-600 dark:hover:text-rose-400 transition-colors">Log in</button>
-      </div>
-      
-      <button id="nav-book-btn" class="wip-link rounded-full bg-stone-900 dark:bg-stone-100 px-6 py-2.5 text-sm font-medium text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-all shadow-lg hover:shadow-xl">
-        Book Your Link
-      </button>
-      <script>
-        document.getElementById('nav-book-btn')?.addEventListener('click', () => {
-          window.openContactModal();
-        });
-      </script>
-    </div>
-  </nav>
+  <Navbar />
   <Hero />
-  <!-- <About />
-  <Features />
-  <Testimonials />
-  <FAQ />
-  <Footer /> -->
-  <!-- {/* HERO SECTION */}
-  <header class="relative pt-20 pb-32 section overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-rose-50/50 dark:bg-rose-900/10 rounded-full blur-3xl -z-10 opacity-60"></div>
-    
-    <div class="container-max text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-xs font-semibold tracking-wider uppercase mb-8 shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-        Beta is Live
-      </div>
-      <h1 class="font-heading text-6xl md:text-7xl lg:text-8xl text-stone-900 dark:text-stone-50 leading-[1.1] mb-8">
-        <span class="sr-only">Premium Custom Wedding Websites</span> Invitations that connect <br />
-        <span class="italic text-rose-600">Heart to Heart.</span>
-      </h1>
-      <p class="text-lg md:text-xl text-stone-600 dark:text-stone-400 max-w-2xl mx-auto mb-12 font-light">
-        A bespoke <strong>digital wedding invitation service</strong>. We build your <strong>custom event website</strong> with privacy locks, RSVPs, and meaningful design.
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <button class="wip-link px-8 py-4 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg font-medium hover:bg-stone-800 dark:hover:bg-stone-200 transition shadow-xl hover:-translate-y-1">
-          Start Your Invite
-        </button>
-        <a href="#demo" class="px-8 py-4 bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800 rounded-lg font-medium hover:bg-stone-50 dark:hover:bg-stone-900 transition">
-          View Demo
-        </a>
-      </div>
-    </div>
-  </header> -->
+  <About />
 
-{/* ABOUT SECTION */}
-  <section id="about" class="py-24 section bg-stone-50 dark:bg-stone-900/30 border-y border-stone-100 dark:border-stone-800/50">
-    <div class="container-max grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-      
-      <div class="card-joy relative h-[500px] w-full flex items-center justify-center overflow-hidden">
-        {/* Central Pulse Node */}
-        <div class="kokoro-node relative z-20 w-20 h-20 rounded-full bg-rose-600 flex items-center justify-center">
-          <span class="text-white text-3xl font-heading select-none">心</span>
-        </div>
-
-        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
-          
-          {/* 1. BACKGROUND LAYER: Guide Rings (Moved to Top) 
-              Now these render first, so they appear BEHIND the nodes. 
-          */}
-          <circle cx="250" cy="250" r="200" fill="none" stroke-width="1" class="guide-ring" />
-          <circle cx="250" cy="250" r="130" fill="none" stroke-width="1" class="guide-ring" />
-
-          {/* 2. MIDDLE LAYER: Connecting Lines */}
-          <g fill="none" stroke-width="2" class="diagram-lines">
-            <line class="line-animate" x1="250" y1="250" x2="250" y2="50" />
-            <line class="line-animate" x1="250" y1="250" x2="77" y2="350" />
-            <line class="line-animate" x1="250" y1="250" x2="423" y2="350" />
-          </g>
-
-          {/* 3. TOP LAYER: Nodes (Heart, Mind, Spirit) */}
-          <g class="nodes-fade">
-            <circle cx="250" cy="50" r="10" class="node-heart" />
-            <circle cx="77" cy="350" r="10" class="node-mind" />
-            <circle cx="423" cy="350" r="10" class="node-spirit" />
-          </g>
-
-          {/* 4. TOP LAYER: Text Labels */}
-<g class="nodes-fade text-labels" font-family="Montserrat, sans-serif" font-weight="600" font-size="10" letter-spacing="0.2em">
-  <text x="250" y="30" text-anchor="middle">
-    HEART <tspan font-weight="400" opacity="0.6" font-size="9"> 心</tspan>
-  </text>
-  
-  <text x="55" y="375" text-anchor="middle">
-    MIND <tspan font-weight="400" opacity="0.6" font-size="9"> 意識</tspan>
-  </text>
-  
-  <text x="445" y="375" text-anchor="middle">
-    SPIRIT <tspan font-weight="400" opacity="0.6" font-size="9"> 精神</tspan>
-  </text>
-</g>
-
-        </svg>
-      </div>
-
-      <div class="space-y-8">
-      <div class="space-y-4">
-          <span class="font-body text-xs font-bold uppercase tracking-[0.4em] text-rose-600">
-            Our Philosophy
-          </span>
-          <h2 class="font-heading text-5xl md:text-6xl text-stone-900 dark:text-stone-100 font-light leading-tight">
-            Why "Kokoro"?
-          </h2>
-        </div>
-        <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">
-          In Japanese, <strong class="text-rose-600">Kokoro (心)</strong> represents the intersection of heart, mind, and spirit. It is the deep connection that brings people together.
-        </p>
-        <div class="space-y-4 pt-4">
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 shrink-0">
-              <span class="text-lg">✓</span>
-            </div>
-            <span class="text-stone-800 dark:text-stone-200 font-medium">Multi-tenant architecture</span>
-          </div>
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 shrink-0">
-              <span class="text-lg">✓</span>
-            </div>
-            <span class="text-stone-800 dark:text-stone-200 font-medium">Minimalist aesthetics</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* LIVE DEMO SECTION */}
   <section id="demo" class="py-24 section">
     <div class="container-max">
       <ThemeSwitcher />
     </div>
   </section>
 
-  {/* FEATURES GRID - FIXED */}
-  <section id="features" class="py-32 section">
-    <div class="container-max text-center">
-      <div class="text-center mb-16">
-        <span class="font-body text-xs font-bold uppercase tracking-[0.3em] text-rose-600 mb-4 block">
-          The Experience
-        </span>
-        <h2 class="font-heading text-5xl md:text-6xl text-stone-900 dark:text-stone-100 font-light leading-tight">
-          Everything you need
-        </h2>
-      </div>      
-      <div class="grid md:grid-cols-3 gap-8">
-        {features.map(feature => (
-          /* FIX: Removed explicit bg-colors from card. 
-             It now relies entirely on the 'card-joy' class from global.css 
-          */
-          <div class="card-joy group hover:-translate-y-2 transition-transform duration-300">
-            
-            {/* FIX: Removed 'dark:' classes from the icon container to prevent 
-               dark box appearing on light card. Used a neutral stone-100/50.
-            */}
-            <div class="text-4xl mb-6 bg-stone-100/50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform text-stone-900 dark:text-stone-100">
-              <Fragment set:html={feature.icon} />
-            </div>
-            
-            {/* FIX: Removed explicit text colors (text-stone-900 dark:text-stone-100).
-               This allows the text to inherit the color defined in 'card-joy' CSS.
-               (Dark text in Light Mode, White text in Dark Mode).
-            */}
-            <h3 class="font-heading text-2xl font-semibold mb-3">
-              {feature.title}
-            </h3>
-            <p class="leading-relaxed opacity-80">
-              {feature.desc}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Features />
+  <Testimonials />
+  <FAQ />
+  <Footer />
 
-  {/* TESTIMONIALS */}
-  <section class="py-24 section relative overflow-hidden text-white">
-    <div class="absolute inset-0 bg-stone-900 clip-path-slant -z-20"></div>
-    <div class="container-max">
-      
-      <div class="text-center mb-16">
-        <span class="font-body text-xs font-bold uppercase tracking-[0.3em] text-rose-300 mb-4 block opacity-80">
-          Real Stories
-        </span>
-        <h2 class="font-heading text-4xl md:text-5xl">
-          Loved by Couples
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        {testimonials.map(t => (
-          <div class="bg-white/10 dark:bg-stone-950/30 backdrop-blur-md p-10 rounded-3xl border border-white/10">
-            <p class="text-xl font-light italic mb-8 opacity-90">"{t.quote}"</p>
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-full bg-rose-500 flex items-center justify-center font-heading text-lg text-white">
-                {t.author.charAt(0)}
-              </div>
-              <div>
-                <div class="font-bold text-white">{t.author}</div>
-                <div class="text-sm text-white/50 uppercase tracking-widest">{t.type}</div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  {/* FOOTER */}
-  <footer class="py-12 section border-t border-stone-100 dark:border-stone-800 bg-white dark:bg-stone-950">
-    <div class="container-max flex flex-col md:flex-row justify-between items-center gap-6">
-      <div>
-        <span class="font-heading text-2xl font-bold text-stone-900 dark:text-stone-100">KokoroLinks</span>
-        <p class="text-stone-500 text-sm mt-1">© 2026 KokoroLinks. Made with <span class="text-rose-500">♥</span></p>
-      </div>
-      <div class="flex gap-8 text-sm text-stone-500 font-medium">
-        <button class="wip-link hover:text-stone-900 dark:hover:text-stone-100 transition-colors">Privacy</button>
-        <button id="contact-btn" class="hover:text-rose-600 transition-colors">Contact</button>
-      </div>
-    </div>
-  </footer>
-
-  {/* TOAST */}
+  {/* Global Toast Component */}
   <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 px-6 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center gap-3">
     <span class="text-rose-400 dark:text-rose-600">ℹ️</span>
     <span id="toast-msg">Coming soon!</span>
   </div>
-
 </Layout>
 
-<style>
-  /* --- DARK MODE VARIABLES --- */
-  :root {
-    --diagram-stroke: #e5e7eb;
-    --node-heart: #1c1917;
-    --node-mind: #a8a29e;
-    --node-spirit: #d6d3d1;
-    --text-label: #78716c;
-    --guide-ring: rgba(229, 231, 235, 0.4);
-  }
-
-  /* Force variables to switch only when HTML has .dark class */
-  :global(html.dark) {
-    --diagram-stroke: #44403c; 
-    --node-heart: #ddd; 
-    --node-mind: #78716c;  
-    --node-spirit: #57534e; 
-    --text-label: #a8a29e; 
-    --guide-ring: rgba(68, 64, 60, 0.3);
-  }
-
-  .diagram-lines line { stroke: var(--diagram-stroke); }
-  .node-heart { fill: var(--node-heart); }
-  .node-mind { fill: var(--node-mind); }
-  .node-spirit { fill: var(--node-spirit); }
-  .text-labels text { fill: var(--text-label); }
-  .guide-ring { stroke: var(--guide-ring); }
-
-  .clip-path-slant { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%); }
-  
-  .kokoro-node { 
-    box-shadow: 0 0 40px rgba(225, 29, 72, 0.4); 
-    animation: breathe 4s infinite; 
-  }
-  @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-
-  .line-animate { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawOut 2s forwards; }
-  @keyframes drawOut { to { stroke-dashoffset: 0; } }
-
-  .nodes-fade { opacity: 0; animation: fadeIn 1.2s forwards 1.5s; }
-  @keyframes fadeIn { to { opacity: 1; } }
-
-  /* ... keep your existing variables and animations ... */
-
-  /* --- NEW HOVER ANIMATIONS --- */
-
-  /* 1. Set up smooth transitions for all SVG parts */
-  .diagram-lines line,
-  .node-heart, .node-mind, .node-spirit,
-  .kokoro-node {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* 2. Fix the transform origin so nodes scale from their own center */
-  .node-heart, .node-mind, .node-spirit {
-    transform-box: fill-box;
-    transform-origin: center;
-  }
-
-  /* 3. HOVER STATE: Turn connecting lines Rose */
-  .card-joy:hover .diagram-lines line {
-    stroke: #e11d48; /* rose-600 */
-    opacity: 1;
-    stroke-width: 2; /* Slight thicken */
-  }
-
-  /* 4. HOVER STATE: Expand outer nodes */
-  .card-joy:hover .node-heart,
-  .card-joy:hover .node-mind,
-  .card-joy:hover .node-spirit {
-    transform: scale(1.4); /* Pop up */
-    fill: #e11d48; /* Turn rose */
-  }
-
-  /* 5. HOVER STATE: Speed up the heartbeat! */
-  .card-joy:hover .kokoro-node {
-    animation-duration: 0.6s; /* Rapid pulse */
-    box-shadow: 0 0 50px rgba(225, 29, 72, 0.8); /* Brighter glow */
-    transform: scale(1.1);
-  }
-</style>
-
 <script>
+  // Global "Coming Soon" handler
   document.querySelectorAll('.wip-link').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -339,9 +44,5 @@ import { features, testimonials } from '../data/landing';
         setTimeout(() => toast.classList.add('opacity-0'), 2000);
       }
     });
-  });
-
-  document.getElementById('contact-btn')?.addEventListener('click', () => {
-    window.openContactModal();
   });
 </script>
