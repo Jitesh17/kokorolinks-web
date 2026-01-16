@@ -1,132 +1,222 @@
 ---
 // src/components/ThemeSwitcher.astro
-import eventData from '../data/template_demo_rohan_maya.json';
-
-const partnerNames = eventData.coupleNames; 
-const tagline = eventData.tagline;
-
-// Robust date formatting to ensure a premium look
-const rawDate = new Date(eventData.lastUpdated); 
-const eventDate = rawDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+// Default data for the initial render
+const defaultNames = "Rohan & Maya"; 
+const defaultTagline = "Celebrate with us";
+const defaultDate = "2026-01-16";
 ---
 
-<div class="grid lg:grid-cols-2 gap-12 items-center py-12">
-  <div class="space-y-6">
-    <h2 class="font-heading text-4xl text-stone-900 dark:text-stone-50 leading-tight">
-      One Link, <br/>Infinite Expression
-    </h2>
-    <p class="text-stone-600 dark:text-stone-400 text-lg">
-      KokoroLinks adapts to your unique style. Switch themes instantly to see how your event track transforms.
-    </p>
+<div class="grid lg:grid-cols-2 gap-16 items-center py-12">
+  
+  {/* LEFT COLUMN: Controls */}
+    <div class="space-y-6">
+    <div>
+        {/* NEW: Consistent Eyebrow Label */}
+        <span class="font-body text-xs font-bold uppercase tracking-[0.3em] text-rose-600 mb-4 block">
+        Interactive Showroom
+        </span>
+
+        <h2 class="font-heading text-4xl text-stone-900 dark:text-stone-50 leading-tight mb-4">
+        Uniquely Yours,  <br/>Crafted by Us.
+        </h2>
+    </div>
     
-    <div class="flex flex-wrap gap-3" id="theme-controls">
-      <button data-theme="minimalist" class="theme-btn active">Minimalist</button>
-      <button data-theme="floral" class="theme-btn">Floral</button>
-      <button data-theme="midnight" class="theme-btn">Midnight</button>
+    <p class="text-stone-600 dark:text-stone-400 text-lg">
+        Your invitation is the first moment of your celebration. We craft a personalized experience that captures your unique style-setting the perfect tone for your guests before the big day begins.
+    </p>
+
+    {/* NEW: Input Fields for Live Customization */}
+    <div class="space-y-4 p-6 bg-stone-50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-stone-800">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-wider text-stone-500">Couple Names</label>
+          <input 
+            type="text" 
+            id="input-names" 
+            value={defaultNames}
+            class="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg px-4 py-2.5 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-rose-500 outline-none transition-all"
+          />
+        </div>
+        
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-wider text-stone-500">Event Date</label>
+          <input 
+            type="date" 
+            id="input-date" 
+            value={defaultDate}
+            class="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg px-4 py-2.5 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-rose-500 outline-none transition-all"
+          />
+        </div>
+      </div>
+    </div>
+    
+    {/* Theme Buttons */}
+    <div class="space-y-2">
+      <label class="text-xs font-bold uppercase tracking-wider text-stone-500 block">Select Theme</label>
+      <div class="flex flex-wrap gap-3" id="theme-controls">
+        <button data-theme="minimalist" class="theme-btn active">Minimalist</button>
+        <button data-theme="floral" class="theme-btn">Floral</button>
+        <button data-theme="midnight" class="theme-btn">Midnight</button>
+      </div>
     </div>
   </div>
 
-  <div id="preview-card" class="card-joy theme-minimalist transition-all duration-700 min-h-[480px] flex flex-col items-center justify-center p-12 text-center group">
+  {/* RIGHT COLUMN: Live Preview Card */}
+  <div id="preview-card" class="card-joy theme-minimalist transition-all duration-700 min-h-[500px] flex flex-col items-center justify-center p-12 text-center group relative overflow-hidden shadow-2xl">
+    
+    <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div class="bg-white/90 backdrop-blur shadow-sm px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-stone-500 cursor-default">
+        Live Preview
+      </div>
+    </div>
+
     <div id="theme-icon" class="text-4xl mb-6 transition-all duration-500 opacity-0 scale-50"></div>
-    <h4 class="preview-names font-heading text-5xl md:text-6xl mb-6 transition-colors duration-500">
-        {partnerNames}
+    
+    <h4 id="display-names" class="font-heading text-5xl md:text-6xl mb-6 transition-colors duration-500 break-words max-w-full">
+        {defaultNames}
     </h4>
+    
     <div class="w-12 h-[1px] bg-stone-200 mb-6 transition-colors duration-500" id="divider"></div>
-    <p class="preview-date uppercase tracking-[0.3em] text-[10px] font-semibold opacity-70">
-        {tagline} <span class="mx-2">•</span> {eventDate}
+    
+    <p class="uppercase tracking-[0.3em] text-[10px] font-semibold opacity-70">
+        <span id="display-tagline">{defaultTagline}</span> 
+        <span class="mx-2">•</span> 
+        <span id="display-date">January 16, 2026</span>
     </p>
+
+    <div class="mt-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+        <button id="demo-rsvp-btn" class="bg-stone-900 text-white dark:bg-white dark:text-stone-900 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform">
+          Demo RSVP
+        </button>
+    </div>
   </div>
 </div>
 
 <style>
   @reference "../styles/global.css";
 
-.theme-btn {
+  /* --- INPUT STYLES --- */
+  /* Remove default browser styles for date input to match design */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5);
+    cursor: pointer;
+  }
+  :global(.dark) input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+  }
+
+  .theme-btn {
     @apply px-6 py-2.5 rounded-full border text-sm font-medium transition-all duration-300;
-    /* Light Mode */
     @apply border-stone-200 text-stone-600 hover:border-stone-400;
-    /* Dark Mode: Increased border and text contrast */
     @apply dark:border-stone-700 dark:text-stone-400 dark:hover:border-stone-500;
   }
   
-  /* Active Button: High contrast for both modes */
   .theme-btn.active {
     @apply bg-stone-900 text-white border-stone-900 scale-105 shadow-lg;
     @apply dark:bg-stone-100 dark:text-stone-900 dark:border-stone-100;
   }
 
-  /* Theme: Floral */
+  /* --- THEME STYLES --- */
   .theme-floral {
-    background-color: #fff1f2 !important; /* rose-50 */
-    color: #881337 !important; /* rose-900 */
+    background-color: #fff1f2 !important; 
+    color: #881337 !important; 
     box-shadow: 0 25px 50px -12px rgba(244, 63, 94, 0.15) !important;
   }
   .theme-floral #divider { @apply bg-rose-200; }
   .theme-floral #theme-icon { @apply opacity-100 scale-100; }
+  .theme-floral #display-names { font-style: italic; } 
 
-  /* Theme: Midnight */
   .theme-midnight {
-    background-color: #1c1917 !important; /* stone-900 */
-    color: #fafaf9 !important; /* stone-50 */
+    background-color: #1c1917 !important; 
+    color: #fafaf9 !important; 
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
   }
   .theme-midnight #divider { @apply bg-stone-700; }
   .theme-midnight #theme-icon { @apply opacity-100 scale-100 text-amber-400; }
 
-  /* Theme: Minimalist (Default) */
+  /* Minimalist Fixes for Dark Mode */
   .theme-minimalist #theme-icon { @apply h-0 mb-0 overflow-hidden opacity-0; }
-  
-  /* THE FIX: Force Minimalist to remain "Paper-White" */
-  /* We use :global(.dark) to target the parent state but force light colors inside */
   :global(.dark) .theme-minimalist.card-joy {
-     background-color: #fafaf9 !important; /* stone-50 (off-white) */
-     color: #1c1917 !important;            /* stone-900 (dark text) */
+     background-color: #fafaf9 !important;
+     color: #1c1917 !important; 
      border-color: rgba(0, 0, 0, 0.05) !important;
      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
   }
-
-  /* Ensure the divider inside the minimalist card also stays dark */
-  :global(.dark) .theme-minimalist #divider {
-    background-color: #e7e5e4 !important; /* stone-200 */
-  }
-
-  /* Ensure the labels like "TOGETHER WITH OUR FAMILIES" remain legible */
-  :global(.dark) .theme-minimalist p {
-    color: #57534e !important; /* stone-600 */
-    opacity: 0.8;
+  :global(.dark) .theme-minimalist #divider { background-color: #e7e5e4 !important; }
+  :global(.dark) .theme-minimalist p { color: #57534e !important; opacity: 0.8; }
+  /* In Minimalist dark mode, the demo button needs to flip back to black */
+  :global(.dark) .theme-minimalist #demo-rsvp-btn { 
+    background-color: #1c1917; color: #fff; 
   }
 </style>
 
 <script>
+  // DOM Elements
+  const inputNames = document.getElementById('input-names');
+  const inputDate = document.getElementById('input-date');
+  const displayNames = document.getElementById('display-names');
+  const displayDate = document.getElementById('display-date');
+  const rsvpBtn = document.getElementById('demo-rsvp-btn');
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toast-msg');
+
+  // 1. LIVE TEXT UPDATE LOGIC
+  if (inputNames && displayNames) {
+    inputNames.addEventListener('input', (e) => {
+      // @ts-ignore
+      const val = e.target.value;
+      displayNames.textContent = val || "Your Names";
+    });
+  }
+
+  // 2. LIVE DATE UPDATE LOGIC
+  if (inputDate && displayDate) {
+    inputDate.addEventListener('input', (e) => {
+      // @ts-ignore
+      const dateVal = new Date(e.target.value);
+      // Format to "January 16, 2026"
+      const formatted = dateVal.toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+      // Handle invalid dates (e.g. while typing)
+      if (formatted !== 'Invalid Date') {
+        displayDate.textContent = formatted;
+      }
+    });
+  }
+
+  // 3. THEME SWITCHING LOGIC
   const buttons = document.querySelectorAll('[data-theme]');
   const card = document.getElementById('preview-card');
   const themeIcon = document.getElementById('theme-icon');
 
-  const icons = {
-    floral: '🌸',
-    midnight: '✨',
-    minimalist: ''
-  };
+  const icons = { floral: '🌸', midnight: '✨', minimalist: '' };
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       const theme = btn.getAttribute('data-theme');
       
-      // Update Button UI
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // Update Icon
       if (themeIcon) {
         themeIcon.textContent = icons[theme] || '';
       }
 
-      // Update Card Theme classes
-      card.className = `card-joy transition-all duration-700 min-h-[480px] flex flex-col items-center justify-center p-12 text-center theme-${theme}`;
+      card.classList.remove('theme-minimalist', 'theme-floral', 'theme-midnight');
+      card.classList.add(`theme-${theme}`);
     });
   });
+
+  // 4. RSVP DEMO LOGIC
+  if (rsvpBtn) {
+    rsvpBtn.addEventListener('click', () => {
+      if (toast && toastMsg) {
+        toastMsg.textContent = "🎉 RSVP Demo: Your guests would see a success message!";
+        toast.classList.remove('opacity-0');
+        setTimeout(() => toast.classList.add('opacity-0'), 3000);
+      }
+    });
+  }
 </script>

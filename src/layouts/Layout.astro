@@ -2,7 +2,7 @@
 import '../styles/global.css';
 
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
@@ -10,22 +10,72 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="KokoroLinks - Invitations that connect Heart to Heart." />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-    <script is:inline>
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    </script>
-	</head>
-	<body class="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-500">
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="KokoroLinks - Invitations that connect Heart to Heart." />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        
+        <script is:inline>
+            // Theme initialization
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
+
+        <style is:global>
+            /* Reveal hidden state: starts lower and invisible */
+            .reveal-hidden {
+                opacity: 0 !important;
+				transform: translateY(40px) scale(0.98); /* Added a slight scale for a "pop" effect */
+    			will-change: transform, opacity;
+	            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+
+            /* Active state: slides up to original position */
+            .reveal-active {
+                opacity: 1 !important;
+                transform: translateY(0);
+            }
+        </style>
+    </head>
+    <body class="bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-500">
+        <slot />
+
+<script>
+  // Wrap the logic in a function to handle Astro's lifecycle
+  const initReveal = () => {
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: "0px 0px -100px 0px" // Triggers slightly before the section hits the viewport
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+          // Optional: stop watching once it has revealed
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Apply the hidden class and start observing
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.add('reveal-hidden');
+      observer.observe(section);
+    });
+  };
+
+  // Run on initial load
+  document.addEventListener('DOMContentLoaded', initReveal);
+  
+  // Also run if you use Astro's View Transitions
+  document.addEventListener('astro:after-swap', initReveal);
+</script>
+    </body>
 </html>
