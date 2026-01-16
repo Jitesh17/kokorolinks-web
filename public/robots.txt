@@ -1,0 +1,15 @@
+# Robot instructions for KokoroLinks
+
+# 1. Allow all bots to crawl the main site
+User-agent: *
+Allow: /
+
+# 2. PRIVACY PROTECTION (Crucial for your service)
+# If you eventually host client pages like /rohan-maya, 
+# you might want to block them from Google Search results 
+# so strangers don't stumble upon them.
+# Uncomment the line below when you start hosting real pages:
+# Disallow: /invites/
+
+# 3. Point bots to the Sitemap
+Sitemap: https://kokorolinks.com/sitemap-index.xml
