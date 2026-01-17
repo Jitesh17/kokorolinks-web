@@ -1,7 +1,8 @@
 {
   "password": null,
   "passwordHint": "This demo page is public (no password).",
-
+  
+  "templateId": "petal",
   "coupleNames": "Rohan & Maya",
   "tagline": "With our families, endless laughter, and a few happy tears, we invite you to our wedding celebrations.",
   "cityLine": "Udaipur, Rajasthan",
