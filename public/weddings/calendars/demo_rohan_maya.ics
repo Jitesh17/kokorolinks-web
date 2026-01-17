@@ -1,0 +1,61 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//kokorolinks.com//Wedding Invite//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Rohan & Maya Wedding
+BEGIN:VEVENT
+UID:demo_rohan_maya-welcome-dinner@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260307T133000Z
+DTEND:20260307T163000Z
+SUMMARY:Welcome Dinner
+LOCATION:Lakeside Terrace\, Near Fateh Sagar Lake\, Udaipur\, Rajasthan
+DESCRIPTION:An easy evening by the water with soft lights\, local flavors\, and familiar faces.\nMap: https://maps.google.com/?q=Fateh%20Sagar%20Lake%20Udaipur
+END:VEVENT
+BEGIN:VEVENT
+UID:demo_rohan_maya-haldi@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260308T040000Z
+DTEND:20260308T060000Z
+SUMMARY:Haldi
+LOCATION:Heritage Courtyard\, Old City\, Udaipur\, Rajasthan
+DESCRIPTION:Sunshine\, turmeric\, music\, and the kind of laughter that stays in photographs forever.\nMap: https://maps.google.com/?q=Old%20City%20Udaipur
+END:VEVENT
+BEGIN:VEVENT
+UID:demo_rohan_maya-sangeet@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260308T133000Z
+DTEND:20260308T173000Z
+SUMMARY:Sangeet Night
+LOCATION:Royal Ballroom\, Aravali Lakeside Palace\, Udaipur\, Rajasthan
+DESCRIPTION:Performances\, open dance floor\, and music that slowly takes over the night.\nMap: https://maps.google.com/?q=Aravali%20Lakeside%20Palace%20Udaipur
+END:VEVENT
+BEGIN:VEVENT
+UID:demo_rohan_maya-wedding@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260309T043000Z
+DTEND:20260309T070000Z
+SUMMARY:Wedding Ceremony
+LOCATION:Garden Mandap\, Aravali Lakeside Palace\, Udaipur\, Rajasthan
+DESCRIPTION:Please arrive early and settle in. The ceremony is intimate\, calm\, and unhurried.\nMap: https://maps.google.com/?q=Aravali%20Lakeside%20Palace%20Udaipur
+END:VEVENT
+BEGIN:VEVENT
+UID:demo_rohan_maya-reception@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260309T133000Z
+DTEND:20260309T173000Z
+SUMMARY:Reception Dinner
+LOCATION:Lakeside Pavilion\, Near Fateh Sagar Lake\, Udaipur\, Rajasthan
+DESCRIPTION:A closing night with dinner\, quiet conversations\, and a final shared dance.\nMap: https://maps.google.com/?q=Fateh%20Sagar%20Lake%20Udaipur
+END:VEVENT
+BEGIN:VEVENT
+UID:demo_rohan_maya-ceremony@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260308T130000Z
+DTEND:20260308T170000Z
+SUMMARY:Wedding Ceremony
+LOCATION:Aravali Lakeside Palace\, Near Fateh Sagar Lake\, Udaipur\, Rajasthan
+DESCRIPTION:Main Wedding Ceremony\nMap: https://maps.google.com/?q=Fateh%20Sagar%20Lake%20Udaipur
+END:VEVENT
+END:VCALENDAR

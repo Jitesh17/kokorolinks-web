@@ -1,0 +1,79 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//kokorolinks.com//Wedding Invite//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Manvi & Manish Wedding
+BEGIN:VEVENT
+UID:manvi-manish-lagan-tikka@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260215T043000Z
+DTEND:20260215T060000Z
+SUMMARY:Lagan Tikka
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:15 Feb\, 10:00 AM\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8
+END:VEVENT
+BEGIN:VEVENT
+UID:manvi-manish-mehendi@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260217T083000Z
+DTEND:20260217T103000Z
+SUMMARY:Mehendi
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:17 Feb\, 2:00 PM\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8
+END:VEVENT
+BEGIN:VEVENT
+UID:manvi-manish-haldi@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260218T043000Z
+DTEND:20260218T060000Z
+SUMMARY:Haldi
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:18 Feb\, 10:00 AM\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8
+END:VEVENT
+BEGIN:VEVENT
+UID:manvi-manish-bhaat@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260218T083000Z
+DTEND:20260218T103000Z
+SUMMARY:Bhaat
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:18 Feb\, 2:00 PM\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8
+END:VEVENT
+BEGIN:VEVENT
+UID:manvi-manish-sangeet@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260218T133000Z
+DTEND:20260218T163000Z
+SUMMARY:Sangeet
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:18 Feb\, 7:00 PM\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8
+END:VEVENT
+BEGIN:VEVENT
+UID:manvi-manish-wedding@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260219T113000Z
+DTEND:20260219T143000Z
+SUMMARY:Wedding
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:19 Feb\, 5:00 PM\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8
+END:VEVENT
+BEGIN:VEVENT
+UID:manvi-manish-reception@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260219T143000Z
+DTEND:20260219T173000Z
+SUMMARY:Reception (followed by dinner)
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:19 Feb\, 8:00 PM\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8
+END:VEVENT
+BEGIN:VEVENT
+UID:manvi-manish-ceremony@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260219T053000Z
+DTEND:20260219T073000Z
+SUMMARY:Wedding Ceremony
+LOCATION:Wedding Venue\, City\, State
+DESCRIPTION:Main Wedding Ceremony\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8
+END:VEVENT
+END:VCALENDAR

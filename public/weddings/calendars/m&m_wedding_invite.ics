@@ -1,0 +1,88 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//kokorolinks.com//Wedding Invite//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Manish & Manvi Wedding
+BEGIN:VEVENT
+UID:m&m_wedding_invite-lagan-teeka@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260215T083000Z
+DTEND:20260215T100000Z
+SUMMARY:Lagan Teeka
+LOCATION:Sarayu Mahal\, Ramnagariya\, Jagatpura\, Jaipur
+DESCRIPTION:Sunday\, 15th February 2026\nMap: https://maps.app.goo.gl/bHjyj2hNc3uvLvrv9?g_st=iw
+END:VEVENT
+BEGIN:VEVENT
+UID:m&m_wedding_invite-lagan-teeka-lunch@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260215T103000Z
+DTEND:20260215T123000Z
+SUMMARY:Lunch
+LOCATION:Sarayu Mahal\, Ramnagariya\, Jagatpura\, Jaipur
+DESCRIPTION:Lunch at 4 PM\nMap: https://maps.app.goo.gl/bHjyj2hNc3uvLvrv9?g_st=iw
+END:VEVENT
+BEGIN:VEVENT
+UID:m&m_wedding_invite-tel-vinayak@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260217T043000Z
+DTEND:20260217T063000Z
+SUMMARY:Tel Vinayak (तेल विनायक)
+LOCATION:Family Residence\, Kalyan Patel ki Dhani\, Village Rahuwas\, Dausa
+DESCRIPTION:प्रातः 10 बजे\nMap: https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic
+END:VEVENT
+BEGIN:VEVENT
+UID:m&m_wedding_invite-pratibhoj-lunch@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260217T093000Z
+DTEND:20260217T113000Z
+SUMMARY:Lunch (Pratibhoj / प्रीतिभोज)
+LOCATION:Family Residence\, Kalyan Patel ki Dhani\, Village Rahuwas\, Dausa
+DESCRIPTION:दोपहर 3 बजे से\nMap: https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic
+END:VEVENT
+BEGIN:VEVENT
+UID:m&m_wedding_invite-chaak-bhaat@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260217T113000Z
+DTEND:20260217T143000Z
+SUMMARY:Chaak & Bhaat (चाक भात)
+LOCATION:Family Residence\, Kalyan Patel ki Dhani\, Village Rahuwas\, Dausa
+DESCRIPTION:सांय 5 बजे\nMap: https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic
+END:VEVENT
+BEGIN:VEVENT
+UID:m&m_wedding_invite-marriage-ceremony@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260219T113000Z
+DTEND:20260219T133000Z
+SUMMARY:Marriage Ceremony
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:Ceremony timings are approximated for calendar convenience.\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic
+END:VEVENT
+BEGIN:VEVENT
+UID:m&m_wedding_invite-baraat-arrival@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260219T143000Z
+DTEND:20260219T144500Z
+SUMMARY:Baraat Arrival
+LOCATION:Family Residence\, Kalyan Patel ki Dhani\, Village Rahuwas\, Dausa
+DESCRIPTION:Baraat will depart at 7 PM from Rahuwas\, Dausa for the wedding venue.\nMap: https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic
+END:VEVENT
+BEGIN:VEVENT
+UID:m&m_wedding_invite-wedding-dinner@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260219T133000Z
+DTEND:20260219T153000Z
+SUMMARY:Dinner
+LOCATION:Amara Wedding Banquet\, Opp New RTO\, Jagatpura\, Jaipur
+DESCRIPTION:Thursday\, 19th February 2026\nMap: https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic
+END:VEVENT
+BEGIN:VEVENT
+UID:m&m_wedding_invite-ceremony@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260219T053000Z
+DTEND:20260219T073000Z
+SUMMARY:Wedding Ceremony
+LOCATION:Wedding Venue\, City\, State
+DESCRIPTION:Main Wedding Ceremony\nMap: https://maps.app.goo.gl/jMYgc7xC5QXECH6N6
+END:VEVENT
+END:VCALENDAR

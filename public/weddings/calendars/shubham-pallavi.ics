@@ -1,80 +1,52 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//jiteshgosar.com//Wedding Invite//EN
+PRODID:-//kokorolinks.com//Wedding Invite//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:Shubham Mehra & Pallavi Mane Wedding
-X-WR-TIMEZONE:Asia/Kolkata
-BEGIN:VTIMEZONE
-TZID:Asia/Kolkata
-BEGIN:STANDARD
-TZOFFSETFROM:+0530
-TZOFFSETTO:+0530
-TZNAME:IST
-DTSTART:19700101T000000
-END:STANDARD
-END:VTIMEZONE
+X-WR-CALNAME:Shubham & Pallavi Wedding
 BEGIN:VEVENT
-UID:shubham-pallavi-tilak-lagnaotsav@jiteshgosar.com
-DTSTAMP:20260111T154253Z
-DTSTART;TZID=Asia/Kolkata:20260204T160000
-DTEND;TZID=Asia/Kolkata:20260204T180000
-SUMMARY:Lagnaotsav (Tilak)
-LOCATION:Nij Nivas\, Bhopal\, Madhya Pradesh
-DESCRIPTION:Start time as per card. End time is an estimate for calendar convenience.\nMap: https://maps.google.com/?q=Bhopal
-END:VEVENT
-BEGIN:VEVENT
-UID:shubham-pallavi-matrika-mandapachchadan@jiteshgosar.com
-DTSTAMP:20260111T154253Z
-DTSTART;TZID=Asia/Kolkata:20260205T100000
-DTEND;TZID=Asia/Kolkata:20260205T120000
-SUMMARY:Matrika Pujan & Mandapachchadan
-LOCATION:Nij Nivas\, Bhopal\, Madhya Pradesh
-DESCRIPTION:Start time as per card. End time is an estimate for calendar convenience.\nMap: https://maps.google.com/?q=Bhopal
-END:VEVENT
-BEGIN:VEVENT
-UID:shubham-pallavi-sagai-haldi@jiteshgosar.com
-DTSTAMP:20260111T154253Z
-DTSTART;TZID=Asia/Kolkata:20260207T110000
-DTEND;TZID=Asia/Kolkata:20260207T130000
-SUMMARY:Sagai & Haldi
+UID:shubham-pallavi-haldi@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260207T053000Z
+DTEND:20260207T093000Z
+SUMMARY:Haldi
 LOCATION:Taj Usha Kiran Palace\, Gwalior\, Madhya Pradesh
-DESCRIPTION:Start time as per card. End time is an estimate for calendar convenience.\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
+DESCRIPTION:\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
 END:VEVENT
 BEGIN:VEVENT
-UID:shubham-pallavi-sangeet@jiteshgosar.com
-DTSTAMP:20260111T154253Z
-DTSTART;TZID=Asia/Kolkata:20260207T190000
-DTEND;TZID=Asia/Kolkata:20260207T220000
+UID:shubham-pallavi-sangeet@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260207T133000Z
+DTEND:20260207T182900Z
 SUMMARY:Sangeet
 LOCATION:Taj Usha Kiran Palace\, Gwalior\, Madhya Pradesh
-DESCRIPTION:Start time as per card. End time is an estimate for calendar convenience.\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
+DESCRIPTION:\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
 END:VEVENT
 BEGIN:VEVENT
-UID:shubham-pallavi-saat-phere-pani-grahan@jiteshgosar.com
-DTSTAMP:20260111T154253Z
-DTSTART;TZID=Asia/Kolkata:20260208T110000
-DTEND;TZID=Asia/Kolkata:20260208T130000
-SUMMARY:Pani Grahan Sanskar (Saat Phere)
+UID:shubham-pallavi-wedding@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260208T053000Z
+DTEND:20260208T093000Z
+SUMMARY:Wedding
 LOCATION:Taj Usha Kiran Palace\, Gwalior\, Madhya Pradesh
-DESCRIPTION:Start time as per card. End time is an estimate for calendar convenience.\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
+DESCRIPTION:\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
 END:VEVENT
 BEGIN:VEVENT
-UID:shubham-pallavi-aashirwad-samaroh@jiteshgosar.com
-DTSTAMP:20260111T154253Z
-DTSTART;TZID=Asia/Kolkata:20260208T200000
-DTEND;TZID=Asia/Kolkata:20260208T230000
-SUMMARY:Shubh Aashirwad Samaroh
+UID:shubham-pallavi-reception@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260208T133000Z
+DTEND:20260208T173000Z
+SUMMARY:Reception
 LOCATION:Taj Usha Kiran Palace\, Gwalior\, Madhya Pradesh
-DESCRIPTION:Start time as per card. End time is an estimate for calendar convenience.\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
+DESCRIPTION:\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
 END:VEVENT
 BEGIN:VEVENT
-UID:shubham-pallavi-ceremony@jiteshgosar.com
-DTSTAMP:20260111T154253Z
-DTSTART;TZID=Asia/Kolkata:20260208T110000
-DTEND;TZID=Asia/Kolkata:20260208T130000
-SUMMARY:Pani Grahan Sanskar (Saat Phere)
+UID:shubham-pallavi-ceremony@kokorolinks.com
+DTSTAMP:20260117T085755Z
+DTSTART:20260208T053000Z
+DTEND:20260208T073000Z
+SUMMARY:Wedding Ceremony
 LOCATION:Taj Usha Kiran Palace\, Gwalior\, Madhya Pradesh
-DESCRIPTION:Map: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
+DESCRIPTION:Main Wedding Ceremony\nMap: https://maps.google.com/?q=Taj%20Usha%20Kiran%20Palace%20Gwalior
 END:VEVENT
 END:VCALENDAR

@@ -11,7 +11,7 @@
   "media": {
     "couplePhoto": {
       "enabled": true,
-      "src": "/weddings/assets/manish-manvi/couple.jpg",
+      "src": "/manish-manvi/couple.jpg",
       "alt": "Manvi & Manish",
       "size": "hero",
       "style": "cinematic",
@@ -115,13 +115,13 @@
 
   "contacts": [
     {
-      "name": "Manish",
-      "role": "Groom",
+      "name": "Manvi",
+      "role": "Bride",
       "phone": "+91-XXXXXXXXXX"
     },
     {
-      "name": "Manvi",
-      "role": "Bride",
+      "name": "Manish",
+      "role": "Groom",
       "phone": "+91-XXXXXXXXXX"
     },
     {
@@ -150,7 +150,7 @@
     "decor": {
       "enabled": true,
       "mode": "corners",
-      "imageUrl": "/weddings/assets/decor-corner-2.png",
+      "imageUrl": "decor-corner-2.png",
       "size": 340,
       "opacityLight": 0.86,
       "opacityDark": 0.80,
@@ -158,20 +158,20 @@
       "baseRotation": 0,
       "corners": {
         "tl": { 
-          "imageUrl": "/weddings/assets/decor-corner-1.png",
+          "imageUrl": "decor-corner-1.png",
           "rotation": 0 
         },
         "tr": { 
-          "imageUrl": "/weddings/assets/decor-corner-1.png",
+          "imageUrl": "decor-corner-1.png",
           "rotation": 0  
         },
         "bl": { 
-          "imageUrl": "/weddings/assets/decor-corner-4.png",
+          "imageUrl": "decor-corner-4.png",
           "rotation": -90,
           "flip": "vertical"
         },
         "br": { 
-          "imageUrl": "/weddings/assets/decor-corner-4.png",
+          "imageUrl": "decor-corner-4.png",
           "rotation": 180  
         }
       }

@@ -11,7 +11,7 @@
 
 /* BASE SETTINGS */
 :root {
-  color-scheme: light dark; /* Informs browser that both modes are supported */
+  color-scheme: light dark;
 }
 
 html {
@@ -24,6 +24,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   letter-spacing: -0.01em;
+  @apply bg-neutral-50 dark:bg-neutral-950 text-stone-900 dark:text-stone-50;
 }
 
 /* UTILITY CLASSES */
@@ -31,29 +32,19 @@ body {
   font-family: var(--font-heading);
 }
 
-/* THE GLASSMORPHIC CARD FIX 
-   Using @apply with 'dark:' modifiers ensures Tailwind handles the switch automatically.
+/* THE STATIC GLASS CARD 
+   This is the "Base" look. It has NO motion and NO color glow.
+   Perfect for the Wedding Invite page.
 */
 .card-joy {
-  /* 1. Base Shape & Motion */
-  @apply rounded-3xl p-8 backdrop-blur-md transition-all duration-500 border;
+  /* 1. Base Shape */
+  @apply rounded-3xl p-8 backdrop-blur-md border;
 
-  /* 2. Light Mode Styles (Applied by default) */
-  /* Background is white with 90% opacity, text is dark stone */
+  /* 2. Light Mode (Static) */
   @apply bg-white/90 border-white/50 text-stone-900 shadow-2xl shadow-stone-500/10;
 
-  /* 3. Dark Mode Styles (Applied only when 'dark' class is present) */
-  /* Background becomes dark stone with 80% opacity, text becomes light */
+  /* 3. Dark Mode (Static) */
   @apply dark:bg-stone-900/80 dark:border-white/10 dark:text-stone-50 dark:shadow-black/50;
-
-  @apply transition-all duration-500 hover:shadow-rose-500/10 hover:border-rose-200/50;
-  /* Adds a very subtle "lift" effect */
-  &:hover {
-    transform: translateY(-4px) scale(1.01);
-  }
-}
-.dark .card-joy:hover {
-  @apply hover:shadow-rose-900/20 hover:border-rose-900/30;
 }
 
 /* LAYOUT HELPERS */

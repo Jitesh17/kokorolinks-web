@@ -1,0 +1,161 @@
+{
+  "password": null,
+  "passwordHint": "This demo page is public (no password).",
+
+  "coupleNames": "Rohan & Maya",
+  "tagline": "With our families, endless laughter, and a few happy tears, we invite you to our wedding celebrations.",
+  "cityLine": "Udaipur, Rajasthan",
+
+  "lastUpdated": "2027-01-15T12:00:00+05:30",
+
+  "media": {
+    "couplePhoto": {
+      "enabled": true,
+      "src": "couple-sample.png",
+      "alt": "Rohan & Maya",
+      "size": "hero",
+      "style": "cinematic",
+      "position": "50% 10%"
+    }
+  },
+
+  "primaryVenue": {
+    "name": "Aravali Lakeside Palace",
+    "address": "Near Fateh Sagar Lake, Udaipur, Rajasthan",
+    "mapUrl": "https://maps.google.com/?q=Fateh%20Sagar%20Lake%20Udaipur"
+  },
+
+  "primaryEvent": {
+    "id": "wedding-ceremony",
+    "title": "Wedding Ceremony",
+    "start": "2026-03-08T18:30:00+05:30",
+    "end": "2026-03-08T22:30:00+05:30",
+    "displayDate": "08 Mar 2026"
+  },
+
+  "schedule": [
+    {
+      "id": "welcome-dinner",
+      "title": "Welcome Dinner",
+      "start": "2026-03-07T19:00:00+05:30",
+      "end": "2026-03-07T22:00:00+05:30",
+      "locationName": "Lakeside Terrace",
+      "address": "Near Fateh Sagar Lake, Udaipur, Rajasthan",
+      "mapUrl": "https://maps.google.com/?q=Fateh%20Sagar%20Lake%20Udaipur",
+      "wardrobe": "Smart casual. Light layers recommended for the lake breeze.",
+      "wardrobeIcon": "✨",
+      "notes": "An easy evening by the water with soft lights, local flavors, and familiar faces."
+    },
+    {
+      "id": "haldi",
+      "title": "Haldi",
+      "start": "2026-03-08T09:30:00+05:30",
+      "end": "2026-03-08T11:30:00+05:30",
+      "locationName": "Heritage Courtyard",
+      "address": "Old City, Udaipur, Rajasthan",
+      "mapUrl": "https://maps.google.com/?q=Old%20City%20Udaipur",
+      "wardrobe": "Light colors encouraged. Comfortable clothes you do not mind getting messy.",
+      "wardrobeIcon": "💛",
+      "notes": "Sunshine, turmeric, music, and the kind of laughter that stays in photographs forever."
+    },
+    {
+      "id": "sangeet",
+      "title": "Sangeet Night",
+      "start": "2026-03-08T19:00:00+05:30",
+      "end": "2026-03-08T23:00:00+05:30",
+      "locationName": "Royal Ballroom",
+      "address": "Aravali Lakeside Palace, Udaipur, Rajasthan",
+      "mapUrl": "https://maps.google.com/?q=Aravali%20Lakeside%20Palace%20Udaipur",
+      "wardrobe": "Festive Indian or cocktail. Bold colors, comfortable footwear.",
+      "wardrobeIcon": "🎶",
+      "notes": "Performances, open dance floor, and music that slowly takes over the night."
+    },
+    {
+      "id": "wedding",
+      "title": "Wedding Ceremony",
+      "start": "2026-03-09T10:00:00+05:30",
+      "end": "2026-03-09T12:30:00+05:30",
+      "locationName": "Garden Mandap",
+      "address": "Aravali Lakeside Palace, Udaipur, Rajasthan",
+      "mapUrl": "https://maps.google.com/?q=Aravali%20Lakeside%20Palace%20Udaipur",
+      "wardrobe": "Traditional Indian attire recommended. Sunglasses suggested for the morning sun.",
+      "wardrobeIcon": "💍",
+      "notes": "Please arrive early and settle in. The ceremony is intimate, calm, and unhurried."
+    },
+    {
+      "id": "reception",
+      "title": "Reception Dinner",
+      "start": "2026-03-09T19:00:00+05:30",
+      "end": "2026-03-09T23:00:00+05:30",
+      "locationName": "Lakeside Pavilion",
+      "address": "Near Fateh Sagar Lake, Udaipur, Rajasthan",
+      "mapUrl": "https://maps.google.com/?q=Fateh%20Sagar%20Lake%20Udaipur",
+      "wardrobe": "Cocktail or formal. Elegant, relaxed, and comfortable.",
+      "wardrobeIcon": "🥂",
+      "notes": "A closing night with dinner, quiet conversations, and a final shared dance."
+    }
+  ],
+
+  "updates": [
+    {
+      "when": "2026-01-16T12:00:00+05:30",
+      "text": "Locations updated to a lakeside destination wedding setting in Udaipur."
+    }
+  ],
+
+  "contacts": [
+    {
+      "name": "Rohan",
+      "role": "Groom",
+      "phone": "+91-90000-00001",
+      "icon": "🤵"
+    },
+    {
+      "name": "Maya",
+      "role": "Bride",
+      "phone": "+91-90000-00002",
+      "icon": "👰"
+    },
+    {
+      "name": "Family Contact",
+      "role": "Host",
+      "phone": "+91-90000-00003",
+      "icon": "☎️"
+    }
+  ],
+
+  "rsvp": {
+    "enabled": true,
+    "mode": "embed",
+    "showButton": true,
+    "formUrl": "https://forms.gle/REPLACE_WITH_YOUR_FORM",
+    "embedUrl": "https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_EMBED/viewform?embedded=true",
+    "deadline": "2026-02-20T23:59:00+05:30",
+    "title": "RSVP",
+    "buttonText": "RSVP (open form here)",
+    "openInNewTabText": "Open in Google Forms"
+  },
+
+  "theme": {
+    "background": "gradient",
+    "gradient": "from-indigo-50 via-amber-50 to-rose-50",
+    "primaryColor": "#4b1d0d",
+    "secondaryColor": "#fffaf2",
+    "decor": {
+      "enabled": true,
+      "mode": "corners",
+      "imageUrl": "decor-corner-1.png",
+      "size": 360,
+      "opacityLight": 0.55,
+      "opacityDark": 0.55,
+      "rotate": true,
+      "baseRotation": 0,
+      "corners": {
+        "tl": { "rotation": 0 },
+        "tr": { "rotation": 0 },
+        "bl": { "rotation": 0 },
+        "br": { "rotation": 0 }
+      }
+    }
+  }
+}

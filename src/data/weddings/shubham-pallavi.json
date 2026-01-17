@@ -11,7 +11,7 @@
 "media": {
     "couplePhoto": {
       "enabled": true,
-      "src": "/weddings/assets/shubham-pallavi/couple-2.jpg",
+      "src": "shubham-pallavi/couple-2.jpg",
       "alt": "Shubham & Pallavi",
       "size": "hero",
       "style": "cinematic",
@@ -135,7 +135,7 @@
     "decor": {
       "enabled": true,
       "mode": "corners",
-      "imageUrl": "/weddings/assets/decor-corner-1.png",
+      "imageUrl": "decor-corner-1.png",
       "size": 360,
       "opacityLight": 0.88,
       "opacityDark": 0.88,

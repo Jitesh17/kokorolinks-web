@@ -1,91 +1,87 @@
 ---
-import WeddingLayout from "../../layouts/WeddingLayout.astro";
-import fs from "node:fs";
-import path from "node:path";
+import WeddingLayout from "../layouts/WeddingLayout.astro";
+import { getImage } from "astro:assets";
 
+// 1. GET DATA (Cloudflare-Safe)
+// We scan src/data/weddings/ for JSON files
 export async function getStaticPaths() {
-  try {
-    const dataDir = path.join(process.cwd(), "public", "weddings", "data");
-
-    // 1. Safety Check: Ensure directory exists prevents build crash
-    if (!fs.existsSync(dataDir)) {
-      console.warn(`[getStaticPaths] Warning: Data directory not found at ${dataDir}`);
-      return []; 
-    }
-
-    const files = fs.readdirSync(dataDir);
-
-    const slugs = files
-      .filter((f) => f.endsWith(".json"))
-      .map((f) => f.replace(/\.json$/, ""))
-      .filter((s) => s !== "template");
-
-    return slugs.map((slug) => ({ params: { slug } }));
-
-  } catch (error) {
-    // 2. Catch permissions or other FS errors so build finishes
-    console.error("[getStaticPaths] Error generating paths:", error);
-    return [];
-  }
+  const dataFiles = import.meta.glob('../data/weddings/*.json', { eager: true });
+  return Object.keys(dataFiles).map((path) => {
+    const slug = path.split('/').pop().replace('.json', '');
+    const data = dataFiles[path] as any;
+    return {
+      params: { slug },
+      props: { data },
+    };
+  });
 }
 
 const { slug } = Astro.params;
+const { data } = Astro.props;
 
-// Critical for GitHub Pages subpath deploys
+// 2. MAP ALL ASSETS
+const allAssets = import.meta.glob<{ default: ImageMetadata }>('/src/assets/weddings/**/*.{jpeg,jpg,png,gif,webp,JPG,PNG}');
+
+// 3. OPTIMIZE MAIN PHOTO
+const jsonSrc = data.media?.couplePhoto?.src || "";
+const cleanJsonSrc = jsonSrc.startsWith('/') ? jsonSrc.slice(1) : jsonSrc;
+const targetKey = `/src/assets/weddings/${cleanJsonSrc}`;
+const imageImport = allAssets[targetKey];
+let optimizedImageSrc = "";
+
+if (imageImport) {
+  const metaAsset = await imageImport();
+  const opt = await getImage({ src: metaAsset.default, format: 'webp', width: 1200 });
+  optimizedImageSrc = opt.src;
+}
+
+// 4. OPTIMIZE DECOR CORNERS
+const cornerPaths = [
+  '/src/assets/weddings/decor/decor-corner-1.png',
+  '/src/assets/weddings/decor/decor-corner-2.png',
+  '/src/assets/weddings/decor/decor-corner-3.png',
+  '/src/assets/weddings/decor/decor-corner-4.png'
+];
+
+const optimizedCorners = await Promise.all(
+  cornerPaths.map(async (path) => {
+    const asset = allAssets[path];
+    if (asset) {
+      const meta = await asset();
+      const opt = await getImage({ src: meta.default, width: 400 });
+      return opt.src;
+    }
+    return "";
+  })
+);
+
+// 5. METADATA
+const domain = import.meta.env.SITE || "https://kokorolinks.com"; 
+const meta = {
+  title: data.coupleNames ? `${data.coupleNames} | Wedding Invitation` : "Wedding Invitation",
+  description: data.tagline || `Join us to celebrate the wedding of ${data.coupleNames}.`,
+  image: optimizedImageSrc ? (optimizedImageSrc.startsWith("http") ? optimizedImageSrc : `${domain}${optimizedImageSrc}`) : ""
+};
+
 const baseUrl = import.meta.env.BASE_URL;
-
-// URL Construction
-const detailsUrl = `${baseUrl}weddings/data/${slug}.json`;
-const calendarUrl = `${baseUrl}weddings/calendars/${slug}.ics`;
-const pageTitle = `Wedding Invitation - ${slug}`;
 ---
 
-<WeddingLayout title={pageTitle} description="Wedding invitation details.">
+<WeddingLayout 
+  title={meta.title} 
+  description={meta.description} 
+  image={meta.image}
+>
   <noscript>
     <div class="mx-auto max-w-2xl px-4 py-10">
-      <div class="rounded-2xl border p-6 dark:border-neutral-800">
-        This page needs JavaScript enabled to show the invitation.
+      <div class="rounded-2xl border p-6 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-center">
+        <h1 class="text-2xl font-bold mb-4">{data.coupleNames}</h1>
+        <p>Please enable JavaScript to view this interactive wedding invitation.</p>
       </div>
     </div>
   </noscript>
 
-  <!-- Lock Screen -->
-  <div class="mx-auto max-w-md px-4 py-20" id="lockScreen"><div class="card-joy relative z-10 mx-auto max-w-3xl shadow-2xl">
-      <h1 class="text-2xl font-bold text-neutral-900 dark:text-white">Private Invitation</h1>
-      <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400" id="lockHint">
-        Enter the password to view details.
-      </p>
-
-      <input
-        id="passwordInput"
-        type="password"
-        placeholder="Password"
-        autocomplete="off"
-        class="mt-4 w-full rounded-xl border px-4 py-2 text-sm dark:border-neutral-800 dark:bg-neutral-950"
-      />
-
-      <button
-        id="unlockBtn"
-        class="mt-4 w-full rounded-xl border px-4 py-2 text-sm font-semibold dark:border-neutral-800"
-        type="button"
-      >
-        Unlock
-      </button>
-
-      <p id="errorMsg" class="mt-3 hidden text-sm text-red-600 dark:text-red-400">
-        Incorrect password.
-      </p>
-
-      <p id="missingMsg" class="mt-3 hidden text-sm text-red-600 dark:text-red-400">
-        Invitation data not found for this link.
-      </p>
-    </div>
-  </div>
-
-  <!-- Protected Content -->
-  <div id="protectedContent" class="hidden">
+  <div id="protectedContent">
     <div id="themeWrapper" class="relative min-h-screen overflow-hidden">
-      <!-- Decor corners -->
       <div id="decorCorners" class="pointer-events-none absolute inset-0 hidden z-0">
         <div id="decorTL" class="absolute left-0 top-0"></div>
         <div id="decorTR" class="absolute right-0 top-0"></div>
@@ -93,8 +89,9 @@ const pageTitle = `Wedding Invitation - ${slug}`;
         <div id="decorBR" class="absolute right-0 bottom-0"></div>
       </div>
 
-      <div class="card-joy relative z-10 mx-auto max-w-3xl shadow-2xl">
-        <div class="p-6">
+      <div class="card-joy relative z-10 mx-auto max-w-3xl shadow-2xl bg-white dark:bg-neutral-900 min-h-screen sm:min-h-0 sm:my-10 sm:rounded-3xl overflow-hidden">
+        <div class="p-6 pb-20 sm:pb-6">
+            
             <div id="couplePhotoWrap" class="hidden flex justify-center mb-6">
               <img 
                 id="couplePhoto" 
@@ -102,84 +99,87 @@ const pageTitle = `Wedding Invitation - ${slug}`;
                 loading="eager"
               />
             </div>
-            <div class="text-center space-y-4 mt-6">
 
-            <h1 id="coupleNames" class="font-heading text-6xl sm:text-7xl font-medium tracking-wide text-neutral-900 dark:text-white leading-tight">
-              Loading...
-            </h1>
-            <p id="tagline" class="font-heading text-xl italic text-neutral-600 dark:text-neutral-400"></p>
-            
-            <div class="py-4">
-              <div id="weddingDate" class="font-heading text-3xl text-neutral-800 dark:text-neutral-200"></div>
-              <div id="cityLine" class="font-body text-sm uppercase tracking-widest text-neutral-500 mt-2"></div>
-            </div>
-          </div>
-
-          <div id="countdown" class="flex justify-center my-8"></div>
-
-          <div class="flex flex-col items-center gap-4 mb-12">
-            
-            <a id="mapBtn" class="px-8 py-3 rounded-full bg-neutral-900 text-white font-medium text-sm hover:bg-neutral-800 transition-all hover:scale-105 dark:bg-white dark:text-black cursor-pointer shadow-lg shadow-neutral-500/20" target="_blank" rel="noopener">
-              Open Location Map
-            </a>
-
-            <div class="flex flex-row gap-3">
-              <a id="subscribeBtn" class="px-5 py-2 rounded-full border border-neutral-300 text-neutral-600 font-medium text-xs hover:border-black hover:text-black transition-colors dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white cursor-pointer">
-                ↻ Sync Calendar
-              </a>
+            <div class="text-center space-y-4 mt-6 relative z-20">
+              <h1 id="coupleNames" class="font-heading text-6xl sm:text-7xl font-medium tracking-wide text-neutral-900 dark:text-white leading-tight animate-pulse">
+                {data.coupleNames}
+              </h1>
+              <p id="tagline" class="font-heading text-xl italic text-neutral-600 dark:text-neutral-400">
+                 {data.tagline}
+              </p>
               
-              <a id="viewCalendarBtn" class="px-5 py-2 rounded-full border border-neutral-300 text-neutral-600 font-medium text-xs hover:border-black hover:text-black transition-colors dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white cursor-pointer" target="_blank" rel="noopener">
-                ↓ Save to Calendar
-              </a>
-            </div>
-
-          </div>   
-          
-          <div class="mt-8 border-t pt-6 dark:border-neutral-800">
-            <h2 class="font-heading text-3xl text-neutral-900 dark:text-white mb-6 border-b border-neutral-200 dark:border-neutral-800 pb-2">Schedule</h2>
-            <div id="schedule" class="mt-4 grid gap-3"></div>
-          </div>
-
-          <!-- <div class="mt-8 border-t pt-6 dark:border-neutral-800">
-            <h2 class="font-heading text-3xl text-neutral-900 dark:text-white mb-6 border-b border-neutral-200 dark:border-neutral-800 pb-2">Updates</h2>
-            <div id="updates" class="mt-4 grid gap-3"></div>
-          </div> -->
-
-          <div class="mt-8 border-t pt-6 dark:border-neutral-800">
-            <h2 class="font-heading text-3xl text-neutral-900 dark:text-white mb-6 border-b border-neutral-200 dark:border-neutral-800 pb-2">Contacts</h2>
-            <div id="contacts" class="mt-4 grid gap-2 text-sm text-neutral-600 dark:text-neutral-400"></div>
-          </div>
-
-          <div class="mt-8 border-t pt-6 dark:border-neutral-800" id="rsvpSection" style="display:none;">
-            <h2 class="text-lg font-semibold text-neutral-900 dark:text-white" id="rsvpTitle">RSVP</h2>
-            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400" id="rsvpDeadlineText" style="display:none;"></p>
-
-            <div class="mt-4" id="rsvpButtonWrap" style="display:none;">
-              <a id="rsvpButton" class="inline-block rounded-xl border px-4 py-2 text-sm font-semibold dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800">
-                RSVP
-              </a>
-              <div class="mt-2 text-xs text-neutral-600 dark:text-neutral-400">
-                <a id="rsvpOpenInNewTab" target="_blank" rel="noopener" class="underline">Open in Google Forms</a>
+              <div class="py-4">
+                <div id="weddingDate" class="font-heading text-3xl text-neutral-800 dark:text-neutral-200">
+                   {data.primaryEvent?.displayDate}
+                </div>
+                <div id="cityLine" class="font-body text-sm uppercase tracking-widest text-neutral-500 mt-2">
+                   {data.cityLine}
+                </div>
               </div>
             </div>
 
-            <div class="mt-4" id="rsvpEmbedWrap" style="display:none;">
-              <iframe
-                id="rsvpIframe"
-                title="RSVP Form"
-                class="w-full rounded-2xl border dark:border-neutral-800"
-                style="height: 900px;"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div id="countdown" class="flex justify-center my-8"></div>
+
+            <div class="flex flex-col items-center gap-4 mb-12 relative z-20">
+              <a id="mapBtn" class="px-8 py-3 rounded-full bg-neutral-900 text-white font-medium text-sm hover:bg-neutral-800 transition-all hover:scale-105 dark:bg-white dark:text-black cursor-pointer shadow-lg shadow-neutral-500/20" target="_blank" rel="noopener">
+                Open Location Map
+              </a>
+
+              <div class="flex flex-row gap-3">
+                <a id="subscribeBtn" class="px-5 py-2 rounded-full border border-neutral-300 text-neutral-600 font-medium text-xs hover:border-black hover:text-black transition-colors dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white cursor-pointer">
+                  ↻ Sync Calendar
+                </a>
+                <a id="viewCalendarBtn" class="px-5 py-2 rounded-full border border-neutral-300 text-neutral-600 font-medium text-xs hover:border-black hover:text-black transition-colors dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white cursor-pointer" target="_blank" rel="noopener">
+                  ↓ Save to Calendar
+                </a>
+              </div>
+            </div>   
+          
+            <div class="mt-8 border-t pt-6 dark:border-neutral-800">
+              <h2 class="font-heading text-3xl text-neutral-900 dark:text-white mb-6 border-b border-neutral-200 dark:border-neutral-800 pb-2">Schedule</h2>
+              <div id="schedule" class="mt-4 grid gap-3"></div>
             </div>
-          </div>
+
+            <div class="mt-8 border-t pt-6 dark:border-neutral-800">
+              <h2 class="font-heading text-3xl text-neutral-900 dark:text-white mb-6 border-b border-neutral-200 dark:border-neutral-800 pb-2">Contacts</h2>
+              <div id="contacts" class="mt-4 grid gap-2 text-sm text-neutral-600 dark:text-neutral-400"></div>
+            </div>
+
+            <div class="mt-8 border-t pt-6 dark:border-neutral-800" id="rsvpSection" style="display:none;">
+              <h2 class="text-lg font-semibold text-neutral-900 dark:text-white" id="rsvpTitle">RSVP</h2>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400" id="rsvpDeadlineText" style="display:none;"></p>
+
+              <div class="mt-4" id="rsvpButtonWrap" style="display:none;">
+                <a id="rsvpButton" class="inline-block rounded-xl border px-4 py-2 text-sm font-semibold dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800">
+                  RSVP
+                </a>
+                <div class="mt-2 text-xs text-neutral-600 dark:text-neutral-400">
+                  <a id="rsvpOpenInNewTab" target="_blank" rel="noopener" class="underline">Open in Google Forms</a>
+                </div>
+              </div>
+
+              <div class="mt-4" id="rsvpEmbedWrap" style="display:none;">
+                <iframe
+                  id="rsvpIframe"
+                  title="RSVP Form"
+                  class="w-full rounded-2xl border dark:border-neutral-800"
+                  style="height: 900px;"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+
+           <div id="missingMsg" class="hidden mt-8 text-center text-sm text-red-600 dark:text-red-400">
+            Invitation data not found for this link.
+           </div>
 
         </div>
       </div>
     </div>
   </div>
-<script is:inline define:vars={{ detailsUrl, calendarUrl, slug, baseUrl }}>
+
+  <script is:inline define:vars={{ preloadedData: data, optimizedImageSrc, optimizedCorners, baseUrl, slug }}>
     const $ = (id) => document.getElementById(id);
 
     // --- Helpers ---
@@ -188,10 +188,22 @@ const pageTitle = `Wedding Invitation - ${slug}`;
     
     function resolveAssetUrl(u) {
       if (!u) return "";
+      
+      // 1. Resolve Optimized Main Photo
+      if (preloadedData.media?.couplePhoto?.src === u && optimizedImageSrc) {
+        return optimizedImageSrc;
+      }
+
+      // 2. Resolve Optimized Decor Corners
+      if (u.includes('decor-corner-1') && optimizedCorners[0]) return optimizedCorners[0];
+      if (u.includes('decor-corner-2') && optimizedCorners[1]) return optimizedCorners[1];
+      if (u.includes('decor-corner-3') && optimizedCorners[2]) return optimizedCorners[2];
+      if (u.includes('decor-corner-4') && optimizedCorners[3]) return optimizedCorners[3];
+
+      // 3. Fallback for static/external assets
       if (isAbsUrl(u)) return u;
       const baseNoSlash = String(baseUrl || "/").replace(/\/$/, "");
-      if (u.startsWith("/")) return baseNoSlash + u;
-      return String(baseUrl || "/") + u;
+      return u.startsWith("/") ? baseNoSlash + u : String(baseUrl || "/") + u;
     }
 
     function formatLocal(iso) {
@@ -249,6 +261,44 @@ const pageTitle = `Wedding Invitation - ${slug}`;
       return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ev?.title||"Event")}&dates=${fmt(start)}/${fmt(end)}&details=${details}&location=${location}`;
     }
 
+    // --- Theme Engine ---
+    function initThemeEngine(theme) {
+      const root = document.documentElement;
+      const wrapper = $("themeWrapper");
+      if (!root) return;
+
+      const mode = (theme?.mode || "dynamic").toLowerCase();
+      
+      const applyFinalState = (isDark) => {
+        if (isDark) {
+          root.classList.add("dark");
+          root.classList.remove("light");
+          root.style.setProperty('color-scheme', 'dark');
+        } else {
+          root.classList.remove("dark");
+          root.classList.add("light");
+          root.style.setProperty('color-scheme', 'light');
+        }
+        const bgHex = isDark ? "#171717" : "#ffffff";
+        document.body.style.backgroundColor = bgHex;
+        if (wrapper) wrapper.style.backgroundColor = bgHex;
+      };
+
+      if (mode === "dark") applyFinalState(true);
+      else if (mode === "light") applyFinalState(false);
+      else {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        applyFinalState(mediaQuery.matches);
+        mediaQuery.onchange = (e) => applyFinalState(e.matches);
+      }
+
+      if (wrapper && theme?.background === "image" && theme.imageUrl) {
+        wrapper.style.backgroundImage = `url('${resolveAssetUrl(theme.imageUrl)}')`;
+        wrapper.style.backgroundSize = "cover";
+        wrapper.style.backgroundPosition = "center";
+      }
+    }
+
     function applyTheme(theme) {
       const wrapper = $("themeWrapper");
       if (!wrapper) return;
@@ -268,29 +318,53 @@ const pageTitle = `Wedding Invitation - ${slug}`;
     function applyDecor(details) {
       const root = $("decorCorners");
       if (!root) return;
-      ["TL","TR","BL","BR"].forEach(k => { const el = $(`decor${k}`); if(el) { el.style = ""; el.style.backgroundRepeat = "no-repeat"; } });
+      
+      ["TL","TR","BL","BR"].forEach(k => { 
+        const el = $(`decor${k}`); 
+        if(el) { el.style = ""; el.style.backgroundRepeat = "no-repeat"; } 
+      });
       root.classList.add("hidden");
+
       const d = details?.decor || details?.theme?.decor;
       if (!d || d.enabled !== true) return;
+
       const size = d.size || 360;
       const opacity = document.documentElement.classList.contains("dark") ? (d.opacityDark||0.16) : (d.opacityLight||0.28);
       const baseRot = d.rotation || 0;
       const autoRot = d.rotate !== false;
+
       const setCorner = (id, key, offset) => {
         const el = $(id);
-        const url = d.corners?.[key]?.imageUrl || d.imageUrl;
+        const config = d.corners?.[key]; 
+        const url = config?.imageUrl || d.imageUrl;
+        
         if (!el || !url) return;
-        const rot = baseRot + offset + (Number(d.corners?.[key]?.rotation) || 0);
-        el.style.width = `${size}px`; el.style.height = `${size}px`; el.style.opacity = opacity;
-        el.style.backgroundImage = `url('${resolveAssetUrl(url)}')`; el.style.backgroundSize = "contain";
-        el.style.backgroundPosition = "center"; el.style.transform = `rotate(${rot}deg)`;
+
+        const rot = baseRot + offset + (Number(config?.rotation) || 0);
+        const flip = (config?.flip || d.flip || "").toLowerCase();
+        let scale = "";
+        if (flip === "horizontal" || flip === "x") scale = "scaleX(-1)";
+        else if (flip === "vertical" || flip === "y") scale = "scaleY(-1)";
+        else if (flip === "both" || flip === "xy") scale = "scale(-1)";
+
+        el.style.width = `${size}px`; 
+        el.style.height = `${size}px`; 
+        el.style.opacity = opacity;
+        el.style.backgroundImage = `url('${resolveAssetUrl(url)}')`; 
+        el.style.backgroundSize = "contain";
+        el.style.backgroundPosition = "center"; 
+        el.style.transform = `rotate(${rot}deg) ${scale}`;
+        
         root.classList.remove("hidden");
       };
-      setCorner("decorTL", "tl", 0); setCorner("decorTR", "tr", autoRot ? 90 : 0);
-      setCorner("decorBL", "bl", autoRot ? -90 : 0); setCorner("decorBR", "br", autoRot ? 180 : 0);
+
+      setCorner("decorTL", "tl", 0); 
+      setCorner("decorTR", "tr", autoRot ? 90 : 0);
+      setCorner("decorBL", "bl", autoRot ? -90 : 0); 
+      setCorner("decorBR", "br", autoRot ? 180 : 0);
     }
 
-function renderRsvp(rsvp) {
+    function renderRsvp(rsvp) {
       const section = $("rsvpSection");
       const button = $("rsvpButton");
       const btnWrap = $("rsvpButtonWrap");
@@ -300,20 +374,16 @@ function renderRsvp(rsvp) {
 
       if (!section || !button) return;
       section.style.display = "none";
-      
       if (!rsvp || rsvp.enabled !== true) return;
-      section.style.display = "block";
       
+      section.style.display = "block";
       $("rsvpTitle").textContent = rsvp.title || "RSVP";
       
       if (rsvp.deadline) {
         dl.textContent = `RSVP deadline: ${formatLocal(rsvp.deadline)}`;
         dl.style.display = "block";
-      } else {
-        dl.style.display = "none";
-      }
+      } else { dl.style.display = "none"; }
 
-      // Maroon Styling (Coordinated with your photo)
       button.className = "inline-block rounded-full px-10 py-3 text-sm font-semibold text-white transition-all hover:scale-105 shadow-lg bg-[#8b0000] hover:bg-[#a00000] shadow-rose-900/20 border-0 cursor-pointer";
 
       const isEmbed = String(rsvp.mode).toLowerCase() === "embed" && rsvp.embedUrl;
@@ -321,31 +391,22 @@ function renderRsvp(rsvp) {
       if (isEmbed) {
         btnWrap.style.display = "block";
         button.textContent = rsvp.buttonText || "RSVP Now";
-        
         button.onclick = (e) => {
           e.preventDefault();
           const isOpening = embedWrap.style.display === "none";
-          
           if (isOpening) {
-            // Open logic
             embedWrap.style.display = "block";
             button.textContent = "Close RSVP Form";
-            button.classList.replace("bg-[#8b0000]", "bg-neutral-500"); // Change color when open
-            button.classList.replace("hover:bg-[#a00000]", "hover:bg-neutral-600");
-            
+            button.classList.replace("bg-[#8b0000]", "bg-neutral-500");
             if (!iframe.src) iframe.src = rsvp.embedUrl;
             embedWrap.scrollIntoView({ behavior: "smooth", block: "start" });
           } else {
-            // Close logic
             embedWrap.style.display = "none";
             button.textContent = rsvp.buttonText || "RSVP Now";
             button.classList.replace("bg-neutral-500", "bg-[#8b0000]");
-            button.classList.replace("hover:bg-neutral-600", "hover:bg-[#a00000]");
-            section.scrollIntoView({ behavior: "smooth", block: "start" });
           }
         };
       } else if (rsvp.formUrl) {
-        // Standard Link Mode
         btnWrap.style.display = "block";
         button.textContent = rsvp.buttonText || "RSVP via Google Forms";
         button.href = rsvp.formUrl;
@@ -360,7 +421,7 @@ function renderRsvp(rsvp) {
       }
     }
 
-function renderCouplePhoto(details) {
+    function renderCouplePhoto(details) {
       const wrap = $("couplePhotoWrap");
       const img = $("couplePhoto");
       if (!wrap || !img) return;
@@ -378,7 +439,6 @@ function renderCouplePhoto(details) {
       img.alt = photo.alt || "";
       const size = photo.size;
 
-      // Adjusted default crop to pull the couple higher up
       const pos = photo.position || (size === 'hero' ? 'center 30%' : 'center');
       const tailwindMap = { "top": "object-top", "center": "object-center", "bottom": "object-bottom" };
       if (tailwindMap[pos]) img.classList.add(tailwindMap[pos]);
@@ -387,17 +447,12 @@ function renderCouplePhoto(details) {
       if (size === 'hero') {
         wrap.classList.remove("mb-6");
         wrap.classList.add("-mx-6", "-mt-6", "mb-8", "rounded-t-2xl", "overflow-hidden");
-        
-        // FIX: Reduced mobile height (h-[380px]) vs laptop height (h-[550px])
         img.className += " w-full h-[380px] sm:h-[550px]"; 
       } else if (size === 'full') {
-        img.style.width = '100%';
-        img.style.maxWidth = '600px'; 
-        img.style.height = 'auto';
+        img.style.width = '100%'; img.style.maxWidth = '600px'; img.style.height = 'auto';
         img.classList.add("rounded-2xl");
       } else {
-        img.style.width = `${size || 140}px`;
-        img.style.height = `${size || 140}px`;
+        img.style.width = `${size || 140}px`; img.style.height = `${size || 140}px`;
         img.classList.add((photo.shape === "rounded") ? "rounded-2xl" : "rounded-full");
       }
 
@@ -419,10 +474,9 @@ function renderCouplePhoto(details) {
         $("weddingDate").textContent = details?.primaryEvent?.displayDate || (startIso ? formatLocal(startIso) : "");
         if (details?.primaryVenue?.mapUrl) $("mapBtn").href = details.primaryVenue.mapUrl;
 
-        // 2. Photo Layout
+        // 2. Photo Layout & Cinematic Mode
         renderCouplePhoto(details);
-
-        // --- UPDATED: CINEMATIC MODE COLOR FIX ---
+        
         const photoConfig = details.media?.couplePhoto;
         const textContainer = $("coupleNames").parentElement; 
         const photoWrap = $("couplePhotoWrap");
@@ -439,29 +493,25 @@ function renderCouplePhoto(details) {
 
         if (photoConfig?.style === 'cinematic' && photoConfig?.enabled && photoWrap && textContainer) {
           const gradient = document.createElement('div');
-          
-          // FIX: Changed dark mode 'from-black' to 'from-[#171717]' (Neutral-900) 
-          // to match the background of the card perfectly.
           gradient.className = "cinematic-gradient absolute inset-0 bg-gradient-to-t from-white via-white/30 dark:from-[#171717] dark:via-[#171717]/40 to-transparent pointer-events-none rounded-t-2xl";
-          
           photoWrap.classList.add("relative", "overflow-hidden"); 
           photoWrap.appendChild(gradient);
 
-          // Use Tailwind variants for text colors
           $("coupleNames").className = "font-heading text-6xl sm:text-7xl font-medium tracking-wide leading-tight text-neutral-900 dark:text-white drop-shadow-none dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]";
           $("tagline").className = "font-heading text-xl italic text-neutral-800 dark:text-neutral-200 dark:drop-shadow-md";
 
-          // Pull text over photo
           textContainer.style.marginTop = "-140px"; 
           textContainer.classList.add("relative", "z-20", "px-4", "pb-4");
         }
-        // ... rest of the function remains the same ...
-        // ------------------------------------------------
 
         // 3. Components
-        if (typeof calendarUrl !== 'undefined') {
-           $("subscribeBtn").href = new URL(calendarUrl, window.location.href).toString().replace(/^https:/, "webcal:");
-        }
+        // Calculate Calendar URL based on current base
+        const baseNoSlash = String(baseUrl || "/").replace(/\/$/, "");
+        const calUrl = `${baseNoSlash}/weddings/calendars/${slug}.ics`;
+        
+        $("subscribeBtn").href = calUrl.replace(/^https?:/, "webcal:");
+        $("viewCalendarBtn").href = calUrl;
+        
         if (startIso) renderCountdown($("countdown"), startIso);
 
         // 4. Schedule
@@ -488,17 +538,12 @@ function renderCouplePhoto(details) {
                 <div class="flex flex-col justify-center mb-2 sm:mb-0 w-full">
                   <h3 class="font-heading text-lg sm:text-2xl font-medium text-neutral-900 dark:text-white leading-tight">${ev.title||"Event"}</h3>
                   <div class="mt-1.5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">${[ev.locationName,ev.address].filter(Boolean).join(", ")}</div>
-                  ${ev.wardrobe ? `
-                    <div class="mt-3 flex items-start gap-2 rounded-lg bg-neutral-50 p-2 text-xs sm:text-sm text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
-                      <span class="text-lg">${ev.wardrobeIcon || '👔'}</span>
-                      <div><strong class="font-semibold text-neutral-900 dark:text-white">Dress Code:</strong> ${ev.wardrobe}</div>
-                    </div>
-                  ` : ""}                  
+                  ${ev.wardrobe ? `<div class="mt-3 flex items-start gap-2 rounded-lg bg-neutral-50 p-2 text-xs sm:text-sm text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"><span class="text-lg">${ev.wardrobeIcon || '👔'}</span><div><strong class="font-semibold text-neutral-900 dark:text-white">Dress Code:</strong> ${ev.wardrobe}</div></div>` : ""}                  
                   ${ev.notes ? `<div class="mt-1.5 text-xs sm:text-sm italic text-neutral-500">${ev.notes}</div>` : ""}
                 </div>
                 <div class="shrink-0 flex flex-row sm:flex-col gap-4 sm:gap-2 mt-auto sm:mt-0 sm:items-end sm:text-right text-xs sm:text-sm font-medium pt-1 sm:pl-4">
                    ${(ev.mapUrl||details?.primaryVenue?.mapUrl) ? `<div class="flex flex-col"><span class="hidden sm:block text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-0.5">Location</span><a class="flex items-center gap-1.5 text-neutral-900 dark:text-white hover:underline decoration-neutral-400" href="${ev.mapUrl||details?.primaryVenue?.mapUrl}" target="_blank" rel="noopener"><span>📍 Maps</span><span class="hidden sm:inline">↗</span></a></div>`:""}
-                   <div class="flex flex-col sm:mt-2"><span class="hidden sm:block text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-0.5">Calendar</span><a class="flex items-center gap-1.5 text-neutral-900 dark:text-white hover:underline decoration-neutral-400" href="${buildGoogleCalendarLink(ev)}" target="_blank" rel="noopener"><span>📅 Add to Cal</span></a></div>
+                   <div class="flex flex-col sm:mt-2"><span class="hidden sm:block text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-0.5">Calendar</span><a class="flex items-center gap-1.5 text-neutral-900 dark:text-white hover:underline decoration-neutral-400" href="${buildGoogleCalendarLink(ev)}" target="_blank" rel="noopener"><span>📅 Add to</span></a></div>
                 </div>
               </div>`;
             schedule.appendChild(item);
@@ -522,64 +567,11 @@ function renderCouplePhoto(details) {
         }
 
         applyTheme(details.theme); applyDecor(details); renderRsvp(details.rsvp); setupScrollObserver(); 
+
       } catch (e) { console.error(e); }
     }
 
-async function boot() {
-      const lockScreen = $("lockScreen");
-      const content = $("protectedContent");
-      const input = $("passwordInput");
-      const error = $("errorMsg");
-      const storageKey = `weddings-${slug}-unlocked`;
-
-      let DETAILS = null;
-
-      try {
-        const res = await fetch(detailsUrl, { cache: "no-store" });
-        if (!res.ok) throw new Error("404");
-        DETAILS = await res.json();
-
-        // --- NEW: CHECK IF PASSWORD IS OPTIONAL ---
-        const passwordRequired = DETAILS.password !== null && DETAILS.password !== "";
-
-        if (!passwordRequired) {
-          // If password is null or empty, skip lock screen entirely
-          lockScreen?.classList.add("hidden");
-          content?.classList.remove("hidden");
-          renderInvite(DETAILS);
-          return;
-        }
-
-        // --- STANDARD LOCK LOGIC ---
-        if (DETAILS.passwordHint) $("lockHint").textContent = DETAILS.passwordHint;
-        
-        const unlock = () => {
-          if (!input || !DETAILS) return;
-          if (String(input.value) === String(DETAILS.password)) {
-            localStorage.setItem(storageKey, "true");
-            lockScreen?.classList.add("hidden");
-            content?.classList.remove("hidden");
-            renderInvite(DETAILS);
-          } else {
-            error?.classList.remove("hidden");
-          }
-        };
-
-        if (localStorage.getItem(storageKey) === "true") {
-           lockScreen?.classList.add("hidden");
-           content?.classList.remove("hidden");
-           renderInvite(DETAILS);
-        } else {
-           lockScreen?.classList.remove("hidden");
-           content?.classList.add("hidden");
-           $("unlockBtn")?.addEventListener("click", unlock);
-           input?.addEventListener("keydown", (e) => e.key === "Enter" && unlock());
-        }
-      } catch(e) {
-        lockScreen?.classList.remove("hidden");
-        $("missingMsg")?.classList.remove("hidden");
-      }
-    }
-    boot();
+    // --- INSTANT BOOT (NO FETCH NEEDED) ---
+    renderInvite(preloadedData);
   </script>
 </WeddingLayout>

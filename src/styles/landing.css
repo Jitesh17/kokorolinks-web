@@ -1,0 +1,20 @@
+/* 1. Link this file to your main Tailwind setup */
+@reference "./global.css";
+
+/* 2. Now you can use @apply with Tailwind classes */
+.card-interactive {
+  @apply transition-all duration-500;
+  
+  /* Light Mode Hover: Red Glow */
+  @apply hover:shadow-rose-500/10 hover:border-rose-200/50;
+}
+
+/* The Motion Effect */
+.card-interactive:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Dark Mode Hover: Red Glow */
+.dark .card-interactive:hover {
+  @apply hover:shadow-rose-900/20 hover:border-rose-900/30;
+}

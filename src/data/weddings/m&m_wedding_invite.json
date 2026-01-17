@@ -11,7 +11,7 @@
   "media": {
     "couplePhoto": {
       "enabled": true,
-      "src": "/weddings/assets/manish-manvi/couple.jpg",
+      "src": "manish-manvi/couple.jpg",
       "alt": "Manish & Manvi",
       "size": "hero",
       "style": "cinematic",
@@ -88,7 +88,7 @@
       "id": "marriage-ceremony",
       "title": "Marriage Ceremony",
       "start": "2026-02-19T17:00:00+05:30",
-      "end": "2026-02-19T29:00:00+05:30",
+      "end": "2026-02-19T19:00:00+05:30",
       "locationName": "Amara Wedding Banquet",
       "address": "Opp New RTO, Jagatpura, Jaipur",
       "mapUrl": "https://maps.app.goo.gl/SYvoFd9sdQpq6WMz8?g_st=ic",
@@ -160,7 +160,7 @@
     "decor": {
       "enabled": true,
       "mode": "corners",
-      "imageUrl": "/weddings/assets/decor-corner-2.png",
+      "imageUrl": "decor-corner-2.png",
       "size": 340,
       "opacityLight": 0.86,
       "opacityDark": 0.80,
@@ -168,20 +168,20 @@
       "baseRotation": 0,
       "corners": {
         "tl": { 
-          "imageUrl": "/weddings/assets/decor-corner-1.png",
+          "imageUrl": "decor-corner-1.png",
           "rotation": 0 
         },
         "tr": { 
-          "imageUrl": "/weddings/assets/decor-corner-1.png",
+          "imageUrl": "decor-corner-1.png",
           "rotation": 0  
         },
         "bl": { 
-          "imageUrl": "/weddings/assets/decor-corner-4.png",
+          "imageUrl": "decor-corner-4.png",
           "rotation": -90,
           "flip": "vertical"
         },
         "br": { 
-          "imageUrl": "/weddings/assets/decor-corner-4.png",
+          "imageUrl": "decor-corner-4.png",
           "rotation": 180  
         }
       }
