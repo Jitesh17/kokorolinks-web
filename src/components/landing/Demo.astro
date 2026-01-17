@@ -46,40 +46,31 @@
               />
             </div>
 
-            <div class="pt-8 mt-4 flex items-center justify-between border-t border-stone-100 dark:border-stone-800">
+            <div class="pt-8 mt-4 flex flex-col gap-6 border-t border-stone-100 dark:border-stone-800">
               
-              <div class="flex flex-col gap-3">
-                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Ambiance</span>
-                
-                <div class="inline-flex bg-stone-100 dark:bg-stone-800 p-1 rounded-lg gap-1">
-                  <button 
-                    data-theme="minimalist" 
-                    class="theme-btn px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all bg-white dark:bg-stone-700 shadow-sm text-stone-900 dark:text-stone-100"
-                  >
-                    Minimalist
-                  </button>
-                  
-                  <button 
-                    data-theme="floral" 
-                    class="theme-btn px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100"
-                  >
-                    Floral
-                  </button>
-                  
-                  <button 
-                    data-theme="midnight" 
-                    class="theme-btn px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100"
-                  >
-                    Midnight
-                  </button>
-                </div>
+              <div class="flex items-end justify-between">
+                  <div class="flex flex-col gap-3">
+                    <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Ambiance</span>
+                    <div class="inline-flex bg-stone-100 dark:bg-stone-800 p-1 rounded-lg gap-1">
+                      <button data-theme="minimalist" class="theme-btn active px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all bg-white dark:bg-stone-700 shadow-sm text-stone-900 dark:text-stone-100">Minimalist</button>
+                      <button data-theme="floral" class="theme-btn px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100">Floral</button>
+                      <button data-theme="midnight" class="theme-btn px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100">Midnight</button>
+                    </div>
+                  </div>
+
+                  <label class="flex flex-col items-end gap-3 cursor-pointer group">
+                    <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold group-hover:text-stone-600 dark:group-hover:text-stone-300 transition-colors">Include Photo</span>
+                    <div class="relative">
+                      <input type="checkbox" id="photo-toggle" class="sr-only peer">
+                      <div class="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer dark:bg-stone-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-stone-600 peer-checked:bg-rose-600"></div>
+                    </div>
+                  </label>
               </div>
               
-              <div class="text-right">
-                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Status</span>
+              <div class="text-right pt-4 border-t border-stone-50 dark:border-stone-800/50">
                 <span class="inline-flex items-center gap-2 text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1.5 rounded-full">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  LIVE
+                  LIVE PREVIEW
                 </span>
               </div>
             </div>
@@ -99,9 +90,13 @@
 
             <div class="relative z-10 flex-1 flex flex-col items-center justify-center p-6 text-center">
               
+              <div id="card-photo" class="hidden w-40 h-40 mb-8 rounded-full border-4 border-white dark:border-stone-800 shadow-md overflow-hidden relative z-20 object-cover">
+                  <img src="https://images.unsplash.com/photo-1621621667797-e06afc217fb0?q=80&w=300&h=300&auto=format&fit=crop" alt="Couple placeholder" class="w-full h-full object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-500">
+              </div>
+
               <div 
                 id="card-monogram"
-                class="w-16 h-16 mb-8 rounded-full border border-stone-300 flex items-center justify-center font-serif italic text-2xl bg-white/50 backdrop-blur-sm shadow-sm transition-all duration-500 text-rose-600"
+                class="w-16 h-16 mb-8 rounded-full border border-stone-300 flex items-center justify-center font-serif italic text-2xl bg-white/50 backdrop-blur-sm shadow-sm transition-all duration-500 text-rose-600 relative z-20"
               >
                 R&M
               </div>
@@ -135,19 +130,21 @@
 
 <script>
   // --- ELEMENTS ---
-  const nameInput = document.getElementById('preview-name');
-  const dateInput = document.getElementById('preview-date');
+  const nameInput = document.getElementById('preview-name') as HTMLInputElement;
+  const dateInput = document.getElementById('preview-date') as HTMLInputElement;
+  const photoToggle = document.getElementById('photo-toggle') as HTMLInputElement;
   
   // Phone Elements
   const cardName = document.getElementById('card-name');
   const cardDate = document.getElementById('card-date');
   const cardMonogram = document.getElementById('card-monogram');
+  const cardPhoto = document.getElementById('card-photo');
   const phoneScreen = document.getElementById('phone-screen');
   const cardLabel = document.getElementById('card-label');
   const cardBtn = document.getElementById('card-btn');
 
   // --- LOGIC: UPDATE TEXT ---
-  const getInitials = (text) => {
+  const getInitials = (text: string) => {
     const clean = text.replace(/[^a-zA-Z\s]/g, '');
     const parts = clean.split(' ').filter(p => p.length > 0);
     if (parts.length >= 2) return `${parts[0][0]}&${parts[1][0]}`;
@@ -165,6 +162,21 @@
 
   nameInput?.addEventListener('input', updatePreview);
   dateInput?.addEventListener('input', updatePreview);
+
+  // --- LOGIC: PHOTO TOGGLE ---
+  photoToggle?.addEventListener('change', (e) => {
+      const isChecked = (e.target as HTMLInputElement).checked;
+      if (isChecked) {
+          // Show Photo, Hide Monogram
+          cardPhoto?.classList.remove('hidden');
+          cardMonogram?.classList.add('hidden');
+      } else {
+          // Hide Photo, Show Monogram
+          cardPhoto?.classList.add('hidden');
+          cardMonogram?.classList.remove('hidden');
+      }
+  });
+
 
   // --- LOGIC: CHANGE THEME ---
   const themeBtns = document.querySelectorAll('.theme-btn');
@@ -185,16 +197,16 @@
       accent: 'text-rose-600'
     },
     floral: {
-      bg: 'bg-[#fff0f3]', // Very light pink
-      textMain: 'text-[#881337]', // Rose-900
-      textSub: 'text-[#9f1239]', // Rose-800
-      border: 'border-[#fecdd3]', // Rose-200
-      btnBg: 'bg-[#be123c]', // Rose-700
+      bg: 'bg-[#fff0f3]', 
+      textMain: 'text-[#881337]', 
+      textSub: 'text-[#9f1239]', 
+      border: 'border-[#fecdd3]', 
+      btnBg: 'bg-[#be123c]', 
       btnText: 'text-white',
       accent: 'text-[#be123c]'
     },
     midnight: {
-      bg: 'bg-[#0c0a09]', // Stone-950
+      bg: 'bg-[#0c0a09]', 
       textMain: 'text-stone-50',
       textSub: 'text-stone-400',
       border: 'border-stone-800',
@@ -206,7 +218,7 @@
 
   themeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // 1. UPDATE BUTTON VISUALS (Swap classes manually since we removed @apply)
+      // 1. UPDATE BUTTON VISUALS
       themeBtns.forEach(b => {
         b.classList.remove(...activeClasses);
         b.classList.add(...inactiveClasses);
@@ -216,6 +228,7 @@
 
       // 2. APPLY THEME TO PHONE
       const themeName = btn.getAttribute('data-theme');
+      // @ts-ignore
       const t = themes[themeName];
 
       if (phoneScreen && t) {
@@ -224,14 +237,14 @@
         if (cardLabel) cardLabel.className = `text-[10px] uppercase tracking-[0.3em] mb-4 transition-colors duration-500 ${t.textSub}`;
         if (cardDate) cardDate.className = `font-serif italic text-base border-y py-2 px-6 transition-colors duration-500 ${t.border} ${t.textSub}`;
         if (cardBtn) cardBtn.className = `h-10 w-full rounded-lg flex items-center justify-center text-[10px] font-bold tracking-widest uppercase shadow-lg transition-colors duration-500 ${t.btnBg} ${t.btnText}`;
-        if (cardMonogram) cardMonogram.className = `w-16 h-16 mb-8 rounded-full border flex items-center justify-center font-serif italic text-2xl bg-white/50 backdrop-blur-sm shadow-sm transition-all duration-500 ${t.border} ${t.accent}`;
+        if (cardMonogram) cardMonogram.className = `w-16 h-16 mb-8 rounded-full border flex items-center justify-center font-serif italic text-2xl bg-white/50 backdrop-blur-sm shadow-sm transition-all duration-500 relative z-20 ${t.border} ${t.accent}`;
       }
     });
   });
 </script>
 
 <style>
-  /* 3D Transform Utilities (Safe to keep as standard CSS) */
+  /* 3D Transform Utilities */
   .perspective-1000 { perspective: 1000px; }
   .rotate-y-6 { transform: rotateY(-6deg); }
   .rotate-x-6 { transform: rotateX(6deg); }
