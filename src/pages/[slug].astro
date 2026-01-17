@@ -3,7 +3,6 @@ import WeddingLayout from "../layouts/WeddingLayout.astro";
 import { getImage } from "astro:assets";
 
 // 1. GET DATA (Cloudflare-Safe)
-// We scan src/data/weddings/ for JSON files
 export async function getStaticPaths() {
   const dataFiles = import.meta.glob('../data/weddings/*.json', { eager: true });
   return Object.keys(dataFiles).map((path) => {
@@ -22,18 +21,27 @@ const { data } = Astro.props;
 // 2. MAP ALL ASSETS
 const allAssets = import.meta.glob<{ default: ImageMetadata }>('/src/assets/weddings/**/*.{jpeg,jpg,png,gif,webp,JPG,PNG}');
 
-// 3. OPTIMIZE MAIN PHOTO
-const jsonSrc = data.media?.couplePhoto?.src || "";
-const cleanJsonSrc = jsonSrc.startsWith('/') ? jsonSrc.slice(1) : jsonSrc;
-const targetKey = `/src/assets/weddings/${cleanJsonSrc}`;
-const imageImport = allAssets[targetKey];
-let optimizedImageSrc = "";
+// 3. OPTIMIZE COUPLE PHOTO(S)
+// Logic: Handle both single string "img.jpg" OR array ["img1.jpg", "img2.jpg"]
+const rawSrc = data.media?.couplePhoto?.src;
+const srcList = Array.isArray(rawSrc) ? rawSrc : (rawSrc ? [rawSrc] : []);
 
-if (imageImport) {
-  const metaAsset = await imageImport();
-  const opt = await getImage({ src: metaAsset.default, format: 'webp', width: 1200 });
-  optimizedImageSrc = opt.src;
-}
+// We optimize ALL images in the list so they are ready for the browser to pick
+const optimizedCouplePhotos = await Promise.all(
+  srcList.map(async (srcPath) => {
+    if (!srcPath) return "";
+    const cleanJsonSrc = srcPath.startsWith('/') ? srcPath.slice(1) : srcPath;
+    const targetKey = `/src/assets/weddings/${cleanJsonSrc}`;
+    const imageImport = allAssets[targetKey];
+
+    if (imageImport) {
+      const metaAsset = await imageImport();
+      const opt = await getImage({ src: metaAsset.default, format: 'webp', width: 1200 });
+      return opt.src;
+    }
+    return srcPath; // Fallback to raw string if file not found
+  })
+);
 
 // 4. OPTIMIZE DECOR CORNERS
 const cornerPaths = [
@@ -56,11 +64,14 @@ const optimizedCorners = await Promise.all(
 );
 
 // 5. METADATA
+// We pick the first image in the list for SEO/OpenGraph tags (Facebook/WhatsApp preview)
+// so that the preview is stable.
+const mainImageForMeta = optimizedCouplePhotos[0] || "";
 const domain = import.meta.env.SITE || "https://kokorolinks.com"; 
 const meta = {
   title: data.coupleNames ? `${data.coupleNames} | Wedding Invitation` : "Wedding Invitation",
   description: data.tagline || `Join us to celebrate the wedding of ${data.coupleNames}.`,
-  image: optimizedImageSrc ? (optimizedImageSrc.startsWith("http") ? optimizedImageSrc : `${domain}${optimizedImageSrc}`) : ""
+  image: mainImageForMeta ? (mainImageForMeta.startsWith("http") ? mainImageForMeta : `${domain}${mainImageForMeta}`) : ""
 };
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -179,7 +190,7 @@ const baseUrl = import.meta.env.BASE_URL;
     </div>
   </div>
 
-  <script is:inline define:vars={{ preloadedData: data, optimizedImageSrc, optimizedCorners, baseUrl, slug }}>
+  <script is:inline define:vars={{ preloadedData: data, optimizedCouplePhotos, optimizedCorners, baseUrl, slug }}>
     const $ = (id) => document.getElementById(id);
 
     // --- Helpers ---
@@ -189,18 +200,13 @@ const baseUrl = import.meta.env.BASE_URL;
     function resolveAssetUrl(u) {
       if (!u) return "";
       
-      // 1. Resolve Optimized Main Photo
-      if (preloadedData.media?.couplePhoto?.src === u && optimizedImageSrc) {
-        return optimizedImageSrc;
-      }
-
-      // 2. Resolve Optimized Decor Corners
+      // DECOR RESOLUTION
       if (u.includes('decor-corner-1') && optimizedCorners[0]) return optimizedCorners[0];
       if (u.includes('decor-corner-2') && optimizedCorners[1]) return optimizedCorners[1];
       if (u.includes('decor-corner-3') && optimizedCorners[2]) return optimizedCorners[2];
       if (u.includes('decor-corner-4') && optimizedCorners[3]) return optimizedCorners[3];
 
-      // 3. Fallback for static/external assets
+      // FALLBACK
       if (isAbsUrl(u)) return u;
       const baseNoSlash = String(baseUrl || "/").replace(/\/$/, "");
       return u.startsWith("/") ? baseNoSlash + u : String(baseUrl || "/") + u;
@@ -433,9 +439,31 @@ const baseUrl = import.meta.env.BASE_URL;
       img.className = "object-cover transition-transform duration-700 hover:scale-[1.02]";
 
       const photo = details?.media?.couplePhoto;
-      if (!photo || photo.enabled !== true || !photo.src) return;
+      if (!photo || photo.enabled !== true) return;
 
-      img.src = resolveAssetUrl(photo.src);
+      // ----------------------------------------------------
+      // NEW: RANDOM SELECTION LOGIC
+      // ----------------------------------------------------
+      let selectedSrc = "";
+      
+      // 1. If we have optimized images from the server, pick one randomly
+      if (optimizedCouplePhotos && optimizedCouplePhotos.length > 0) {
+        const randomIndex = Math.floor(Math.random() * optimizedCouplePhotos.length);
+        selectedSrc = optimizedCouplePhotos[randomIndex];
+        
+        // *Future Location Logic Placeholder*
+        // if (navigator.geolocation) {
+        //    // Check user city -> map city to index -> set selectedSrc
+        // }
+      } 
+      // 2. Fallback to raw source if optimization failed but path exists
+      else if (photo.src) {
+         selectedSrc = Array.isArray(photo.src) ? photo.src[0] : photo.src;
+      }
+
+      if (!selectedSrc) return; // No image available
+
+      img.src = resolveAssetUrl(selectedSrc);
       img.alt = photo.alt || "";
       const size = photo.size;
 

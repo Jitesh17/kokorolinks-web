@@ -11,11 +11,21 @@
   "media": {
     "couplePhoto": {
       "enabled": true,
-      "src": "couple-sample.png",
+      "src": [
+        "demo/couple-white.png",
+        "demo/couple-black.png",
+        "demo/couple-caucasian.png",
+        "demo/couple-hispanic.png",
+        "demo/couple-southasian.png",
+        "demo/couple-indian-asian.png",
+        "demo/couple-sample3.png",
+        "demo/couple-sample5.png",
+        "demo/couple-eastasian.png"
+      ],
       "alt": "Rohan & Maya",
       "size": "hero",
       "style": "cinematic",
-      "position": "50% 10%"
+      "position": "50% 50%"
     }
   },
 
@@ -137,8 +147,6 @@
   },
 
   "theme": {
-    "background": "gradient",
-    "gradient": "from-indigo-50 via-amber-50 to-rose-50",
     "primaryColor": "#4b1d0d",
     "secondaryColor": "#fffaf2",
     "decor": {
@@ -146,8 +154,8 @@
       "mode": "corners",
       "imageUrl": "decor-corner-1.png",
       "size": 360,
-      "opacityLight": 0.55,
-      "opacityDark": 0.55,
+      "opacityLight": 0.66,
+      "opacityDark": 0.66,
       "rotate": true,
       "baseRotation": 0,
       "corners": {
