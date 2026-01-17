@@ -61,7 +61,7 @@
       "end": "2026-02-17T12:00:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6",
       "notes": "प्रातः 10 बजे"
     },
     {
@@ -71,7 +71,7 @@
       "end": "2026-02-17T17:00:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6",
       "notes": "दोपहर 3 बजे से"
     },
     {
@@ -81,8 +81,38 @@
       "end": "2026-02-17T20:00:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6",
       "notes": "सांय 5 बजे"
+    },
+    {
+      "id": "haldi",
+      "title": "Haldi (हल्दी)",
+      "start": "2026-02-18T11:00:00+05:30",
+      "end": "2026-02-18T13:00:00+05:30",
+      "locationName": "Family Residence",
+      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6",
+      "notes": "11:00 AM"
+    },
+    {
+      "id": "mehandi",
+      "title": "Mehandi (मेहंदी)",
+      "start": "2026-02-18T14:00:00+05:30",
+      "end": "2026-02-18T17:00:00+05:30",
+      "locationName": "Family Residence",
+      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6",
+      "notes": "02:00 PM"
+    },
+    {
+      "id": "sangeet",
+      "title": "Sangeet (संगीत)",
+      "start": "2026-02-18T18:00:00+05:30",
+      "end": "2026-02-18T22:00:00+05:30",
+      "locationName": "Family Residence",
+      "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6",
+      "notes": "06:00 PM"
     },
     {
       "id": "marriage-ceremony",
@@ -101,7 +131,7 @@
       "end": "2026-02-19T20:15:00+05:30",
       "locationName": "Family Residence",
       "address": "Kalyan Patel ki Dhani, Village Rahuwas, Dausa",
-      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6?g_st=ic",
+      "mapUrl": "https://maps.app.goo.gl/VxGJRDaJp3e8KJns6",
       "notes": "Baraat will depart at 7 PM from Rahuwas, Dausa for the wedding venue."
     },
     {
