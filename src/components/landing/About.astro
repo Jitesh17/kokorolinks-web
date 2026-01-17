@@ -1,30 +1,31 @@
----
----
 <section id="about" class="py-24 section bg-stone-50 dark:bg-stone-900/30 border-y border-stone-100 dark:border-stone-800/50">
   <div class="container-max grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
     
     <div class="card-joy card-interactive relative h-[500px] w-full flex items-center justify-center overflow-hidden">
-      <div class="kokoro-node relative z-20 w-20 h-20 rounded-full bg-rose-600 flex items-center justify-center">
-        <span class="text-white text-3xl font-heading select-none">心</span>
+      <div class="kokoro-node relative z-20 w-24 h-24 rounded-full bg-rose-600 shadow-xl shadow-rose-600/20 flex flex-col items-center justify-center transition-transform duration-500">
+        <span class="text-white text-4xl font-heading select-none mb-[-4px]">心</span>
+        <span class="text-rose-100 text-[10px] font-bold uppercase tracking-widest opacity-80">Kokoro</span>
       </div>
 
       <svg class="absolute inset-0 w-full h-full" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
         <circle cx="250" cy="250" r="200" fill="none" stroke-width="1" class="guide-ring" />
         <circle cx="250" cy="250" r="130" fill="none" stroke-width="1" class="guide-ring" />
+        
         <g fill="none" stroke-width="2" class="diagram-lines">
-          <line class="line-animate" x1="250" y1="250" x2="250" y2="50" />
-          <line class="line-animate" x1="250" y1="250" x2="77" y2="350" />
-          <line class="line-animate" x1="250" y1="250" x2="423" y2="350" />
+          <line class="line-animate" x1="250" y1="250" x2="250" y2="60" />
+          <line class="line-animate" x1="250" y1="250" x2="85" y2="345" />
+          <line class="line-animate" x1="250" y1="250" x2="415" y2="345" />
         </g>
-        <g class="nodes-fade">
-          <circle cx="250" cy="50" r="10" class="node-heart" />
-          <circle cx="77" cy="350" r="10" class="node-mind" />
-          <circle cx="423" cy="350" r="10" class="node-spirit" />
-        </g>
-        <g class="nodes-fade text-labels" font-family="Montserrat, sans-serif" font-weight="600" font-size="10" letter-spacing="0.2em">
-          <text x="250" y="30" text-anchor="middle">HEART <tspan font-weight="400" opacity="0.6" font-size="9"> 心</tspan></text>
-          <text x="55" y="375" text-anchor="middle">MIND <tspan font-weight="400" opacity="0.6" font-size="9"> 意識</tspan></text>
-          <text x="445" y="375" text-anchor="middle">SPIRIT <tspan font-weight="400" opacity="0.6" font-size="9"> 精神</tspan></text>
+        
+        <g class="nodes-fade cursor-default">
+          <circle cx="250" cy="60" r="8" class="node-dot" />
+          <text x="250" y="40" text-anchor="middle" class="node-label">MIND <tspan class="kanji-sub">知性</tspan></text>
+          
+          <circle cx="85" cy="345" r="8" class="node-dot" />
+          <text x="85" y="375" text-anchor="middle" class="node-label">INTENTION <tspan class="kanji-sub">意志</tspan></text>
+          
+          <circle cx="415" cy="345" r="8" class="node-dot" />
+          <text x="415" y="375" text-anchor="middle" class="node-label">SPIRIT <tspan class="kanji-sub">精神</tspan></text>
         </g>
       </svg>
     </div>
@@ -34,47 +35,88 @@
         <span class="font-body text-xs font-bold uppercase tracking-[0.4em] text-rose-600">Our Philosophy</span>
         <h2 class="font-heading text-5xl md:text-6xl text-stone-900 dark:text-stone-100 font-light leading-tight">Why "Kokoro"?</h2>
       </div>
+      
       <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">
-        In Japanese, <strong class="text-rose-600">Kokoro (心)</strong> represents the intersection of heart, mind, and spirit. It is the deep connection that brings people together.
+        In Japanese, <strong class="text-rose-600">Kokoro (心)</strong> means <em>Heart</em>, the intersection where Mind, Spirit, and Intention meet. 
+        <br><br>
+        At <strong>KokoroLinks</strong>, we harmonize modern technology with elegant design to honor your most important moments. Every custom link is a bridge designed to bring you and your loved ones together with sincerity and purpose.
       </p>
-      <div class="space-y-4 pt-4">
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 shrink-0"><span>✓</span></div>
-          <span class="text-stone-800 dark:text-stone-200 font-medium">Multi-tenant architecture</span>
+
+      <div class="space-y-5 pt-4">
+        <div class="flex items-start gap-4 group">
+          <div class="mt-1 w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-rose-600 group-hover:bg-rose-100 group-hover:text-rose-700 transition-colors shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+          </div>
+          <div>
+            <h4 class="text-stone-900 dark:text-stone-100 font-bold text-sm uppercase tracking-wide">Modern Performance</h4>
+            <p class="text-stone-500 dark:text-stone-500 text-sm">Built by a Bridge Engineer for a seamless experience.</p>
+          </div>
         </div>
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 shrink-0"><span>✓</span></div>
-          <span class="text-stone-800 dark:text-stone-200 font-medium">Minimalist aesthetics</span>
+
+        <div class="flex items-start gap-4 group">
+          <div class="mt-1 w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-rose-600 group-hover:bg-rose-100 group-hover:text-rose-700 transition-colors shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          </div>
+          <div>
+            <h4 class="text-stone-900 dark:text-stone-100 font-bold text-sm uppercase tracking-wide">Elegant Simplicity</h4>
+            <p class="text-stone-500 dark:text-stone-500 text-sm">Minimalist aesthetics that highlight your story.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 group">
+          <div class="mt-1 w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-rose-600 group-hover:bg-rose-100 group-hover:text-rose-700 transition-colors shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+          </div>
+          <div>
+            <h4 class="text-stone-900 dark:text-stone-100 font-bold text-sm uppercase tracking-wide">Meaningful Intention</h4>
+            <p class="text-stone-500 dark:text-stone-500 text-sm">A dedicated space crafted with wholeheartedness.</p>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <style>
   :root {
-    --diagram-stroke: #e5e7eb; --node-heart: #1c1917; --node-mind: #a8a29e;
-    --node-spirit: #d6d3d1; --text-label: #78716c; --guide-ring: rgba(229, 231, 235, 0.4);
+    --diagram-stroke: #e5e7eb; 
+    --node-dot: #d6d3d1; 
+    --text-label: #78716c; 
+    --guide-ring: rgba(229, 231, 235, 0.4);
   }
   :global(html.dark) {
-    --diagram-stroke: #44403c; --node-heart: #ddd; --node-mind: #78716c;
-    --node-spirit: #57534e; --text-label: #a8a29e; --guide-ring: rgba(68, 64, 60, 0.3);
+    --diagram-stroke: #44403c; 
+    --node-dot: #57534e; 
+    --text-label: #a8a29e; 
+    --guide-ring: rgba(68, 64, 60, 0.3);
   }
+
+  /* SVG & Diagram Animations */
   .diagram-lines line { stroke: var(--diagram-stroke); transition: all 0.5s ease; }
-  .node-heart { fill: var(--node-heart); transform-box: fill-box; transform-origin: center; transition: all 0.5s ease; }
-  .node-mind { fill: var(--node-mind); transform-box: fill-box; transform-origin: center; transition: all 0.5s ease; }
-  .node-spirit { fill: var(--node-spirit); transform-box: fill-box; transform-origin: center; transition: all 0.5s ease; }
-  .text-labels text { fill: var(--text-label); }
+  .node-dot { fill: var(--node-dot); transition: all 0.5s ease; }
+  .node-label { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.15em; fill: var(--text-label); }
+  .kanji-sub { font-weight: 400; opacity: 0.5; font-size: 9px; }
   .guide-ring { stroke: var(--guide-ring); }
-  .kokoro-node { box-shadow: 0 0 40px rgba(225, 29, 72, 0.4); animation: breathe 4s infinite; }
-  @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-  .line-animate { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawOut 2s forwards; }
+  
+  .kokoro-node { 
+    animation: breathe 4s ease-in-out infinite; 
+    box-shadow: 0 0 30px rgba(225, 29, 72, 0.3);
+  }
+  
+  @keyframes breathe { 
+    0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(225, 29, 72, 0.3); } 
+    50% { transform: scale(1.05); box-shadow: 0 0 45px rgba(225, 29, 72, 0.5); } 
+  }
+
+  /* Entrance Animations */
+  .line-animate { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawOut 2s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
   @keyframes drawOut { to { stroke-dashoffset: 0; } }
-  .nodes-fade { opacity: 0; animation: fadeIn 1.2s forwards 1.5s; }
+  .nodes-fade { opacity: 0; animation: fadeIn 1.2s ease-out forwards 1s; }
   @keyframes fadeIn { to { opacity: 1; } }
 
-  /* Hover Effects */
-  .card-joy:hover .diagram-lines line { stroke: #e11d48; opacity: 1; stroke-width: 2; }
-  .card-joy:hover .node-heart, .card-joy:hover .node-mind, .card-joy:hover .node-spirit { transform: scale(1.4); fill: #e11d48; }
-  .card-joy:hover .kokoro-node { animation-duration: 0.6s; box-shadow: 0 0 50px rgba(225, 29, 72, 0.8); transform: scale(1.1); }
+  /* Interactive Hover State - Makes the connection glow */
+  .card-joy:hover .diagram-lines line { stroke: #e11d48; opacity: 0.6; stroke-width: 1.5; }
+  .card-joy:hover .node-dot { fill: #e11d48; transform: scale(1.2); transform-origin: center; transform-box: fill-box;}
+  .card-joy:hover .node-label { fill: #e11d48; }
 </style>
