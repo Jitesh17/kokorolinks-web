@@ -6,7 +6,7 @@ METHOD:PUBLISH
 X-WR-CALNAME:Rohan & Maya Wedding
 BEGIN:VEVENT
 UID:demo_rohan_maya-welcome-dinner@kokorolinks.com
-DTSTAMP:20260117T162058Z
+DTSTAMP:20260117T172258Z
 DTSTART:20260307T133000Z
 DTEND:20260307T163000Z
 SUMMARY:Welcome Dinner
@@ -15,7 +15,7 @@ DESCRIPTION:An easy evening by the water with soft lights\, local flavors\, and 
 END:VEVENT
 BEGIN:VEVENT
 UID:demo_rohan_maya-haldi@kokorolinks.com
-DTSTAMP:20260117T162058Z
+DTSTAMP:20260117T172258Z
 DTSTART:20260308T040000Z
 DTEND:20260308T060000Z
 SUMMARY:Haldi
@@ -24,7 +24,7 @@ DESCRIPTION:Sunshine\, turmeric\, music\, and the kind of laughter that stays in
 END:VEVENT
 BEGIN:VEVENT
 UID:demo_rohan_maya-sangeet@kokorolinks.com
-DTSTAMP:20260117T162058Z
+DTSTAMP:20260117T172258Z
 DTSTART:20260308T133000Z
 DTEND:20260308T173000Z
 SUMMARY:Sangeet Night
@@ -33,7 +33,7 @@ DESCRIPTION:Performances\, open dance floor\, and music that slowly takes over t
 END:VEVENT
 BEGIN:VEVENT
 UID:demo_rohan_maya-wedding@kokorolinks.com
-DTSTAMP:20260117T162058Z
+DTSTAMP:20260117T172258Z
 DTSTART:20260309T043000Z
 DTEND:20260309T070000Z
 SUMMARY:Wedding Ceremony
@@ -42,7 +42,7 @@ DESCRIPTION:Please arrive early and settle in. The ceremony is intimate\, calm\,
 END:VEVENT
 BEGIN:VEVENT
 UID:demo_rohan_maya-reception@kokorolinks.com
-DTSTAMP:20260117T162058Z
+DTSTAMP:20260117T172258Z
 DTSTART:20260309T133000Z
 DTEND:20260309T173000Z
 SUMMARY:Reception Dinner
@@ -51,7 +51,7 @@ DESCRIPTION:A closing night with dinner\, quiet conversations\, and a final shar
 END:VEVENT
 BEGIN:VEVENT
 UID:demo_rohan_maya-ceremony@kokorolinks.com
-DTSTAMP:20260117T162058Z
+DTSTAMP:20260117T172258Z
 DTSTART:20260308T130000Z
 DTEND:20260308T170000Z
 SUMMARY:Wedding Ceremony

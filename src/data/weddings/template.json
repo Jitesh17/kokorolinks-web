@@ -1,0 +1,66 @@
+{
+  "templateId": "petal",
+  "coupleNames": "Name & Name",
+  "tagline": "A beautiful beginning",
+  "cityLine": "Mumbai, India",
+  "media": {
+    "couplePhoto": {
+      "src": ["demo/couple-sample5.png"],
+      "enabled": true,
+      "size": "hero",
+      "position": "center",
+      "style": "cinematic"
+    }
+  },
+  "theme": {
+    "mode": "dynamic",
+    "palette": {
+      "primary": "#8b0000",
+      "secondary": "#ffffff",
+      "text": "#171717"
+    },
+    "typography": {
+      "heading": "serif"
+    },
+    "features": {
+      "cinematicHeader": true,
+      "floatingCorners": true,
+      "showCountdown": true
+    }
+  },
+  "primaryEvent": {
+    "title": "Wedding Ceremony",
+    "start": "2026-12-31T10:00:00",
+    "end": "2026-12-31T14:00:00",
+    "displayDate": "December 31st, 2026"
+  },
+  "primaryVenue": {
+    "name": "Grand Palace",
+    "address": "123 Heritage Lane, Jaipur",
+    "mapUrl": ""
+  },
+  "schedule": [
+    {
+      "id": "haldi",
+      "title": "Haldi",
+      "start": "2026-12-30T10:00:00",
+      "locationName": "Courtyard",
+      "wardrobe": "Yellow Traditional",
+      "wardrobeIcon": "👘"
+    }
+  ],
+  "contacts": [
+    {
+      "name": "Best Man",
+      "phone": "+919876543210",
+      "role": "Logistics",
+      "icon": "📞"
+    }
+  ],
+  "rsvp": {
+    "enabled": true,
+    "mode": "link",
+    "formUrl": "",
+    "buttonText": "RSVP Now"
+  }
+}

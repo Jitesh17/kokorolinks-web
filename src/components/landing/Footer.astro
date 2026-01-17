@@ -1,12 +1,16 @@
 ---
+import { CURRENT_YEAR } from '../../consts';
 ---
+
 <footer class="py-12 section border-t border-stone-100 dark:border-stone-800 bg-white dark:bg-stone-950">
   <div class="container-max flex flex-col md:flex-row justify-between items-center gap-6">
     
     {/* Brand & Copyright */}
-    <div>
+    <div class="text-center md:text-left">
       <span class="font-heading text-2xl font-bold text-stone-900 dark:text-stone-100">KokoroLinks</span>
-      <p class="text-stone-500 text-sm mt-1">© 2026 KokoroLinks. Made with <span class="text-rose-500">♥</span></p>
+      <p class="text-stone-500 text-sm mt-1">
+        &copy; {CURRENT_YEAR} KokoroLinks. Made with <span class="text-rose-500">♥</span>
+      </p>
     </div>
     
     {/* Secondary Links */}

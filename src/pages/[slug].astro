@@ -1,13 +1,10 @@
 ---
 import WeddingLayout from "../layouts/WeddingLayout.astro";
 import { getImage } from "astro:assets";
+import PetalTemplate from "../components/templates/PetalTemplate.astro";
+import type { WeddingData } from '../types';
 
-// --- TEMPLATE IMPORTS ---
-import PetalTemplate from "../components/templates/PetalTemplate.astro"; 
-// import RoyalTemplate from "../components/templates/RoyalTemplate.astro"; // Coming soon
-// import StoryTemplate from "../components/templates/StoryTemplate.astro"; // Coming soon
-
-// 1. GET DATA (Cloudflare-Safe)
+// 1. GET DATA (Static Generation)
 export async function getStaticPaths() {
   const dataFiles = import.meta.glob('../data/weddings/*.json', { eager: true });
   return Object.keys(dataFiles).map((path) => {
@@ -20,14 +17,14 @@ export async function getStaticPaths() {
   });
 }
 
+// 2. PREPARE PROPS
 const { slug } = Astro.params;
-const { data } = Astro.props;
+const data = Astro.props.data as WeddingData;
 
-// 2. MAP ALL ASSETS
+// 3. MAP ASSETS
 const allAssets = import.meta.glob<{ default: ImageMetadata }>('/src/assets/weddings/**/*.{jpeg,jpg,png,gif,webp,JPG,PNG}');
 
-// 3. OPTIMIZE COUPLE PHOTO(S)
-// Logic: Optimize ALL images provided in the array so the Client can pick one randomly.
+// 4. OPTIMIZE COUPLE PHOTO(S)
 const rawSrc = data.media?.couplePhoto?.src;
 const srcList = Array.isArray(rawSrc) ? rawSrc : (rawSrc ? [rawSrc] : []);
 
@@ -40,15 +37,14 @@ const optimizedCouplePhotos = await Promise.all(
 
     if (imageImport) {
       const metaAsset = await imageImport();
-      // Generate High-Res WebP
       const opt = await getImage({ src: metaAsset.default, format: 'webp', width: 1200 });
       return opt.src;
     }
-    return srcPath; // Fallback if file not found in assets
+    return srcPath; 
   })
 );
 
-// 4. OPTIMIZE DECOR CORNERS
+// 5. OPTIMIZE DECOR CORNERS
 const cornerPaths = [
   '/src/assets/weddings/decor/decor-corner-1.png',
   '/src/assets/weddings/decor/decor-corner-2.png',
@@ -68,8 +64,7 @@ const optimizedCorners = await Promise.all(
   })
 );
 
-// 5. METADATA
-// We use the FIRST image for OpenGraph/WhatsApp previews to ensure consistency.
+// 6. METADATA
 const mainImageForMeta = optimizedCouplePhotos[0] || "";
 const domain = import.meta.env.SITE || "https://kokorolinks.com"; 
 const meta = {
@@ -77,12 +72,11 @@ const meta = {
   description: data.tagline || `Join us to celebrate the wedding of ${data.coupleNames}.`,
   image: mainImageForMeta ? (mainImageForMeta.startsWith("http") ? mainImageForMeta : `${domain}${mainImageForMeta}`) : ""
 };
-
 const baseUrl = import.meta.env.BASE_URL;
 
-// 6. DETERMINE TEMPLATE ID
-// If "templateId" is missing in JSON, default to "joy"
-const templateId = (data.templateId || "joy").toLowerCase();
+// 7. DETERMINE TEMPLATE ID
+// FIX: Default to 'petal' (not 'joy') so the fallback works correctly
+const templateId = (data.templateId || "petal").toLowerCase();
 ---
 
 <WeddingLayout 
@@ -90,8 +84,6 @@ const templateId = (data.templateId || "joy").toLowerCase();
   description={meta.description} 
   image={meta.image}
 >
-  
-  {/* TEMPLATE SWITCHER LOGIC */}
   
   {templateId === 'petal' ? (
     <PetalTemplate 
@@ -102,11 +94,11 @@ const templateId = (data.templateId || "joy").toLowerCase();
       optimizedCorners={optimizedCorners}
     />
   ) : (
-    /* Fallback/Error View if templateId is wrong */
     <div class="flex items-center justify-center min-h-screen bg-neutral-100 text-neutral-600">
       <div class="text-center">
         <h1 class="text-2xl font-bold mb-2">Template Not Found</h1>
         <p>The template ID <code>"{templateId}"</code> does not exist.</p>
+        <p class="text-xs mt-4 text-neutral-400">Try changing "templateId" in your JSON to "petal".</p>
       </div>
     </div>
   )}

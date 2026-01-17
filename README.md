@@ -40,6 +40,23 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+# Wedding Template Options
+
+## Theme Config
+- **mode**: `light` (force light), `dark` (force dark), `dynamic` (matches user device).
+- **typography.heading**: 
+  - `serif`: Elegant (Cormorant Garamond)
+  - `sans`: Modern (Montserrat)
+  - `script`: Cursive (Great Vibes)
+
+## Image Options
+- **size**: `hero` (full width top), `circle` (small avatar), `full` (large rectangle).
+- **position**: CSS object-position (e.g., "center 20%" to focus on faces).
+
+## Creating a New Wedding
+1. Copy `src/data/template.json`
+2. Rename to `couple-names.json`
+3. Edit values.
 
 ## 👀 Want to learn more?
 

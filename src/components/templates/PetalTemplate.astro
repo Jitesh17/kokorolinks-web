@@ -1,24 +1,31 @@
 ---
-// This component receives the data and optimized assets from the [slug] page.
+// src/components/templates/PetalTemplate.astro
+import { getThemeVariables } from "../../lib/themeEngine";
+
 const { 
   data, 
-  optimizedCouplePhotos, // Array of optimized image URLs
-  optimizedCorners,      // Array of optimized decor URLs
+  optimizedCouplePhotos, 
+  optimizedCorners, 
   slug, 
   baseUrl 
 } = Astro.props;
+
+// Generate the CSS variables based on JSON theme config
+const themeConfig = data.theme || {};
+const cssVars = getThemeVariables(themeConfig);
 ---
 
 <noscript>
   <div class="mx-auto max-w-2xl px-4 py-10">
-    <div class="rounded-2xl border p-6 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-center">
+    <div class="rounded-2xl border p-6 text-center bg-skin text-ink border-white/20">
       <h1 class="text-2xl font-bold mb-4">{data.coupleNames}</h1>
       <p>Please enable JavaScript to view this interactive wedding invitation.</p>
     </div>
   </div>
 </noscript>
 
-<div id="protectedContent">
+<div id="protectedContent" style={cssVars} class="bg-skin text-ink transition-colors duration-500">
+  
   <div id="themeWrapper" class="relative min-h-screen overflow-hidden">
     
     <div id="decorCorners" class="pointer-events-none absolute inset-0 hidden z-0">

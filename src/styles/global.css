@@ -5,7 +5,13 @@
 
 /* THEME CONFIGURATION */
 @theme {
-  --font-heading: "Cormorant Garamond", serif;
+  /* Dynamic Mappings: Tailwind names -> CSS Variables from JSON */
+  --color-primary: var(--color-primary);
+  --color-skin: var(--color-bg);
+  --color-ink: var(--color-text);
+  
+  /* Dynamic Font Mapping */
+  --font-heading: var(--font-heading);
   --font-body: "Montserrat", sans-serif;
 }
 

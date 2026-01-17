@@ -4,12 +4,12 @@ const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
 
 <dialog 
   id="contact-modal" 
-  class="group fixed inset-0 z-[100] w-full h-full bg-transparent p-4 hidden open:flex items-center justify-center backdrop:bg-stone-900/60 backdrop:backdrop-blur-sm transition-all duration-300"
+  class="group fixed inset-0 z-[999] w-full h-full bg-transparent p-4 hidden open:flex items-center justify-center backdrop:bg-stone-900/60 backdrop:backdrop-blur-sm transition-all duration-300"
 >  
   <div class="relative w-full max-w-lg bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 rounded-3xl shadow-2xl overflow-hidden scale-95 opacity-0 transition-all duration-300 group-open:scale-100 group-open:opacity-100 p-8 md:p-10">
     
-    <button id="close-modal" class="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+    <button id="close-modal" class="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors bg-stone-100 dark:bg-stone-800 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
     </button>
 
     <div class="text-center mb-8">
@@ -34,14 +34,14 @@ const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
       <div class="space-y-1">
         <label for="name" class="text-xs font-bold uppercase tracking-wider text-stone-500">Your Names</label>
         <input type="text" name="name" id="name" required placeholder="e.g. Rohan & Maya"
-          class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg px-4 py-3 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all"
+          class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg px-4 py-3 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all placeholder:text-stone-400"
         />
       </div>
 
       <div class="space-y-1">
         <label for="email" class="text-xs font-bold uppercase tracking-wider text-stone-500">Email Address</label>
         <input type="email" name="email" id="email" required placeholder="you@example.com"
-          class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg px-4 py-3 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all"
+          class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg px-4 py-3 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all placeholder:text-stone-400"
         />
       </div>
 
@@ -55,13 +55,16 @@ const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
       <div class="space-y-1">
         <label for="message" class="text-xs font-bold uppercase tracking-wider text-stone-500">Vision / Notes</label>
         <textarea name="message" id="message" rows="3" placeholder="We want a minimalist theme with a focus on photos..."
-          class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg px-4 py-3 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all resize-none"
+          class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg px-4 py-3 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all resize-none placeholder:text-stone-400"
         ></textarea>
       </div>
 
       <button type="submit" id="submit-btn" class="w-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-bold py-4 rounded-xl hover:bg-stone-800 dark:hover:bg-stone-200 transition-all shadow-lg mt-4 flex justify-center items-center gap-2">
         <span>Send Request</span>
-        <span id="loading-spinner" class="hidden animate-spin">⏳</span>
+        <svg id="loading-spinner" class="hidden animate-spin h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
       </button>
 
       <p id="form-status" class="text-center text-sm font-medium mt-2 hidden"></p>
@@ -78,10 +81,12 @@ const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const statusMsg = document.getElementById('form-status');
   const spinner = document.getElementById('loading-spinner');
+  const btnText = submitBtn?.querySelector('span');
 
   // Open Modal (Function to be called globally)
   window.openContactModal = () => {
     modal?.showModal();
+    document.body.style.overflow = 'hidden'; // Lock background scroll
     // Small timeout to allow the 'open' attribute to apply before adding opacity
     setTimeout(() => modal.classList.add('opacity-100'), 10);
   };
@@ -91,6 +96,7 @@ const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
     modal.classList.remove('opacity-100');
     setTimeout(() => {
       modal?.close();
+      document.body.style.overflow = ''; // Unlock background scroll
       statusMsg.classList.add('hidden');
       form.reset();
     }, 300); // Wait for transition
@@ -108,8 +114,8 @@ const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
     e.preventDefault();
     
     // UI Loading State
-    const originalText = submitBtn.querySelector('span').innerText;
-    submitBtn.querySelector('span').innerText = "Sending...";
+    const originalText = btnText.innerText;
+    btnText.innerText = "Sending...";
     submitBtn.disabled = true;
     spinner.classList.remove('hidden');
     statusMsg.classList.add('hidden');
@@ -145,7 +151,7 @@ const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
       statusMsg.classList.remove('hidden');
     } finally {
       // Reset Button
-      submitBtn.querySelector('span').innerText = originalText;
+      btnText.innerText = originalText;
       submitBtn.disabled = false;
       spinner.classList.add('hidden');
     }
