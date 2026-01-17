@@ -21,23 +21,74 @@
         Create Your Link
       </button>
 
-      <button class="md:hidden p-2 text-stone-600 dark:text-stone-400" aria-label="Toggle Menu">
+      <button id="mobile-menu-toggle" class="md:hidden p-2 text-stone-600 dark:text-stone-400" aria-label="Toggle Menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
       </button>
     </div>
   </div>
+
+<div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 bg-white dark:bg-stone-950 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-[70] md:hidden border-l border-stone-200 dark:border-stone-800">
+  <div class="p-8 flex flex-col h-full">
+    <button id="mobile-menu-close" class="self-end p-2 text-stone-600 dark:text-stone-400 mb-12" aria-label="Close Menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    
+    <nav class="flex flex-col space-y-8 text-xl font-medium">
+      <a href="#about" class="mobile-nav-link text-stone-900 dark:text-stone-100 hover:text-rose-600 transition-colors">Philosophy</a>
+      <a href="#features" class="mobile-nav-link text-stone-900 dark:text-stone-100 hover:text-rose-600 transition-colors">Features</a>
+      <a href="#demo" class="mobile-nav-link text-stone-900 dark:text-stone-100 hover:text-rose-600 transition-colors">Demo</a>
+      <hr class="border-stone-100 dark:border-stone-800" />
+      <button class="wip-link text-left text-stone-900 dark:text-stone-100 hover:text-rose-600 transition-colors">Log in</button>
+    </nav>
+    
+    <div class="mt-auto pt-8 border-t border-stone-100 dark:border-stone-800">
+      <p class="text-xs text-stone-400 uppercase tracking-widest font-bold">Invitations with Kokoro</p>
+    </div>
+  </div>
+</div>
+
+<div id="menu-overlay" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-[60] md:hidden"></div>
+
 </nav>
 
 <div class="h-20"></div>
 
 <script>
-  // Smooth scroll logic for Philosophy/Features links
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('menu-overlay');
+  const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+  const openMenu = () => {
+    menu?.classList.replace('translate-x-full', 'translate-x-0');
+    overlay?.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  };
+
+  const closeMenu = () => {
+    menu?.classList.replace('translate-x-0', 'translate-x-full');
+    overlay?.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = ''; // Restore scroll
+  };
+
+  toggleBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  overlay?.addEventListener('click', closeMenu);
+
+  // Smooth scroll and auto-close menu
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
       e.preventDefault();
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
-      });
+      closeMenu(); // Ensure menu closes before scrolling
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 
