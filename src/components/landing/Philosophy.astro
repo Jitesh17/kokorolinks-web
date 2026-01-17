@@ -1,0 +1,133 @@
+---
+// src/components/landing/Philosophy.astro
+---
+
+<section id="philosophy" class="py-32 section bg-stone-50 dark:bg-[#0c0a09] border-y border-stone-100 dark:border-stone-800/50">
+  <div class="container-max grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    
+    <div class="card-joy relative h-[500px] w-full flex items-center justify-center bg-white dark:bg-stone-900/50 rounded-[3rem] border border-stone-100 dark:border-stone-800 shadow-2xl shadow-stone-200/50 dark:shadow-none overflow-hidden group">
+      
+      <div class="kokoro-node relative z-20 w-24 h-24 rounded-full bg-rose-600 shadow-xl shadow-rose-600/30 flex flex-col items-center justify-center transition-transform duration-500 group-hover:scale-105 cursor-default">
+        <span class="text-white text-4xl font-heading select-none mb-[-4px]">心</span>
+        <span class="text-rose-100 text-[10px] font-bold uppercase tracking-widest opacity-90">Kokoro</span>
+      </div>
+
+      <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+        <circle cx="250" cy="250" r="180" fill="none" stroke="currentColor" class="text-stone-200 dark:text-stone-800 opacity-50" stroke-width="1" />
+        <circle cx="250" cy="250" r="110" fill="none" stroke="currentColor" class="text-stone-200 dark:text-stone-800 opacity-50" stroke-width="1" />
+        
+        <g fill="none" stroke-width="2" class="diagram-lines stroke-stone-300 dark:stroke-stone-700 transition-colors duration-500">
+          <line class="line-animate" x1="250" y1="250" x2="250" y2="70" />
+          <line class="line-animate" x1="250" y1="250" x2="100" y2="340" />
+          <line class="line-animate" x1="250" y1="250" x2="400" y2="340" />
+        </g>
+        
+        <g class="nodes-fade">
+          <circle cx="250" cy="70" r="8" class="node-dot fill-stone-300 dark:fill-stone-600 transition-colors duration-500" />
+          <text x="250" y="45" text-anchor="middle" class="font-bold text-[11px] tracking-[0.15em] fill-stone-500 dark:fill-stone-400 uppercase">
+            MIND <tspan class="font-normal opacity-50 text-[9px]">知性</tspan>
+          </text>
+          
+          <circle cx="100" cy="340" r="8" class="node-dot fill-stone-300 dark:fill-stone-600 transition-colors duration-500" />
+          <text x="100" y="375" text-anchor="middle" class="font-bold text-[11px] tracking-[0.15em] fill-stone-500 dark:fill-stone-400 uppercase">
+            INTENTION <tspan class="font-normal opacity-50 text-[9px]">意志</tspan>
+          </text>
+          
+          <circle cx="400" cy="340" r="8" class="node-dot fill-stone-300 dark:fill-stone-600 transition-colors duration-500" />
+          <text x="400" y="375" text-anchor="middle" class="font-bold text-[11px] tracking-[0.15em] fill-stone-500 dark:fill-stone-400 uppercase">
+            SPIRIT <tspan class="font-normal opacity-50 text-[9px]">精神</tspan>
+          </text>
+        </g>
+      </svg>
+      
+      <div class="absolute inset-0 bg-rose-500/[0.02] blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
+    </div>
+
+    <div class="space-y-8">
+      <div class="space-y-4">
+        <span class="font-body text-xs font-bold uppercase tracking-[0.25em] text-rose-600 block mb-2">
+          Our Philosophy
+        </span>
+        <h2 class="font-heading text-5xl md:text-6xl text-stone-900 dark:text-stone-100 font-light leading-tight">
+          Why "Kokoro"?
+        </h2>
+      </div>
+      
+      <div class="text-lg text-stone-600 dark:text-stone-400 leading-relaxed space-y-6">
+        <p>
+          In Japanese, <strong class="text-rose-600">Kokoro (心)</strong> means <em>Heart</em>, the intersection where Mind, Spirit, and Intention meet.
+        </p>
+        <p>
+          A shared milestone deserves a dedicated space. Inspired by the spirit of hospitality, <strong>KokoroLinks</strong> provides the canvas for your story, turning the act of inviting into a meaningful gesture of heart-to-heart connection. 
+        </p>
+      </div>
+
+    <div class="space-y-6 pt-6 border-t border-stone-200 dark:border-stone-800">
+    
+        <div class="flex items-start gap-4 group/item">
+            <div class="mt-1 w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-rose-600 group-hover/item:bg-rose-100 group-hover/item:text-rose-700 transition-colors shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            </div>
+            <div>
+            <h4 class="text-stone-900 dark:text-stone-100 font-bold text-sm uppercase tracking-wide mb-1">Modern Performance</h4>
+            <p class="text-stone-500 dark:text-stone-500 text-sm">Built by a Bridge Engineer for a seamless experience.</p>
+            </div>
+        </div>
+
+        <div class="flex items-start gap-4 group/item">
+            <div class="mt-1 w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-rose-600 group-hover/item:bg-rose-100 group-hover/item:text-rose-700 transition-colors shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-6.857 2.286L12 21l-2.286-6.857L3 12l6.857-2.286L12 3z" />
+            </svg>
+            </div>
+            <div>
+            <h4 class="text-stone-900 dark:text-stone-100 font-bold text-sm uppercase tracking-wide mb-1">Elegant Simplicity</h4>
+            <p class="text-stone-500 dark:text-stone-500 text-sm">Minimalist aesthetics that highlight your story.</p>
+            </div>
+        </div>
+
+        <div class="flex items-start gap-4 group/item">
+            <div class="mt-1 w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-rose-600 group-hover/item:bg-rose-100 group-hover/item:text-rose-700 transition-colors shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            </div>
+            <div>
+            <h4 class="text-stone-900 dark:text-stone-100 font-bold text-sm uppercase tracking-wide mb-1">Meaningful Intention</h4>
+            <p class="text-stone-500 dark:text-stone-500 text-sm">A dedicated space crafted with heart-to-heart connection.</p>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .kokoro-node { 
+    animation: breathe 4s ease-in-out infinite; 
+  }
+  @keyframes breathe { 
+    0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(225, 29, 72, 0.3); } 
+    50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(225, 29, 72, 0.5); } 
+  }
+
+  .line-animate { 
+    stroke-dasharray: 300; 
+    stroke-dashoffset: 300; 
+    animation: drawOut 2s cubic-bezier(0.25, 1, 0.5, 1) forwards; 
+  }
+  @keyframes drawOut { to { stroke-dashoffset: 0; } }
+
+  .nodes-fade { 
+    opacity: 0; 
+    animation: fadeIn 1.2s ease-out forwards 0.8s; 
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .card-joy:hover .diagram-lines { stroke: #e11d48; opacity: 0.8; }
+  .card-joy:hover .node-dot { fill: #e11d48; r: 10; }
+</style>
