@@ -2,49 +2,58 @@
 import { features } from '../../data/landing';
 ---
 
-<section id="features" class="py-24 md:py-32 section relative overflow-hidden">
+<section id="features" class="py-32 section bg-stone-50 dark:bg-[#0c0a09] relative overflow-hidden">
   
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-stone-50/50 dark:bg-stone-900/50 rounded-full blur-3xl -z-10 pointer-events-none opacity-50"></div>
+  <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-white/40 dark:bg-stone-800/20 rounded-full blur-[120px] pointer-events-none"></div>
 
   <div class="container-max relative z-10">
     
-    <div class="text-center mb-20 max-w-3xl mx-auto">
-      <span class="font-body text-xs font-bold uppercase tracking-[0.2em] text-rose-600 mb-4 block">
+    <div class="text-center mb-24 max-w-3xl mx-auto">
+      <span class="font-body text-xs font-bold uppercase tracking-[0.3em] text-rose-600 mb-6 block">
         The Experience
       </span>
-      <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl text-stone-900 dark:text-stone-50 font-light leading-tight mb-6">
-        Everything you need, <br/> <span class="font-serif italic text-stone-500 dark:text-stone-400">nothing you don't.</span>
+      <h2 class="font-heading text-5xl md:text-6xl text-stone-900 dark:text-stone-50 font-light leading-tight mb-8">
+        Everything you need, <br class="hidden md:block" />
+        <span class="font-serif italic text-stone-400 dark:text-stone-500">nothing you don't.</span>
       </h2>
-      <p class="text-stone-600 dark:text-stone-400 text-lg font-light leading-relaxed">
-        We stripped away the clutter of traditional wedding websites to focus on what matters: clarity, beauty, and connection.
-      </p>
     </div>      
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-10 items-start">
       {features.map((feature, index) => (
         <div 
-          class="group relative bg-white dark:bg-stone-950 p-8 rounded-3xl border border-stone-100 dark:border-stone-800 hover:border-rose-200 dark:hover:border-rose-900 shadow-sm hover:shadow-xl hover:shadow-rose-100/20 dark:hover:shadow-none transition-all duration-500 ease-out flex flex-col items-start text-left h-full"
+          class:list={[
+            "group relative p-10 rounded-[2rem] border transition-all duration-500 ease-out",
+            // Base Styles: White/Dark background, subtle border
+            "bg-white dark:bg-stone-900 border-stone-100 dark:border-stone-800",
+            
+            // HOVER EFFECT: The 'Levitation'
+            // 1. Lift Up slightly (-translate-y-2)
+            // 2. Cast a Rose-tinted shadow (shadow-rose-900/10)
+            // 3. Border turns Rose (border-rose-100)
+            "hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(225,29,72,0.12)] hover:border-rose-100 dark:hover:border-rose-900/30",
+            
+            // Stagger Logic (Layout Rhythm)
+            index === 1 ? "md:mt-16" : "md:mt-0"
+          ]}
         >
           
-          <div class="mb-6 w-14 h-14 rounded-2xl bg-stone-50 dark:bg-stone-900 border border-stone-100 dark:border-stone-800 flex items-center justify-center text-stone-900 dark:text-stone-100 group-hover:scale-110 group-hover:bg-rose-50 dark:group-hover:bg-rose-900/20 group-hover:text-rose-600 transition-all duration-300">
-            <div class="w-6 h-6" set:html={feature.icon} />
+          <div 
+            class="mb-8 w-16 h-16 rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 flex items-center justify-center text-stone-500 dark:text-stone-400 transition-all duration-500 group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white group-hover:border-rose-500 group-hover:shadow-[0_10px_40px_-10px_rgba(225,29,72,0.5)]"
+          >
+            <div class="w-7 h-7" set:html={feature.icon} />
           </div>
-
-          <h3 class="font-heading text-xl font-bold text-stone-900 dark:text-stone-100 mb-3 group-hover:text-rose-600 transition-colors">
+          
+          <h3 class="font-heading text-2xl text-stone-900 dark:text-stone-100 mb-4 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors duration-300">
             {feature.title}
           </h3>
-          <p class="text-stone-600 dark:text-stone-400 leading-relaxed text-sm mb-6">
+          
+          <p class="text-stone-600 dark:text-stone-400 leading-relaxed text-[15px] font-body">
             {feature.desc}
           </p>
-
-          <div class="mt-auto opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
-            <span class="text-rose-600 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-              Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-            </span>
-          </div>
 
         </div>
       ))}
     </div>
+
   </div>
 </section>

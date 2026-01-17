@@ -1,0 +1,41 @@
+---
+---
+<div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 px-6 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 z-[100] flex items-center gap-3 border border-stone-800 dark:border-stone-200">
+  <span class="text-rose-400 dark:text-rose-600 text-lg">ℹ️</span>
+  <span id="toast-msg" class="font-medium text-sm tracking-wide">Coming soon!</span>
+</div>
+
+<script>
+  // Global Toast Handler
+  const toast = document.getElementById('toast');
+  const msgSpan = document.getElementById('toast-msg');
+
+  window.showToast = (message = "Coming soon!") => {
+    if (!toast || !msgSpan) return;
+    
+    msgSpan.innerText = message;
+    toast.classList.remove('opacity-0', 'translate-y-4');
+    
+    // Hide after 2.5 seconds
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'translate-y-4');
+    }, 2500);
+  };
+
+  // Attach to all "wip-link" buttons automatically
+  document.querySelectorAll('.wip-link').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.showToast("Feature coming in Beta v2");
+    });
+  });
+</script>
+
+<script>
+  // Typescript definition for global window object
+  declare global {
+    interface Window {
+      showToast: (message?: string) => void;
+    }
+  }
+</script>

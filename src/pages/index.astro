@@ -1,48 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Landing Components
 import Navbar from '../components/landing/Navbar.astro';
 import Hero from '../components/landing/Hero.astro';
 import About from '../components/landing/About.astro';
+import Demo from '../components/landing/Demo.astro';
 import Features from '../components/landing/Features.astro';
 import Testimonials from '../components/landing/Testimonials.astro';
 import FAQ from '../components/landing/FAQ.astro';
 import Footer from '../components/landing/Footer.astro';
-import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+
+// UI Components
+import Toast from '../components/Toast.astro';
+import ContactModal from '../components/ContactModal.astro'; // <--- Added this
 ---
 
 <Layout title="KokoroLinks | Invitations with Heart">
   <Navbar />
   <Hero />
   <About />
-
-  <section id="demo" class="py-24 section">
-    <div class="container-max">
-      <ThemeSwitcher />
-    </div>
-  </section>
+  <Demo />
 
   <Features />
   <Testimonials />
   <FAQ />
   <Footer />
 
-  {/* Global Toast Component */}
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 px-6 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center gap-3">
-    <span class="text-rose-400 dark:text-rose-600">ℹ️</span>
-    <span id="toast-msg">Coming soon!</span>
-  </div>
-</Layout>
+  <ContactModal />
+  <Toast />
 
-<script>
-  // Global "Coming Soon" handler
-  document.querySelectorAll('.wip-link').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const toast = document.getElementById('toast');
-      if (toast) {
-        toast.classList.remove('opacity-0');
-        setTimeout(() => toast.classList.add('opacity-0'), 2000);
-      }
-    });
-  });
-</script>
+</Layout>

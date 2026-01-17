@@ -1,9 +1,14 @@
 <header class="relative pt-32 pb-40 section overflow-hidden">
-  <div class="absolute top-0 left-1/2 -translate-x-[60%] w-[600px] h-[600px] bg-rose-100/40 dark:bg-rose-900/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-pulse-slow"></div>
-  <div class="absolute top-10 left-1/2 -translate-x-[40%] w-[500px] h-[500px] bg-stone-200/40 dark:bg-stone-800/20 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen"></div>
+  
+  <div class="absolute top-0 left-1/2 -translate-x-[60%] w-[600px] h-[600px] bg-rose-200/30 dark:bg-rose-900/20 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob"></div>
+  
+  <div class="absolute top-20 left-1/2 -translate-x-[40%] w-[500px] h-[500px] bg-stone-200/60 dark:bg-stone-800/20 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob-reverse"></div>
 
-  <div class="container-max text-center relative z-10">
-    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-[11px] font-bold tracking-widest uppercase mb-10 shadow-sm transition-transform hover:scale-105 cursor-default">
+  <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+
+  <div class="container-max text-center relative z-10 px-6">
+    
+    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/50 dark:bg-stone-900/50 backdrop-blur-md border border-stone-200/50 dark:border-stone-800/50 text-stone-600 dark:text-stone-300 text-[11px] font-bold tracking-widest uppercase mb-12 shadow-sm hover:scale-105 transition-transform duration-300 cursor-default">
       <span class="relative flex h-2 w-2">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
@@ -11,40 +16,78 @@
       Beta is Live
     </div>
 
-    <h1 class="font-heading text-6xl md:text-7xl lg:text-8xl text-stone-900 dark:text-stone-50 leading-[1.05] mb-8 tracking-tight">
-      <span class="sr-only">Premium Custom Wedding Websites</span> 
-      Invitations that connect <br />
-      <span class="italic text-rose-600 font-serif pr-2">Heart to Heart.</span>
+    <h1 class="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-stone-900 dark:text-stone-50 font-light leading-[1.1] tracking-tight mb-8">
+      Invitations that connect <br class="hidden sm:block" />
+      <span class="font-serif italic text-rose-600 block sm:inline mt-2 sm:mt-0 relative">
+        Heart to Heart.
+        <svg class="absolute -bottom-2 left-0 w-full h-2 text-rose-200 dark:text-rose-900/30 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+          <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="2" fill="none" />
+        </svg>
+      </span>
     </h1>
 
-    <p class="text-lg md:text-xl text-stone-600 dark:text-stone-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-A <strong>bespoke digital invitation platform</strong>. Create your <strong>custom wedding website</strong> with <strong>seamless RSVPs</strong>, <strong>smart privacy</strong>, and meaningful design —  all in one elegant link.    </p>
+    <p class="text-base md:text-xl text-stone-600 dark:text-stone-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed px-4">
+      A bespoke digital invitation platform. Create your custom wedding website with seamless RSVPs and meaningful design—all in one elegant link.
+    </p>
 
-    <div class="flex flex-col sm:flex-row justify-center gap-4 items-center">
-      <button class="wip-link group relative px-8 py-4 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg font-medium overflow-hidden transition-all hover:shadow-xl hover:-translate-y-0.5">
-        <span class="relative z-10">Create Your Link</span>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+      
+      <button id="hero-create-btn" class="w-full sm:w-auto group relative px-8 py-4 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-xl font-bold tracking-wide overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-rose-900/20 hover:-translate-y-1">
+        <span class="relative z-10 flex items-center justify-center gap-2">
+          Create Your Link
+          <svg class="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </span>
         <div class="absolute inset-0 bg-stone-800 dark:bg-stone-200 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
       </button>
       
-      <a href="#demo" class="px-8 py-4 bg-transparent text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800 rounded-lg font-medium hover:bg-stone-50 dark:hover:bg-stone-900/50 transition flex items-center gap-2 group">
+      <a href="#demo" class="w-full sm:w-auto px-8 py-4 bg-white/50 dark:bg-stone-900/50 backdrop-blur-sm text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800 rounded-xl font-bold tracking-wide hover:bg-white dark:hover:bg-stone-800 hover:border-stone-300 transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2 group">
         <span>View Demo</span>
-        <svg class="w-4 h-4 text-stone-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        <svg class="w-4 h-4 text-stone-400 group-hover:text-rose-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
       </a>
+
     </div>
 
-    <p class="mt-8 text-xs text-stone-400 dark:text-stone-500 font-medium tracking-wide">
-      NO CREDIT CARD REQUIRED FOR BETA
+    <p class="mt-8 text-[10px] uppercase tracking-widest text-stone-400 dark:text-stone-500 font-bold opacity-80">
+      No credit card required for beta
     </p>
+
   </div>
 </header>
 
+<script>
+  const heroBtn = document.getElementById('hero-create-btn');
+  
+  heroBtn?.addEventListener('click', () => {
+    // This looks for the global function defined in ContactModal.astro
+    if (window.openContactModal) {
+      window.openContactModal();
+    } else {
+      console.error('Contact Modal not found');
+    }
+  });
+</script>
+
 <style>
-  /* Subtle float animation for the blobs */
-  @keyframes pulse-slow {
-    0%, 100% { transform: translate(-60%, 0) scale(1); opacity: 0.8; }
-    50% { transform: translate(-60%, -20px) scale(1.05); opacity: 0.6; }
+  /* Animation 1: Floating Blob */
+  @keyframes blob {
+    0% { transform: translate(-60%, 0) scale(1); }
+    33% { transform: translate(-60%, -30px) scale(1.1); }
+    66% { transform: translate(-50%, -10px) scale(0.95); }
+    100% { transform: translate(-60%, 0) scale(1); }
   }
-  .animate-pulse-slow {
-    animation: pulse-slow 8s ease-in-out infinite;
+  
+  /* Animation 2: Reverse/Different Timing for organic feel */
+  @keyframes blob-reverse {
+    0% { transform: translate(-40%, 0) scale(1); }
+    33% { transform: translate(-30%, 20px) scale(1.1); }
+    66% { transform: translate(-50%, 10px) scale(0.9); }
+    100% { transform: translate(-40%, 0) scale(1); }
+  }
+
+  .animate-blob {
+    animation: blob 15s infinite ease-in-out;
+  }
+  .animate-blob-reverse {
+    animation: blob-reverse 18s infinite ease-in-out;
   }
 </style>
