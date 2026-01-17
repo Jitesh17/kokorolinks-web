@@ -1,0 +1,97 @@
+{
+  "templateId": "royal",
+  "coupleNames": "Vikram & Priya",
+  "tagline": "A union of hearts and heritage.",
+  "cityLine": "Udaipur, Rajasthan",
+  "theme": {
+    "mode": "dark",
+    "palette": {
+      "primary": "#d4af37",    
+      "secondary": "#0f172a",  
+      "text": "#f8fafc"        
+    },
+    "typography": {
+      "heading": "royal"
+    }
+  },
+  "media": {
+    "couplePhoto": {
+      "src": [
+        "demo/couple-white.png",
+        "demo/couple-black.png",
+        "demo/couple-caucasian.png",
+        "demo/couple-hispanic.png",
+        "demo/couple-southasian.png",
+        "demo/couple-indian-asian.png",
+        "demo/couple-sample3.png",
+        "demo/couple-sample5.png",
+        "demo/couple-eastasian.png"
+      ],
+      "enabled": true,
+      "size": "full",
+      "position": "center 20%" 
+    }
+  },
+
+  "primaryEvent": {
+    "start": "2026-11-24T10:00:00",
+    "displayDate": "November 24th, 2026"
+  },
+
+  "primaryVenue": {
+    "name": "The City Palace",
+    "address": "Old City, Udaipur, Rajasthan 313001",
+    "mapUrl": "https://maps.app.goo.gl/dummyLink"
+  },
+
+  "schedule": [
+    {
+      "title": "Welcome Lunch",
+      "start": "2026-11-23T12:00:00",
+      "locationName": "Fateh Prakash Palace",
+      "wardrobe": "Pastel Casuals",
+      "wardrobeIcon": "🌸",
+      "notes": "Join us for a sunny brunch to kick off the festivities."
+    },
+    {
+      "title": "Sangeet Night",
+      "start": "2026-11-23T19:00:00",
+      "locationName": "The Durbar Hall",
+      "wardrobe": "Indo-Western Glam",
+      "wardrobeIcon": "✨",
+      "notes": "An evening of music, dance, and cocktails.",
+      "mapUrl": "https://maps.app.goo.gl/dummyLink"
+    },
+    {
+      "title": "Royal Wedding",
+      "start": "2026-11-24T10:00:00",
+      "locationName": "Manek Chowk",
+      "wardrobe": "Traditional Indian",
+      "wardrobeIcon": "👑",
+      "notes": "Baraat assembly at 9:00 AM at the main gate.",
+      "mapUrl": "https://maps.app.goo.gl/dummyLink"
+    }
+  ],
+
+"contacts": [
+    {
+      "name": "Rohan (Brother)",
+      "phone": "+91 00000 00000",
+      "role": "Logistics",
+      "icon": "📞"
+    },
+    {
+      "name": "Maya (Planner)",
+      "phone": "+91 00000 00000",
+      "role": "Hospitality",
+      "icon": "📋"
+    }
+  ],
+
+  "rsvp": {
+    "enabled": true,
+    "deadline": "2026-10-01T00:00:00",
+    "formUrl": "https://forms.google.com/",
+    "buttonText": "Confirm Your Presence"
+  }
+}

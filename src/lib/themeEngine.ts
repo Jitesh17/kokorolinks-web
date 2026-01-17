@@ -2,12 +2,21 @@ export function getThemeVariables(themeConfig: any) {
   const palette = themeConfig?.palette || {};
   const typography = themeConfig?.typography || {};
 
+  let fontHeading = '"Cormorant Garamond", serif'; // Default
+
+  if (typography.heading === 'script') {
+    fontHeading = '"Great Vibes", cursive';
+  } else if (typography.heading === 'sans') {
+    fontHeading = '"Montserrat", sans-serif';
+  } else if (typography.heading === 'royal') {
+    // New Royal Font
+    fontHeading = '"Cinzel Decorative", cursive';
+  }
+
   return {
     "--color-primary": palette.primary || "#8b0000",
     "--color-bg": palette.secondary || "#ffffff",
     "--color-text": palette.text || "#171717",
-    "--font-heading": typography.heading === 'script' 
-        ? '"Great Vibes", cursive' 
-        : '"Cormorant Garamond", serif',
+    "--font-heading": fontHeading, 
   };
 }

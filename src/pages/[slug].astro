@@ -1,19 +1,25 @@
 ---
 import WeddingLayout from "../layouts/WeddingLayout.astro";
 import { getImage } from "astro:assets";
-import PetalTemplate from "../components/templates/PetalTemplate.astro";
 import type { WeddingData } from '../types';
 
-// 1. GET DATA (Static Generation)
+// --- TEMPLATE IMPORTS ---
+import PetalTemplate from "../components/templates/PetalTemplate.astro";
+import RoyalTemplate from "../components/templates/RoyalTemplate.astro"; 
+
+const TEMPLATE_MAP = {
+  'petal': PetalTemplate,
+  'royal': RoyalTemplate,
+  // 'story': StoryTemplate 
+};
+
+// 1. GET DATA
 export async function getStaticPaths() {
   const dataFiles = import.meta.glob('../data/weddings/*.json', { eager: true });
   return Object.keys(dataFiles).map((path) => {
     const slug = path.split('/').pop().replace('.json', '');
     const data = dataFiles[path] as any;
-    return {
-      params: { slug },
-      props: { data },
-    };
+    return { params: { slug }, props: { data } };
   });
 }
 
@@ -34,11 +40,9 @@ const optimizedCouplePhotos = await Promise.all(
     const cleanJsonSrc = srcPath.startsWith('/') ? srcPath.slice(1) : srcPath;
     const targetKey = `/src/assets/weddings/${cleanJsonSrc}`;
     const imageImport = allAssets[targetKey];
-
     if (imageImport) {
       const metaAsset = await imageImport();
-      const opt = await getImage({ src: metaAsset.default, format: 'webp', width: 1200 });
-      return opt.src;
+      return (await getImage({ src: metaAsset.default, format: 'webp', width: 1200 })).src;
     }
     return srcPath; 
   })
@@ -51,14 +55,12 @@ const cornerPaths = [
   '/src/assets/weddings/decor/decor-corner-3.png',
   '/src/assets/weddings/decor/decor-corner-4.png'
 ];
-
 const optimizedCorners = await Promise.all(
   cornerPaths.map(async (path) => {
     const asset = allAssets[path];
     if (asset) {
       const meta = await asset();
-      const opt = await getImage({ src: meta.default, width: 400 });
-      return opt.src;
+      return (await getImage({ src: meta.default, width: 400 })).src;
     }
     return "";
   })
@@ -69,36 +71,40 @@ const mainImageForMeta = optimizedCouplePhotos[0] || "";
 const domain = import.meta.env.SITE || "https://kokorolinks.com"; 
 const meta = {
   title: data.coupleNames ? `${data.coupleNames} | Wedding Invitation` : "Wedding Invitation",
-  description: data.tagline || `Join us to celebrate the wedding of ${data.coupleNames}.`,
+  description: data.tagline || `Join us to celebrate.`,
   image: mainImageForMeta ? (mainImageForMeta.startsWith("http") ? mainImageForMeta : `${domain}${mainImageForMeta}`) : ""
 };
 const baseUrl = import.meta.env.BASE_URL;
 
-// 7. DETERMINE TEMPLATE ID
-// FIX: Default to 'petal' (not 'joy') so the fallback works correctly
+// 7. DETERMINE TEMPLATE COMPONENT
 const templateId = (data.templateId || "petal").toLowerCase();
+
+// LOOKUP LOGIC:
+// We look up the component. If it exists, 'TemplateComponent' holds the component.
+// If it doesn't exist (e.g., "garbage"), it is undefined.
+const TemplateComponent = TEMPLATE_MAP[templateId as keyof typeof TEMPLATE_MAP];
 ---
 
-<WeddingLayout 
-  title={meta.title} 
-  description={meta.description} 
-  image={meta.image}
->
+<WeddingLayout title={meta.title} description={meta.description} image={meta.image}>
   
-  {templateId === 'petal' ? (
-    <PetalTemplate 
-      data={data}
-      slug={slug}
-      baseUrl={baseUrl}
-      optimizedCouplePhotos={optimizedCouplePhotos}
-      optimizedCorners={optimizedCorners}
-    />
+  {/* DYNAMIC RENDER LOGIC 
+      Check if the component was found in the map.
+  */}
+  {TemplateComponent ? (
+      <TemplateComponent 
+        data={data}
+        slug={slug}
+        baseUrl={baseUrl}
+        optimizedCouplePhotos={optimizedCouplePhotos}
+        optimizedCorners={optimizedCorners}
+      />
   ) : (
+    /* Fallback Error View */
     <div class="flex items-center justify-center min-h-screen bg-neutral-100 text-neutral-600">
       <div class="text-center">
         <h1 class="text-2xl font-bold mb-2">Template Not Found</h1>
         <p>The template ID <code>"{templateId}"</code> does not exist.</p>
-        <p class="text-xs mt-4 text-neutral-400">Try changing "templateId" in your JSON to "petal".</p>
+        <p class="text-xs mt-4 text-neutral-400">Available templates: {Object.keys(TEMPLATE_MAP).join(", ")}</p>
       </div>
     </div>
   )}
