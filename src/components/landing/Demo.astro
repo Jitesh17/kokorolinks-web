@@ -25,7 +25,18 @@
       <div class="order-2 lg:order-1">
         <div class="bg-white dark:bg-stone-900/50 backdrop-blur-sm p-8 rounded-[2rem] border border-stone-100 dark:border-stone-800 shadow-xl shadow-stone-200/50 dark:shadow-none">
           
-          <div class="space-y-8">
+          <div class="space-y-6">
+            
+            <div>
+               <label class="block text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-3">Invitation Tone</label>
+               <select id="preview-greeting" class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-sm font-bold text-stone-700 dark:text-stone-300 focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 outline-none transition-all cursor-pointer appearance-none">
+                 <option value="The Wedding Of">Formal: "The Wedding Of"</option>
+                 <option value="We Are Getting Married">Casual: "We Are Getting Married"</option>
+                 <option value="Save The Date">Functional: "Save The Date"</option>
+                 <option value="Celebrating">Simple: "Celebrating"</option>
+               </select>
+            </div>
+
             <div>
               <label class="block text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-3">Couple Names</label>
               <input 
@@ -48,17 +59,17 @@
 
             <div class="pt-8 mt-4 flex flex-col gap-6 border-t border-stone-100 dark:border-stone-800">
               
-              <div class="flex items-end justify-between">
+              <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                   <div class="flex flex-col gap-3">
                     <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Ambiance</span>
                     <div class="inline-flex bg-stone-100 dark:bg-stone-800 p-1 rounded-lg gap-1">
-                      <button data-theme="minimalist" class="theme-btn active px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all bg-white dark:bg-stone-700 shadow-sm text-stone-900 dark:text-stone-100">Minimalist</button>
-                      <button data-theme="floral" class="theme-btn px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100">Floral</button>
-                      <button data-theme="midnight" class="theme-btn px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100">Midnight</button>
+                      <button data-theme="minimalist" class="theme-btn active px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all bg-white dark:bg-stone-700 shadow-sm text-stone-900 dark:text-stone-100">Minimalist</button>
+                      <button data-theme="floral" class="theme-btn px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100">Floral</button>
+                      <button data-theme="midnight" class="theme-btn px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100">Midnight</button>
                     </div>
                   </div>
 
-                  <label class="flex flex-col items-end gap-3 cursor-pointer group">
+                  <label class="flex flex-col items-start sm:items-end gap-3 cursor-pointer group">
                     <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold group-hover:text-stone-600 dark:group-hover:text-stone-300 transition-colors">Include Photo</span>
                     <div class="relative">
                       <input type="checkbox" id="photo-toggle" class="sr-only peer">
@@ -112,9 +123,13 @@
               </p>
 
               <div class="mt-10 w-full px-4">
-                <div id="card-btn" class="h-10 w-full rounded-lg flex items-center justify-center text-[10px] font-bold tracking-widest uppercase shadow-lg transition-colors duration-500 bg-stone-900 text-white">
-                  RSVP Now
-                </div>
+                <button 
+                  id="card-btn" 
+                  class="group h-10 w-full rounded-lg flex items-center justify-center text-[10px] font-bold tracking-widest uppercase shadow-lg transition-all duration-300 bg-stone-900 text-white hover:scale-105 active:scale-95"
+                >
+                  <span id="btn-text">RSVP Now</span>
+                  <svg id="btn-icon" class="hidden w-4 h-4 text-white ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </button>
               </div>
 
             </div>
@@ -132,6 +147,7 @@
   // --- ELEMENTS ---
   const nameInput = document.getElementById('preview-name') as HTMLInputElement;
   const dateInput = document.getElementById('preview-date') as HTMLInputElement;
+  const greetingInput = document.getElementById('preview-greeting') as HTMLSelectElement; // New
   const photoToggle = document.getElementById('photo-toggle') as HTMLInputElement;
   
   // Phone Elements
@@ -142,6 +158,8 @@
   const phoneScreen = document.getElementById('phone-screen');
   const cardLabel = document.getElementById('card-label');
   const cardBtn = document.getElementById('card-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnIcon = document.getElementById('btn-icon');
 
   // --- LOGIC: UPDATE TEXT ---
   const getInitials = (text: string) => {
@@ -158,20 +176,51 @@
       if (cardMonogram) cardMonogram.innerText = getInitials(nameInput.value);
     }
     if (cardDate && dateInput) cardDate.innerText = dateInput.value;
+    
+    // NEW: Greeting Logic
+    if (greetingInput && cardLabel) {
+       cardLabel.innerText = greetingInput.value;
+    }
   };
 
   nameInput?.addEventListener('input', updatePreview);
   dateInput?.addEventListener('input', updatePreview);
+  greetingInput?.addEventListener('change', updatePreview); // Listener for greeting
+
+  // --- LOGIC: INTERACTIVE RSVP ---
+  cardBtn?.addEventListener('click', () => {
+    if (!cardBtn || !btnText || !btnIcon) return;
+    
+    // 1. Loading State
+    btnText.innerText = "Checking...";
+    cardBtn.classList.add('opacity-80', 'cursor-wait');
+
+    // 2. Success State (after delay)
+    setTimeout(() => {
+        btnText.innerText = "You're on the list!";
+        btnIcon.classList.remove('hidden');
+        cardBtn.classList.remove('opacity-80', 'cursor-wait');
+        cardBtn.classList.add('bg-emerald-600', 'text-white'); // Force Green Success
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+            btnText.innerText = "RSVP Now";
+            btnIcon.classList.add('hidden');
+            cardBtn.classList.remove('bg-emerald-600');
+            // Re-apply current theme color would handle automatically by theme logic, 
+            // but simplified here just reverting the override.
+        }, 2000);
+    }, 600);
+  });
+
 
   // --- LOGIC: PHOTO TOGGLE ---
   photoToggle?.addEventListener('change', (e) => {
       const isChecked = (e.target as HTMLInputElement).checked;
       if (isChecked) {
-          // Show Photo, Hide Monogram
           cardPhoto?.classList.remove('hidden');
           cardMonogram?.classList.add('hidden');
       } else {
-          // Hide Photo, Show Monogram
           cardPhoto?.classList.add('hidden');
           cardMonogram?.classList.remove('hidden');
       }
@@ -180,12 +229,9 @@
 
   // --- LOGIC: CHANGE THEME ---
   const themeBtns = document.querySelectorAll('.theme-btn');
-  
-  // Define classes for states
   const activeClasses = ['bg-white', 'dark:bg-stone-700', 'shadow-sm', 'text-stone-900', 'dark:text-stone-100'];
   const inactiveClasses = ['text-stone-500', 'hover:text-stone-900', 'dark:hover:text-stone-100'];
 
-  // Theme Configurations (Tailwind Classes)
   const themes = {
     minimalist: {
       bg: 'bg-stone-50',
@@ -218,7 +264,6 @@
 
   themeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // 1. UPDATE BUTTON VISUALS
       themeBtns.forEach(b => {
         b.classList.remove(...activeClasses);
         b.classList.add(...inactiveClasses);
@@ -226,7 +271,6 @@
       btn.classList.remove(...inactiveClasses);
       btn.classList.add(...activeClasses);
 
-      // 2. APPLY THEME TO PHONE
       const themeName = btn.getAttribute('data-theme');
       // @ts-ignore
       const t = themes[themeName];
@@ -236,7 +280,12 @@
         if (cardName) cardName.className = `font-heading text-4xl leading-tight mb-6 transition-colors duration-500 ${t.textMain}`;
         if (cardLabel) cardLabel.className = `text-[10px] uppercase tracking-[0.3em] mb-4 transition-colors duration-500 ${t.textSub}`;
         if (cardDate) cardDate.className = `font-serif italic text-base border-y py-2 px-6 transition-colors duration-500 ${t.border} ${t.textSub}`;
-        if (cardBtn) cardBtn.className = `h-10 w-full rounded-lg flex items-center justify-center text-[10px] font-bold tracking-widest uppercase shadow-lg transition-colors duration-500 ${t.btnBg} ${t.btnText}`;
+        
+        // Update Button (Unless currently showing success state)
+        if (cardBtn && btnText && btnText.innerText === "RSVP Now") {
+            cardBtn.className = `group h-10 w-full rounded-lg flex items-center justify-center text-[10px] font-bold tracking-widest uppercase shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 ${t.btnBg} ${t.btnText}`;
+        }
+
         if (cardMonogram) cardMonogram.className = `w-16 h-16 mb-8 rounded-full border flex items-center justify-center font-serif italic text-2xl bg-white/50 backdrop-blur-sm shadow-sm transition-all duration-500 relative z-20 ${t.border} ${t.accent}`;
       }
     });
@@ -244,7 +293,6 @@
 </script>
 
 <style>
-  /* 3D Transform Utilities */
   .perspective-1000 { perspective: 1000px; }
   .rotate-y-6 { transform: rotateY(-6deg); }
   .rotate-x-6 { transform: rotateX(6deg); }
