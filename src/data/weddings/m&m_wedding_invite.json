@@ -157,12 +157,14 @@
     {
       "name": "Manish",
       "role": "Groom",
-      "phone": "+91-XXXXXXXXXX"
+      "phone": "+91-XXXXXXXXXX",
+      "icon": "🤵"
     },
     {
       "name": "Manvi",
       "role": "Bride",
-      "phone": "+91-XXXXXXXXXX"
+      "phone": "+91-XXXXXXXXXX",
+      "icon": "👰"
     },
     {
       "name": "Jitesh Gosar",
