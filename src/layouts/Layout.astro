@@ -2,21 +2,21 @@
 import '../styles/global.css';
 import '../styles/landing.css';
 import ContactModal from '../components/ContactModal.astro';
+
 interface Props {
     title: string;
-    description?: string; // Made optional with a default below
-    image?: string;       // For social sharing previews
+    description?: string; 
+    image?: string;       
 }
 
 const { 
     title, 
     description = "KokoroLinks - Premium custom wedding invitation websites.", 
-    image = "/apple-touch-icon.png" // Fallback to your logo icon
+    image = "/apple-touch-icon.png" 
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// Define Schema here safely to avoid syntax errors in HTML
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
@@ -25,7 +25,7 @@ const schema = JSON.stringify({
   "provider": {
     "@type": "LocalBusiness",
     "name": "KokoroLinks",
-    "image": new URL("/apple-touch-icon.png", Astro.site).toString() // Uses your actual icon
+    "image": new URL("/apple-touch-icon.png", Astro.site).toString() 
   },
   "areaServed": "Worldwide",
   "hasOfferCatalog": {
@@ -81,6 +81,31 @@ const schema = JSON.stringify({
         <script type="application/ld+json" set:html={schema} />
 
         <style is:global>
+          html {
+              /* Always show the vertical scrollbar to prevent horizontal "jumping" */
+              overflow-y: scroll; 
+              overflow-x: hidden;
+              height: 100%;
+              width: 100%;
+          }
+
+          body {
+              /* Reset body overflow so it never creates its own scrollbar */
+              overflow: visible;
+              width: 100%;
+              min-height: 100%;
+              /* Ensure no hidden heights are forcing a scroll */
+              height: auto !important; 
+              margin: 0;
+              padding: 0;
+              position: relative;
+          }
+
+          /* Fix for the "Reveal" animation overflow */
+          .section {
+              /* This prevents the translateY(40px) from creating temporary scrollbars */
+              contain: paint;
+          }
             .reveal-hidden {
                 opacity: 0 !important;
                 transform: translateY(40px) scale(0.98);
@@ -121,6 +146,6 @@ const schema = JSON.stringify({
           document.addEventListener('DOMContentLoaded', initReveal);
           document.addEventListener('astro:after-swap', initReveal);
         </script>
-		<ContactModal />
+        <ContactModal />
     </body>
 </html>
